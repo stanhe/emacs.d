@@ -24,6 +24,7 @@
 (defvar stanhe/packages '(
                      use-package
                      neotree
+                     ace-window
                      company
                      hungry-delete
                      swiper
@@ -116,6 +117,7 @@
         "ntg" 'neotree-refresh
         "nsv" 'neotree-enter-vertical-split
         "nsh" 'neotree-enter-horizontal-split
+        "aw" 'ace-swap-window
     ))
 
 (use-package smartparens
@@ -156,6 +158,8 @@
             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
+
+(use-package ace-window)
 
 ;;custom settings
 (custom-set-variables
