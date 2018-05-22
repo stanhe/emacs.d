@@ -23,6 +23,7 @@
 
 (defvar stanhe/packages '(
                      use-package
+                     neotree
                      company
                      hungry-delete
                      swiper
@@ -108,6 +109,13 @@
         "eb" 'eval-buffer
         "cg" 'counsel-git
         "oa" 'org-agenda
+        "ntf" 'neotree-find
+        "ntt" 'neotree-toggle
+        "nth" 'neotree-hide
+        "nts" 'neotree-show
+        "ntg" 'neotree-refresh
+        "nsv" 'neotree-enter-vertical-split
+        "nsh" 'neotree-enter-horizontal-split
     ))
 
 (use-package smartparens
@@ -137,6 +145,17 @@
     (put 'dired-find-alternate-file 'disabled nil)
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 )
+
+(use-package neotree
+    :config
+    (setq neo-smart-open t)
+    :init
+    (add-hook 'neotree-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 ;;custom settings
 (custom-set-variables
