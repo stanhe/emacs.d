@@ -55,6 +55,8 @@
 		     projectile
 		     counsel-projectile
 		     magit
+                     gh-md
+                     markdown-mode
 
 		     ) "My default packages")
 
@@ -90,6 +92,8 @@
     :config 
     (evil-mode 1)
     (nvmap :prefix ","
+
+	"p" 'projectile-command-map
 	"x1" 'delete-other-windows
 	"x0" 'delete-window
 	"xq" 'delete-window
@@ -105,20 +109,25 @@
 	"xc" 'save-buffers-kill-terminal
 	"xk" 'kill-buffer
 	"xe" 'eval-last-sexp
+
+	"aw" 'ace-swap-window
 	"ff" 'find-function
 	"eb" 'eval-buffer
 	"cg" 'counsel-git
 	"oa" 'org-agenda
+
 	"nf" 'neotree-find
 	"nt" 'neotree-toggle
 	"nh" 'neotree-hide
 	"ns" 'neotree-show
 	"ng" 'neotree-refresh
+	"nd" 'neotree-delete-node
+	"nr" 'neotree-rename-node
+	"nc" 'neotree-create-node
 	"sv" 'neotree-enter-vertical-split
 	"sh" 'neotree-enter-horizontal-split
-	"aw" 'ace-swap-window
-	"xp" 'projectile-command-map
 	"gs" 'magit-status
+
     ))
 
 (use-package company
@@ -196,6 +205,14 @@
     (counsel-projectile-mode))
 
 (use-package magit)
+
+(use-package markdown-mode
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(use-package gh-md)
 #+END_SRC
 ** Custom Settings
    保存custom-group 相关配置
