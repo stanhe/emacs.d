@@ -69,6 +69,7 @@
     (nvmap :prefix ","
         "x1" 'delete-other-windows
         "x0" 'delete-window
+        "xq" 'delete-window
         "x2" 'split-window-below
         "x3" 'split-window-right
         "xf" 'counsel-find-file
@@ -85,13 +86,13 @@
         "eb" 'eval-buffer
         "cg" 'counsel-git
         "oa" 'org-agenda
-        "ntf" 'neotree-find
-        "ntt" 'neotree-toggle
-        "nth" 'neotree-hide
-        "nts" 'neotree-show
-        "ntg" 'neotree-refresh
-        "nsv" 'neotree-enter-vertical-split
-        "nsh" 'neotree-enter-horizontal-split
+        "nf" 'neotree-find
+        "nt" 'neotree-toggle
+        "nh" 'neotree-hide
+        "ns" 'neotree-show
+        "ng" 'neotree-refresh
+        "sv" 'neotree-enter-vertical-split
+        "sh" 'neotree-enter-horizontal-split
         "aw" 'ace-swap-window
         "xp" 'projectile-command-map
         "gs" 'magit-status
