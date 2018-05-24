@@ -36,6 +36,10 @@
                      window-numbering
                      popwin
                      monokai-theme
+                     projectile
+                     counsel-projectile
+                     magit
+
                      ) "My default packages")
 
 (require 'cl)
@@ -56,35 +60,6 @@
 
 (load-theme 'monokai 1)
 (require 'use-package)
-
-(use-package company
-    :init
-    (global-company-mode 1)
-    :hook(after-init-hook . global-company-mode))
-
-(use-package hungry-delete
-    :config
-    (global-hungry-delete-mode))
-
-(use-package ivy
-    :init
-    (setq ivy-use-virtual-buffers t)
-    (setq enable-recursive-minibuffers t)
-    :config 
-    (ivy-mode 1)
-    (global-set-key "\C-s" 'swiper)
-    (global-set-key (kbd "C-c C-r") 'ivy-resume)
-    (global-set-key (kbd "<f6>") 'ivy-resume)
-    (global-set-key (kbd "M-x") 'counsel-M-x)
-    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-    (global-set-key (kbd "<f1> l") 'counsel-find-library)
-    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-    (global-set-key (kbd "C-c g") 'counsel-git)
-    (define-key minibuffer-local-map (kbd "c-r") 'counsel-minibuffer-history))
-
 
 (use-package evil
     :init
@@ -118,7 +93,37 @@
         "nsv" 'neotree-enter-vertical-split
         "nsh" 'neotree-enter-horizontal-split
         "aw" 'ace-swap-window
+        "xp" 'projectile-command-map
+        "gs" 'magit-status
     ))
+
+(use-package company
+    :init
+    (global-company-mode 1)
+    :hook(after-init-hook . global-company-mode))
+
+(use-package hungry-delete
+    :config
+    (global-hungry-delete-mode))
+
+(use-package ivy
+    :init
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t)
+    :config 
+    (ivy-mode 1)
+    (global-set-key "\C-s" 'swiper)
+    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+    (global-set-key (kbd "<f6>") 'ivy-resume)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    (global-set-key (kbd "<f1> l") 'counsel-find-library)
+    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+    (global-set-key (kbd "C-c g") 'counsel-git)
+    (define-key minibuffer-local-map (kbd "c-r") 'counsel-minibuffer-history))
 
 (use-package smartparens
     :init
@@ -160,6 +165,13 @@
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 (use-package ace-window)
+
+(use-package projectile
+    :config
+    (projectile-mode)
+    (counsel-projectile-mode))
+
+(use-package magit)
 
 ;;custom settings
 (custom-set-variables
