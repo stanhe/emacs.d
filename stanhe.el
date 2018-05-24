@@ -16,6 +16,10 @@
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 
+(defun back-to-previous-buffer ()
+       (interactive)
+       (switch-to-buffer nil))
+
 ;init packages
 (when (>= emacs-major-version 24)
   (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
@@ -62,50 +66,6 @@
 
 (load-theme 'monokai 1)
 (require 'use-package)
-
-(use-package evil
-    :init
-    (general-evil-setup t)
-    :config 
-    (evil-mode 1)
-    (nvmap :prefix ","
-
-        "p" 'projectile-command-map
-        "x1" 'delete-other-windows
-        "x0" 'delete-window
-        "xq" 'delete-window
-        "x2" 'split-window-below
-        "x3" 'split-window-right
-        "xf" 'counsel-find-file
-        "xm" 'counsel-M-x
-        "xr" 'counsel-recentf
-        "xb" 'ivy-switch-buffer
-        "xB" 'list-buffers
-        "xd" 'dired
-        "xs" 'save-buffer
-        "xc" 'save-buffers-kill-terminal
-        "xk" 'kill-buffer
-        "xe" 'eval-last-sexp
-
-        "aw" 'ace-swap-window
-        "ff" 'find-function
-        "eb" 'eval-buffer
-        "cg" 'counsel-git
-        "oa" 'org-agenda
-
-        "nf" 'neotree-find
-        "nt" 'neotree-toggle
-        "nh" 'neotree-hide
-        "ns" 'neotree-show
-        "ng" 'neotree-refresh
-        "nd" 'neotree-delete-node
-        "nr" 'neotree-rename-node
-        "nc" 'neotree-create-node
-        "sv" 'neotree-enter-vertical-split
-        "sh" 'neotree-enter-horizontal-split
-        "gs" 'magit-status
-
-    ))
 
 (use-package company
     :init
@@ -190,6 +150,51 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package gh-md)
+
+(use-package evil
+    :init
+    (general-evil-setup t)
+    :config 
+    (evil-mode 1)
+    (nvmap :prefix ","
+
+        "p" 'projectile-command-map
+        "x1" 'delete-other-windows
+        "x0" 'delete-window
+        "xq" 'delete-window
+        "x2" 'split-window-below
+        "x3" 'split-window-right
+        "xf" 'counsel-find-file
+        "xm" 'counsel-M-x
+        "xr" 'counsel-recentf
+        "xb" 'ivy-switch-buffer
+        "bb" 'back-to-previous-buffer
+        "xB" 'list-buffers
+        "xd" 'dired
+        "xs" 'save-buffer
+        "xc" 'save-buffers-kill-terminal
+        "xk" 'kill-buffer
+        "xe" 'eval-last-sexp
+
+        "aw" 'ace-swap-window
+        "ff" 'find-function
+        "eb" 'eval-buffer
+        "cg" 'counsel-git
+        "oa" 'org-agenda
+
+        "nf" 'neotree-find
+        "nt" 'neotree-toggle
+        "nh" 'neotree-hide
+        "ns" 'neotree-show
+        "ng" 'neotree-refresh
+        "nd" 'neotree-delete-node
+        "nr" 'neotree-rename-node
+        "nc" 'neotree-create-node
+        "sv" 'neotree-enter-vertical-split
+        "sh" 'neotree-enter-horizontal-split
+        "gs" 'magit-status
+
+    ))
 
 ;;custom settings
 (custom-set-variables
