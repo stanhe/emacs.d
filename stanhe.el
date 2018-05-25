@@ -185,7 +185,7 @@
         "nf" 'neotree-find
         "nt" 'neotree-toggle
         "nh" 'neotree-hide
-        "ns" 'neotree-show
+        "ns" 'neotree-hidden-file-toggle
         "ng" 'neotree-refresh
         "nd" 'neotree-delete-node
         "nr" 'neotree-rename-node
