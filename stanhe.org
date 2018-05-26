@@ -118,7 +118,7 @@
     (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
     (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
     (global-set-key (kbd "C-c g") 'counsel-git)
-    (define-key minibuffer-local-map (kbd "c-r") 'counsel-minibuffer-history))
+    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
 (use-package smartparens
     :init
