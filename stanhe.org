@@ -104,6 +104,7 @@
 (use-package ivy
     :init
     (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
     (setq enable-recursive-minibuffers t)
     :config 
     (ivy-mode 1)
@@ -162,11 +163,15 @@
 (use-package ace-window)
 
 (use-package projectile
+    :init
+    (setq projectile-completion-system 'ivy)
     :config
     (projectile-mode)
     (counsel-projectile-mode))
 
-(use-package magit)
+(use-package magit
+    :init
+    (setq magit-completing-read-function 'ivy-completing-read))
 
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
@@ -187,7 +192,9 @@
     (nvmap :prefix ","
 
 	"p" 'projectile-command-map
+	"v" 'evil-visual-block
 	"x1" 'delete-other-windows
+	"xo" 'other-window
 	"x0" 'delete-window
 	"xq" 'delete-window
 	"x2" 'split-window-below
