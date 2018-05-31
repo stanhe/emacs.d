@@ -34,7 +34,6 @@
                      ace-window
                      company
                      hungry-delete
-                     swiper
                      counsel
                      evil
                      general
@@ -79,13 +78,17 @@
     :config
     (global-hungry-delete-mode))
 
-(use-package ivy
+(use-package counsel
     :init
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) ")
-    (setq enable-recursive-minibuffers t)
+    (setq ivy-use-virtual-buffers t
+          ivy-count-format "(%d/%d) "
+          ivy-height 20
+          enable-recursive-minibuffers t)
     :config 
     (ivy-mode 1)
+    (ivy-set-actions
+        'counsel-find-file
+        '(("m" delete-file "delete")))
     (global-set-key "\C-s" 'swiper)
     (global-set-key (kbd "C-c C-r") 'ivy-resume)
     (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -119,9 +122,9 @@
 
 (use-package dired
     :init
-    (setq dired-recursive-deletes 'always)
-    (setq dired-recursive-copies 'always)
-    (setq dired-dwim-target t)
+    (setq dired-recursive-deletes 'always
+          dired-recursive-copies 'always
+          dired-dwim-target t)
     :config
     (put 'dired-find-alternate-file 'disabled nil)
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)

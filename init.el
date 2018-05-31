@@ -20,7 +20,7 @@
 
  '(company-idle-delay 0.1)
  '(company-minimum-prefix-length 1)
- '(org-agenda-files(quote ("~/org/")))
+;; '(org-agenda-files(quote ("~/org/")))
 
  )
 (custom-set-faces
