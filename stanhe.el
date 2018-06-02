@@ -14,15 +14,6 @@
 
 (global-set-key (kbd "<f5>") `my-config-file)
 
-(global-set-key (kbd "C-h") 'delete-backward-char)
-
-(defun back-to-previous-buffer ()
-       (interactive)
-       (switch-to-buffer nil))
-
-(setq org-log-done 'note)
-(setq org-agenda-files '("~/org/"))
-
 ;init packages
 (when (>= emacs-major-version 24)
   (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
@@ -102,11 +93,18 @@
     (global-set-key (kbd "C-c g") 'counsel-git)
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
-(use-package smartparens
+(use-package org
     :init
-    (smartparens-global-mode t)
-    (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
-    :hook(emacs-lisp-mode-hook . show-paren-mode))
+    (setq org-src-fontify-natively t
+          org-log-done 'time
+          org-agenda-files '("~/org/")
+          org-confirm-babel-evaluate nil))
+
+(use-package smartparens-config
+    :config
+    (show-paren-mode)
+    (smartparens-global-mode)
+    (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil))
 
 (use-package which-key
     :config
@@ -153,6 +151,7 @@
 (use-package magit
     :init
     (setq magit-completing-read-function 'ivy-completing-read))
+
 
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
@@ -208,3 +207,16 @@
         "gs" 'magit-status
 
     ))
+
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
+(defun back-to-previous-buffer ()
+       (interactive)
+       (switch-to-buffer nil))
+
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+"Highlight enclosing parens."
+(cond ((looking-at-p "\\s(") (funcall fn))
+        (t (save-excursion
+            (ignore-errors (backward-up-list))
+            (funcall fn)))))
