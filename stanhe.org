@@ -194,12 +194,15 @@
 
 	"p" 'projectile-command-map
 	"v" 'evil-visual-block
+
 	"x1" 'delete-other-windows
 	"xo" 'other-window
 	"x0" 'delete-window
 	"xq" 'delete-window
 	"x2" 'split-window-below
+	;"xh" 'split-window-below
 	"x3" 'split-window-right
+	;"xv" 'split-window-right
 	"xf" 'counsel-find-file
 	"xm" 'counsel-M-x
 	"xr" 'counsel-recentf
