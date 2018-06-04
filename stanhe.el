@@ -1,7 +1,7 @@
-
 ;; base config
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 (global-linum-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq inhibit-splash-screen -1)
@@ -17,29 +17,29 @@
 ;init packages
 (when (>= emacs-major-version 24)
   (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-                           ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
+			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
 
 (defvar stanhe/packages '(
                      use-package
                      neotree
                      ace-window
-                     company
-                     hungry-delete
-                     counsel
-                     evil
-                     general
-                     smartparens
-                     which-key
-                     window-numbering
-                     popwin
-                     monokai-theme
-                     projectile
-                     counsel-projectile
-                     magit
+		     company
+		     hungry-delete
+		     counsel
+		     evil
+		     general
+		     smartparens
+		     which-key
+		     window-numbering
+		     popwin
+		     monokai-theme
+		     projectile
+		     counsel-projectile
+		     magit
                      gh-md
                      markdown-mode
 
-                     ) "My default packages")
+		     ) "My default packages")
 
 (require 'cl)
 
@@ -47,8 +47,8 @@
 
 (defun stanhe/packages-install-p ()
   (loop for pkg in stanhe/packages
-        when (not (package-installed-p pkg)) do (return nil)
-        finally (return t)))
+	when (not (package-installed-p pkg)) do (return nil)
+	finally (return t)))
 
 (unless (stanhe/packages-install-p)
   (message "%s" "Refreshing package database...")
@@ -96,9 +96,9 @@
 (use-package org
     :init
     (setq org-src-fontify-natively t
-          org-log-done 'time
-          org-agenda-files '("~/org/")
-          org-confirm-babel-evaluate nil))
+	  org-log-done 'time
+	  org-agenda-files '("~/org/")
+	  org-confirm-babel-evaluate nil))
 
 (use-package smartparens-config
     :config
@@ -168,46 +168,46 @@
     (evil-mode 1)
     (nvmap :prefix ","
 
-        "p" 'projectile-command-map
-        "v" 'evil-visual-block
+	"p" 'projectile-command-map
+	"v" 'evil-visual-block
 
-        "x1" 'delete-other-windows
-        "xo" 'other-window
-        "x0" 'delete-window
-        "xq" 'delete-window
-        "x2" 'split-window-below
-        ;"xh" 'split-window-below
-        "x3" 'split-window-right
-        ;"xv" 'split-window-right
-        "xf" 'counsel-find-file
-        "xm" 'counsel-M-x
-        "xr" 'counsel-recentf
-        "xb" 'ivy-switch-buffer
-        "bb" 'back-to-previous-buffer
-        "xB" 'list-buffers
-        "xd" 'dired
-        "xs" 'save-buffer
-        "xc" 'save-buffers-kill-terminal
-        "xk" 'kill-buffer
-        "xe" 'eval-last-sexp
+	"x1" 'delete-other-windows
+	"xo" 'other-window
+	"x0" 'delete-window
+	"xq" 'delete-window
+	"x2" 'split-window-below
+	;"xh" 'split-window-below
+	"x3" 'split-window-right
+	;"xv" 'split-window-right
+	"xf" 'counsel-find-file
+	"xm" 'counsel-M-x
+	"xr" 'counsel-recentf
+	"xb" 'ivy-switch-buffer
+	"bb" 'back-to-previous-buffer
+	"xB" 'list-buffers
+	"xd" 'dired
+	"xs" 'save-buffer
+	"xc" 'save-buffers-kill-terminal
+	"xk" 'kill-buffer
+	"xe" 'eval-last-sexp
 
-        "aw" 'ace-swap-window
-        "ff" 'find-function
-        "eb" 'eval-buffer
-        "cg" 'counsel-git
-        "oa" 'org-agenda
+	"aw" 'ace-swap-window
+	"ff" 'find-function
+	"eb" 'eval-buffer
+	"cg" 'counsel-git
+	"oa" 'org-agenda
 
-        "nf" 'neotree-find
-        "nt" 'neotree-toggle
-        "nh" 'neotree-hide
-        "ns" 'neotree-hidden-file-toggle
-        "ng" 'neotree-refresh
-        "nd" 'neotree-delete-node
-        "nr" 'neotree-rename-node
-        "nc" 'neotree-create-node
-        "sv" 'neotree-enter-vertical-split
-        "sh" 'neotree-enter-horizontal-split
-        "gs" 'magit-status
+	"nf" 'neotree-find
+	"nt" 'neotree-toggle
+	"nh" 'neotree-hide
+	"ns" 'neotree-hidden-file-toggle
+	"ng" 'neotree-refresh
+	"nd" 'neotree-delete-node
+	"nr" 'neotree-rename-node
+	"nc" 'neotree-create-node
+	"sv" 'neotree-enter-vertical-split
+	"sh" 'neotree-enter-horizontal-split
+	"gs" 'magit-status
 
     ))
 
@@ -220,6 +220,6 @@
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
 "Highlight enclosing parens."
 (cond ((looking-at-p "\\s(") (funcall fn))
-        (t (save-excursion
-            (ignore-errors (backward-up-list))
-            (funcall fn)))))
+	(t (save-excursion
+	    (ignore-errors (backward-up-list))
+	    (funcall fn)))))
