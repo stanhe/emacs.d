@@ -7,6 +7,7 @@
 (setq inhibit-splash-screen -1)
 (setq auto-save-default nil)
 (setq make-backup-files nil)
+(setq-default abbrev-mode t)
 
 (defun my-config-file ()
   (interactive)
@@ -223,3 +224,19 @@
 	(t (save-excursion
 	    (ignore-errors (backward-up-list))
 	    (funcall fn)))))
+	    
+(define-skeleton 1src
+    "Input src"
+    ""
+    "#+BEGIN_SRC emacs-lisp \n"
+    _ "\n"
+    "#+END_SRC")
+(define-skeleton 1java
+    "Input src"
+    ""
+    "#+HEADER: :classname\n"
+    "#+BEGIN_SRC java \n"
+    _ "\n"
+    "#+END_SRC")
+(define-abbrev org-mode-abbrev-table "isrc" "" '1src)
+(define-abbrev org-mode-abbrev-table "ijava" "" '1java)
