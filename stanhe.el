@@ -201,6 +201,7 @@
 	"bb" 'back-to-previous-buffer
 	"xB" 'list-buffers
 	"xd" 'dired
+	"xj" 'dired-jump
 	"xs" 'save-buffer
 	"xc" 'save-buffers-kill-terminal
 	"xk" 'kill-buffer
@@ -224,7 +225,13 @@
 	"sh" 'neotree-enter-horizontal-split
 	"gs" 'magit-status
 
-	"mt" 'multi-term
+	"mm" 'multi-term
+	"mf" 'multi-term-next
+	"mb" 'multi-term-prev
+	"mo" 'multi-term-dedicated-open
+	"mc" 'multi-term-dedicated-close
+	"ms" 'multi-term-dedicated-select
+	"mt" 'multi-term-dedicated-toggle
     ))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
