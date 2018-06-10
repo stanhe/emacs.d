@@ -28,6 +28,7 @@
 		     hungry-delete
 		     counsel
 		     evil
+		     js2-mode
 		     general
 		     smartparens
 		     which-key
@@ -73,14 +74,14 @@
 (use-package counsel
     :init
     (setq ivy-use-virtual-buffers t
-          ivy-count-format "(%d/%d) "
-          ivy-height 20
-          enable-recursive-minibuffers t)
+	  ivy-count-format "(%d/%d) "
+	  ivy-height 20
+	  enable-recursive-minibuffers t)
     :config 
     (ivy-mode 1)
     (ivy-set-actions
-        'counsel-find-file
-        '(("m" delete-file "delete")))
+	'counsel-find-file
+	'(("m" delete-file "delete")))
     (global-set-key "\C-s" 'swiper)
     (global-set-key (kbd "C-c C-r") 'ivy-resume)
     (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -122,8 +123,8 @@
 (use-package dired
     :init
     (setq dired-recursive-deletes 'always
-          dired-recursive-copies 'always
-          dired-dwim-target t)
+	  dired-recursive-copies 'always
+	  dired-dwim-target t)
     :config
     (put 'dired-find-alternate-file 'disabled nil)
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
@@ -134,11 +135,11 @@
     (setq neo-smart-open t)
     :init
     (add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
+	  (lambda ()
+	    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+	    (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+	    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+	    (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 (use-package ace-window)
 
@@ -156,11 +157,18 @@
 
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
+	 ("\\.md\\'" . markdown-mode)
+	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
 (use-package gh-md)
+
+(use-package js2-mode
+  :init
+  (setq auto-mode-alist
+      (append
+       '(("\\.js\\'" . js2-mode))
+       auto-mode-alist)))
 
 (use-package evil
     :init
@@ -213,18 +221,20 @@
     ))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-/") 'hippie-expand)
 
+;; back buffer
 (defun back-to-previous-buffer ()
        (interactive)
        (switch-to-buffer nil))
-
+;; show paren in function
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
 "Highlight enclosing parens."
 (cond ((looking-at-p "\\s(") (funcall fn))
 	(t (save-excursion
 	    (ignore-errors (backward-up-list))
 	    (funcall fn)))))
-	    
+;; skeleton	    
 (define-skeleton 1src
     "Input src"
     ""
@@ -240,3 +250,14 @@
     "#+END_SRC")
 (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
 (define-abbrev org-mode-abbrev-table "ijava" "" '1java)
+;; hippie expand
+(setq hippie-expand-try-function-list '(try-expand-debbrev
+					try-expand-debbrev-all-buffers
+					try-expand-debbrev-from-kill
+					try-complete-file-name-partially
+					try-complete-file-name
+					try-expand-all-abbrevs
+					try-expand-list
+					try-expand-line
+					try-complete-lisp-symbol-partially
+					try-complete-lisp-symbol))
