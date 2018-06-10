@@ -40,6 +40,7 @@
 		     magit
                      gh-md
                      markdown-mode
+                     multi-term
 
 		     ) "My default packages")
 
@@ -171,6 +172,10 @@
        '(("\\.js\\'" . js2-mode))
        auto-mode-alist)))
 
+(use-package multi-term
+  :init
+  (setq multi-term-program "/bin/zsh"))
+
 (use-package evil
     :init
     (general-evil-setup t)
@@ -219,6 +224,7 @@
 	"sh" 'neotree-enter-horizontal-split
 	"gs" 'magit-status
 
+	"mt" 'multi-term
     ))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)

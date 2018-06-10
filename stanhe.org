@@ -54,6 +54,7 @@
 		     magit
                      gh-md
                      markdown-mode
+                     multi-term
 
 		     ) "My default packages")
 
@@ -191,6 +192,10 @@
 	(append
 	 '(("\\.js\\'" . js2-mode))
 	 auto-mode-alist)))
+
+  (use-package multi-term
+    :init
+    (setq multi-term-program "/bin/zsh"))
 #+END_SRC
 *** vm快捷键设置
 #+BEGIN_SRC emacs-lisp
@@ -243,6 +248,7 @@
 	"sh" 'neotree-enter-horizontal-split
 	"gs" 'magit-status
 
+	"mt" 'multi-term
     ))
 
 #+END_SRC
