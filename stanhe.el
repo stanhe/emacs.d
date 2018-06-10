@@ -120,6 +120,7 @@
     :config
     (popwin-mode 1))
 
+(use-package dired-x)
 (use-package dired
     :init
     (setq dired-recursive-deletes 'always
