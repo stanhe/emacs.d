@@ -8,6 +8,7 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 (setq-default abbrev-mode t)
+(setq shell-command-switch "-ic")
 
 (defun my-config-file ()
   (interactive)
@@ -38,6 +39,7 @@
 		     projectile
 		     counsel-projectile
 		     magit
+		     keychain-environment
                      gh-md
                      markdown-mode
                      multi-term
@@ -154,6 +156,7 @@
 
 (use-package magit
     :init
+    (keychain-refresh-environment)
     (setq magit-completing-read-function 'ivy-completing-read))
 
 
