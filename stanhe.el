@@ -68,6 +68,8 @@
 (use-package company
     :init
     (global-company-mode 1)
+    (setq company-idle-delay 0.1
+	  company-minimum-prefix-length 1)
     :hook(after-init-hook . global-company-mode))
 
 (use-package hungry-delete
@@ -177,7 +179,8 @@
 
 (use-package multi-term
   :init
-  (setq multi-term-program "/bin/zsh"))
+  (setq multi-term-dedicated-select-after-open-p t
+	multi-term-program "/bin/zsh"))
 
 (use-package evil
     :init
@@ -194,9 +197,7 @@
 	"x0" 'delete-window
 	"xq" 'delete-window
 	"x2" 'split-window-below
-	;"xh" 'split-window-below
 	"x3" 'split-window-right
-	;"xv" 'split-window-right
 	"xf" 'counsel-find-file
 	"xm" 'counsel-M-x
 	"xr" 'counsel-recentf
@@ -211,14 +212,12 @@
 	"xe" 'eval-last-sexp
 
 	"aw" 'ace-swap-window
-	"ff" 'find-function
 	"eb" 'eval-buffer
 	"cg" 'counsel-git
 	"oa" 'org-agenda
 
 	"nf" 'neotree-find
 	"nt" 'neotree-toggle
-	"nh" 'neotree-hide
 	"ns" 'neotree-hidden-file-toggle
 	"ng" 'neotree-refresh
 	"nd" 'neotree-delete-node
@@ -231,8 +230,6 @@
 	"mm" 'multi-term
 	"mf" 'multi-term-next
 	"mb" 'multi-term-prev
-	"mo" 'multi-term-dedicated-open
-	"mc" 'multi-term-dedicated-close
 	"ms" 'multi-term-dedicated-select
 	"mt" 'multi-term-dedicated-toggle
     ))

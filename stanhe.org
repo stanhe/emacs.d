@@ -89,6 +89,8 @@
   (use-package company
       :init
       (global-company-mode 1)
+      (setq company-idle-delay 0.1
+	    company-minimum-prefix-length 1)
       :hook(after-init-hook . global-company-mode))
 
   (use-package hungry-delete
@@ -198,7 +200,8 @@
 
   (use-package multi-term
     :init
-    (setq multi-term-program "/bin/zsh"))
+    (setq multi-term-dedicated-select-after-open-p t
+	  multi-term-program "/bin/zsh"))
 #+END_SRC
 *** vm快捷键设置
 #+BEGIN_SRC emacs-lisp
