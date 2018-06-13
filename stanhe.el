@@ -29,6 +29,7 @@
 		     hungry-delete
 		     counsel
 		     evil
+		     hydra
 		     js2-mode
 		     general
 		     smartparens
@@ -182,11 +183,25 @@
   (setq multi-term-dedicated-select-after-open-p t
 	multi-term-program "/bin/zsh"))
 
+(use-package hydra
+  :config
+  (defhydra hydra-zoom (global-map "<f2>")
+  "zoom"
+  ("g" text-scale-increase "in")
+  ("l" text-scale-decrease "out")
+  ("n" neotree-toggle "neotree" :color blue)
+  ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+  ("k" kill-buffer "kill-buffer" :color blue)
+  ("b" ivy-switch-buffer "switch-buffer" :color blue)
+  ))
+
 (use-package evil
     :init
     (general-evil-setup t)
     :config 
     (evil-mode 1)
+    (nvmap :prefix "SPC"
+	"f" 'my-config-file)
     (nvmap :prefix ","
 
 	"p" 'projectile-command-map
@@ -232,7 +247,8 @@
 	"mb" 'multi-term-prev
 	"ms" 'multi-term-dedicated-select
 	"mt" 'multi-term-dedicated-toggle
-    ))
+    )
+)
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-/") 'hippie-expand)
