@@ -9,6 +9,7 @@
 (setq make-backup-files nil)
 (setq-default abbrev-mode t)
 (setq shell-command-switch "-ic")
+(setq initial-scratch-message (concat ";;Happy hacking, " user-login-name "\n\n"))
 
 (defun my-config-file ()
   (interactive)
@@ -186,9 +187,10 @@
 (use-package hydra
   :config
   (defhydra hydra-zoom (global-map "<f2>")
-  "zoom"
+  "functions"
   ("g" text-scale-increase "in")
   ("l" text-scale-decrease "out")
+  ("r" (text-scale-set 0) "reset" :color blue)
   ("n" neotree-toggle "neotree" :color blue)
   ("m" multi-term-dedicated-toggle "multi-term" :color blue)
   ("k" kill-buffer "kill-buffer" :color blue)
