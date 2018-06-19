@@ -23,6 +23,7 @@
 			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
 
 (defvar stanhe/packages '(
+                     ;; ========basic=======
                      use-package
                      neotree
                      ace-window
@@ -31,7 +32,6 @@
 		     counsel
 		     evil
 		     hydra
-		     js2-mode
 		     general
 		     smartparens
 		     which-key
@@ -42,9 +42,11 @@
 		     counsel-projectile
 		     magit
 		     keychain-environment
+                     multi-term
+		     ;; ========feature========
+		     js2-mode
                      gh-md
                      markdown-mode
-                     multi-term
 
 		     ) "My default packages")
 
@@ -67,16 +69,82 @@
 (load-theme 'monokai 1)
 (require 'use-package)
 
-(use-package company
+(use-package evil
     :init
-    (global-company-mode 1)
-    (setq company-idle-delay 0.1
-	  company-minimum-prefix-length 1)
-    :hook(after-init-hook . global-company-mode))
+    (general-evil-setup t)
+    :config 
+    (evil-mode 1)
+    (nvmap :prefix "SPC"
+	"f" 'my-config-file)
+    (nvmap :prefix ","
+	"p" 'projectile-command-map
+	"v" 'evil-visual-block
 
-(use-package hungry-delete
+	"x1" 'delete-other-windows
+	"xo" 'other-window
+	"x0" 'delete-window
+	"xq" 'delete-window
+	"x2" 'split-window-below
+	"x3" 'split-window-right
+	"xf" 'counsel-find-file
+	"xm" 'counsel-M-x
+	"xr" 'counsel-recentf
+	"xb" 'ivy-switch-buffer
+	"bb" 'back-to-previous-buffer
+	"xB" 'list-buffers
+	"xd" 'dired
+	"xj" 'dired-jump
+	"xs" 'save-buffer
+	"xc" 'save-buffers-kill-terminal
+	"xk" 'kill-buffer
+	"xe" 'eval-last-sexp
+
+	"aw" 'ace-swap-window
+	"eb" 'eval-buffer
+	"cg" 'counsel-git
+	"oa" 'org-agenda
+
+	"nf" 'neotree-find
+	"nt" 'neotree-toggle
+	"gs" 'magit-status
+
+	"mm" 'multi-term
+	"mt" 'multi-term-dedicated-toggle
+    )
+)
+
+(use-package hydra
+  :config
+  (defhydra hydra-zoom (global-map "<f2>")
+  "functions"
+  ("g" text-scale-increase "in")
+  ("l" text-scale-decrease "out")
+  ("r" (text-scale-set 0) "reset" :color blue)
+  ("n" neotree-toggle "neotree" :color blue)
+  ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+  ("k" kill-buffer "kill-buffer" :color blue)
+  ("b" ivy-switch-buffer "switch-buffer" :color blue)
+  ))
+
+(use-package neotree
     :config
-    (global-hungry-delete-mode))
+    (setq neo-smart-open t)
+    (nvmap :status '(normal emacs)
+      :keymaps 'neotree-mode-map
+      "s" 'neotree-hidden-file-toggle
+      "g" 'neotree-refresh
+      "d" 'neotree-delete-node
+      "r" 'neotree-rename-node
+      "R" 'neotree-change-root
+      "c" 'neotree-create-node
+      "v" 'neotree-enter-vertical-split
+      "h" 'neotree-enter-horizontal-split
+      "a" 'neotree-enter-ace-window
+      "SPC" 'neotree-quick-look
+      "TAB" 'neotree-enter
+      "RET" 'neotree-enter
+      "q" 'neotree-hide
+      ))
 
 (use-package counsel
     :init
@@ -101,6 +169,27 @@
     (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
     (global-set-key (kbd "C-c g") 'counsel-git)
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+
+(use-package multi-term
+  :init
+  (setq multi-term-dedicated-select-after-open-p t
+	multi-term-program "/bin/zsh")
+  :config
+  (nvmap :states '(insert normal)
+    "C-n" 'multi-term-next
+    "C-p" 'multi-term-prev
+    ))
+
+(use-package company
+    :init
+    (global-company-mode 1)
+    (setq company-idle-delay 0.1
+	  company-minimum-prefix-length 1)
+    :hook(after-init-hook . global-company-mode))
+
+(use-package hungry-delete
+    :config
+    (global-hungry-delete-mode))
 
 (use-package org
     :init
@@ -138,17 +227,6 @@
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 )
 
-(use-package neotree
-    :config
-    (setq neo-smart-open t)
-    :init
-    (add-hook 'neotree-mode-hook
-	  (lambda ()
-	    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-	    (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-	    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-	    (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
-
 (use-package ace-window)
 
 (use-package projectile
@@ -163,6 +241,7 @@
     (keychain-refresh-environment)
     (setq magit-completing-read-function 'ivy-completing-read))
 
+;; ====================================== feature ====================================
 
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
@@ -178,79 +257,6 @@
       (append
        '(("\\.js\\'" . js2-mode))
        auto-mode-alist)))
-
-(use-package multi-term
-  :init
-  (setq multi-term-dedicated-select-after-open-p t
-	multi-term-program "/bin/zsh"))
-
-(use-package hydra
-  :config
-  (defhydra hydra-zoom (global-map "<f2>")
-  "functions"
-  ("g" text-scale-increase "in")
-  ("l" text-scale-decrease "out")
-  ("r" (text-scale-set 0) "reset" :color blue)
-  ("n" neotree-toggle "neotree" :color blue)
-  ("m" multi-term-dedicated-toggle "multi-term" :color blue)
-  ("k" kill-buffer "kill-buffer" :color blue)
-  ("b" ivy-switch-buffer "switch-buffer" :color blue)
-  ))
-
-(use-package evil
-    :init
-    (general-evil-setup t)
-    :config 
-    (evil-mode 1)
-    (nvmap :prefix "SPC"
-	"f" 'my-config-file)
-    (nvmap :prefix ","
-
-	"p" 'projectile-command-map
-	"v" 'evil-visual-block
-
-	"x1" 'delete-other-windows
-	"xo" 'other-window
-	"x0" 'delete-window
-	"xq" 'delete-window
-	"x2" 'split-window-below
-	"x3" 'split-window-right
-	"xf" 'counsel-find-file
-	"xm" 'counsel-M-x
-	"xr" 'counsel-recentf
-	"xb" 'ivy-switch-buffer
-	"bb" 'back-to-previous-buffer
-	"xB" 'list-buffers
-	"xd" 'dired
-	"xj" 'dired-jump
-	"xs" 'save-buffer
-	"xc" 'save-buffers-kill-terminal
-	"xk" 'kill-buffer
-	"xe" 'eval-last-sexp
-
-	"aw" 'ace-swap-window
-	"eb" 'eval-buffer
-	"cg" 'counsel-git
-	"oa" 'org-agenda
-
-	"nf" 'neotree-find
-	"nt" 'neotree-toggle
-	"ns" 'neotree-hidden-file-toggle
-	"ng" 'neotree-refresh
-	"nd" 'neotree-delete-node
-	"nr" 'neotree-rename-node
-	"nc" 'neotree-create-node
-	"sv" 'neotree-enter-vertical-split
-	"sh" 'neotree-enter-horizontal-split
-	"gs" 'magit-status
-
-	"mm" 'multi-term
-	"mf" 'multi-term-next
-	"mb" 'multi-term-prev
-	"ms" 'multi-term-dedicated-select
-	"mt" 'multi-term-dedicated-toggle
-    )
-)
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-/") 'hippie-expand)
