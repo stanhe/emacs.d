@@ -260,7 +260,15 @@
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "<C-return>") (lambda()(interactive)(progn(end-of-line)(insert ";")(newline-and-indent))))
+(global-set-key (kbd "<C-return>") (lambda()
+				     (interactive)
+				     (progn(end-of-line)
+					   (if(string-match ";\[\[:space:\]\]*$" (thing-at-point 'line t))
+					       (newline-and-indent)
+					     (progn
+					       (insert ";")
+					       (newline-and-indent)))
+					   )))
 
 ;; back buffer
 (defun back-to-previous-buffer ()
