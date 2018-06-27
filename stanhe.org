@@ -283,8 +283,9 @@
 ** 优化 And Function
 *** 优化快捷键
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "M-/") 'hippie-expand)
+  (global-set-key (kbd "C-h") 'delete-backward-char)
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  (global-set-key (kbd "<C-return>") (lambda()(interactive)(progn(end-of-line)(insert ";")(newline-and-indent))))
 #+END_SRC
 *** Function
 #+BEGIN_SRC emacs-lisp
