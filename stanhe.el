@@ -4,6 +4,7 @@
 (scroll-bar-mode -1)
 (global-linum-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq ring-bell-function 'ignore)
 (setq inhibit-splash-screen -1)
 (setq auto-save-default nil)
 (setq make-backup-files nil)
