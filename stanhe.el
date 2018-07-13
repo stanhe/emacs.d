@@ -4,6 +4,7 @@
 (scroll-bar-mode -1)
 (global-linum-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
+;;(setq-default mode-line-format nil)
 (setq ring-bell-function 'ignore)
 (setq inhibit-splash-screen -1)
 (setq auto-save-default nil)
@@ -75,6 +76,7 @@
     (general-evil-setup t)
     :config 
     (evil-mode 1)
+
     (nvmap :prefix "SPC"
 	"f" 'my-config-file)
     (nvmap :prefix ","
@@ -179,6 +181,7 @@
   (nvmap :states '(insert normal)
     "C-n" 'multi-term-next
     "C-p" 'multi-term-prev
+    "C-d" 'term-send-eof
     ))
 
 (use-package company
@@ -260,6 +263,7 @@
        auto-mode-alist)))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-SPC") 'delete-window)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "<C-return>") (lambda()
 				     (interactive)
