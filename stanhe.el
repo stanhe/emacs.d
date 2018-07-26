@@ -46,6 +46,11 @@
 		     keychain-environment
                      multi-term
 		     ;; ========feature========
+		     ;; clojure
+		     clojure-mode
+		     cider
+		     paredit
+		     ;; markdown 
 		     js2-mode
                      gh-md
                      markdown-mode
@@ -246,7 +251,7 @@
     (setq magit-completing-read-function 'ivy-completing-read))
 
 ;; ====================================== feature ====================================
-
+;; markdown
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
 	 ("\\.md\\'" . markdown-mode)
@@ -261,6 +266,10 @@
       (append
        '(("\\.js\\'" . js2-mode))
        auto-mode-alist)))
+
+;; clojure
+(use-package clojure-mode
+  :init(add-hook 'clojure-mode-hook #'paredit-mode))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-SPC") 'delete-window)
