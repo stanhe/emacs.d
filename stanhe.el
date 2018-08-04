@@ -12,6 +12,7 @@
 (setq-default abbrev-mode t)
 (setq shell-command-switch "-ic")
 (setq initial-scratch-message (concat ";;Happy hacking, " user-login-name "\n\n"))
+(add-to-list 'exec-path "~/bin")
 
 (defun my-config-file ()
   (interactive)

@@ -16,6 +16,7 @@
 (setq-default abbrev-mode t)
 (setq shell-command-switch "-ic")
 (setq initial-scratch-message (concat ";;Happy hacking, " user-login-name "\n\n"))
+(add-to-list 'exec-path "~/bin")
 #+END_SRC
 ** 我的配置文件
 *** 打开我的配置文件
