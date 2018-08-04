@@ -269,7 +269,12 @@
 
 ;; clojure
 (use-package clojure-mode
-  :init(add-hook 'clojure-mode-hook #'paredit-mode))
+  :init(add-hook 'clojure-mode-hook #'paredit-mode)
+  :config
+    (nvmap :states '(insert normal emacs)
+      :keymaps 'cider-mode-map
+      "M-." 'cider-find-var
+      ))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-SPC") 'delete-window)

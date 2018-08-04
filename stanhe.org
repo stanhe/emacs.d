@@ -290,7 +290,12 @@
 
   ;; clojure
   (use-package clojure-mode
-    :init(add-hook 'clojure-mode-hook #'paredit-mode))
+    :init(add-hook 'clojure-mode-hook #'paredit-mode)
+    :config
+      (nvmap :states '(insert normal emacs)
+	:keymaps 'cider-mode-map
+	"M-." 'cider-find-var
+	))
 #+END_SRC
 ** 优化 And Function
 *** 优化快捷键
