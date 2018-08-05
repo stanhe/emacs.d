@@ -273,8 +273,10 @@
   :init(add-hook 'clojure-mode-hook #'paredit-mode)
   :config
     (nvmap :states '(insert normal emacs)
-      :keymaps 'cider-mode-map
+      ;;:keymaps 'cider-mode-map
       "M-." 'cider-find-var
+      "DEL" 'hungry-delete-backward
+      "M-DEL" 'paredit-backward-delete
       ))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
