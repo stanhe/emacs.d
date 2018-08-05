@@ -206,8 +206,8 @@
 	  multi-term-program "/bin/zsh")
     :config
     (nvmap :states '(insert normal)
-      "C-n" 'multi-term-next
-      "C-p" 'multi-term-prev
+      ;"C-n" 'multi-term-next
+      ;"C-p" 'multi-term-prev
       "C-d" 'term-send-eof
       ))
 
@@ -216,7 +216,12 @@
       (global-company-mode 1)
       (setq company-idle-delay 0.1
 	    company-minimum-prefix-length 1)
-      :hook(after-init-hook . global-company-mode))
+      :hook(after-init-hook . global-company-mode)
+      :config
+      (nvmap
+	:states '(insert)
+	"C-n" 'company-select-next
+	"C-p" 'company-select-previous))
 
   (use-package hungry-delete
       :config
