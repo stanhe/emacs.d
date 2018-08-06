@@ -84,6 +84,7 @@
     (evil-mode 1)
 
     (nvmap :prefix "SPC"
+	"q" 'quit-window
 	"f" 'my-config-file)
     (nvmap :prefix ","
 	"p" 'projectile-command-map
@@ -275,9 +276,10 @@
 
 ;; clojure
 (use-package clojure-mode
-  :init(add-hook 'clojure-mode-hook #'paredit-mode)
+  :init
+  (add-hook 'clojure-mode-hook #'paredit-mode)
   :config
-    (nvmap :states '(insert normal emacs)
+  (nvmap :states '(insert normal emacs)
       ;;:keymaps 'cider-mode-map
       "M-." 'cider-find-var
       "DEL" 'hungry-delete-backward
