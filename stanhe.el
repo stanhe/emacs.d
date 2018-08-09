@@ -41,7 +41,6 @@
 		     window-numbering
 		     popwin
 		     monokai-theme
-		     projectile
 		     counsel-projectile
 		     magit
 		     keychain-environment
@@ -249,8 +248,7 @@
     :init
     (setq projectile-completion-system 'ivy)
     :config
-    (projectile-mode)
-    (counsel-projectile-mode))
+    (projectile-mode))
 
 (use-package magit
     :init
