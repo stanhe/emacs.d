@@ -48,6 +48,7 @@
 		     ;; ========feature========
 		     ;; clojure
 		     clojure-mode
+		     clj-refactor
 		     cider
 		     paredit
 		     ;; markdown 
@@ -277,12 +278,22 @@
   :init
   (add-hook 'clojure-mode-hook #'paredit-mode)
   :config
+  (setq cider-repl-result-prefix ";; => ")
   (nvmap :states '(insert normal emacs)
       ;;:keymaps 'cider-mode-map
       "M-." 'cider-find-var
       "DEL" 'hungry-delete-backward
       "M-DEL" 'paredit-backward-delete
       ))
+
+(use-package clj-refactor
+  :init
+  (defun my-clojure-mode-hook ()
+    (clj-refactor-mode 1)
+    (yas-minor-mode 1)
+    (cljr-add-keybindings-with-prefix "C-c C-m"))
+  :config
+  (add-hook 'clojure-mode-hook #'my-clojure-mode-hook))
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-SPC") 'delete-window)
