@@ -127,13 +127,20 @@
   :config
   (defhydra hydra-zoom (global-map "<f2>")
   "functions"
+  ("q" keyboard-quit "quit" :color blue)
   ("g" text-scale-increase "in")
   ("l" text-scale-decrease "out")
-  ("r" (text-scale-set 0) "reset" :color blue)
+  ("r" (text-scale-set 0) "reset text" :color blue)
   ("n" neotree-toggle "neotree" :color blue)
   ("m" multi-term-dedicated-toggle "multi-term" :color blue)
   ("k" kill-buffer "kill-buffer" :color blue)
   ("b" ivy-switch-buffer "switch-buffer" :color blue)
+  ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
+  ("=" balance-windows "balance-window" :color blue)
+  ("<up>" enlarge-window "enlarge-window")
+  ("<down>" shrink-window "balance-window")
+  ("<left>" shrink-window-horizontally "shrink-horizontal")
+  ("<right>" enlarge-window-horizontally "enlarge-horizontal")
   ))
 
 (use-package neotree
