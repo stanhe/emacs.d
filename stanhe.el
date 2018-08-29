@@ -2,7 +2,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(global-linum-mode 1)
+;;(global-linum-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;;(setq-default mode-line-format nil)
 (setq ring-bell-function 'ignore)
@@ -13,12 +13,6 @@
 (setq shell-command-switch "-ic")
 (setq initial-scratch-message (concat ";;Happy hacking, " user-login-name "\n\n"))
 (add-to-list 'exec-path "~/bin")
-
-(defun my-config-file ()
-  (interactive)
-  (find-file "~/.emacs.d/stanhe.org"))
-
-(global-set-key (kbd "<f5>") `my-config-file)
 
 ;init packages
 (when (>= emacs-major-version 24)
@@ -85,6 +79,9 @@
 
     (nvmap :prefix "SPC"
 	"q" 'quit-window
+	"r" 'random-color-theme
+	"s" 'show-me-the-colors
+	"m" 'load-my-theme
 	"f" 'my-config-file)
     (nvmap :prefix ","
 	"p" 'projectile-command-map
@@ -320,41 +317,60 @@
 ;; 					       (newline-and-indent)))
 ;; 					   )))
 
-;; back buffer
-(defun back-to-previous-buffer ()
-       (interactive)
-       (switch-to-buffer nil))
-;; show paren in function
-(define-advice show-paren-function (:around (fn) fix-show-paren-function)
-"Highlight enclosing parens."
-(cond ((looking-at-p "\\s(") (funcall fn))
-	(t (save-excursion
-	    (ignore-errors (backward-up-list))
-	    (funcall fn)))))
-;; skeleton	    
-(define-skeleton 1src
-    "Input src"
-    ""
-    "#+BEGIN_SRC emacs-lisp \n"
-    _ "\n"
-    "#+END_SRC")
-(define-skeleton 1java
-    "Input src"
-    ""
-    "#+HEADER: :classname\n"
-    "#+BEGIN_SRC java \n"
-    _ "\n"
-    "#+END_SRC")
-(define-abbrev org-mode-abbrev-table "isrc" "" '1src)
-(define-abbrev org-mode-abbrev-table "ijava" "" '1java)
-;; hippie expand
-(setq hippie-expand-try-function-list '(try-expand-debbrev
-					try-expand-debbrev-all-buffers
-					try-expand-debbrev-from-kill
-					try-complete-file-name-partially
-					try-complete-file-name
-					try-expand-all-abbrevs
-					try-expand-list
-					try-expand-line
-					try-complete-lisp-symbol-partially
-					try-complete-lisp-symbol))
+;; my config file
+  (defun my-config-file ()
+    (interactive)
+    (find-file "~/.emacs.d/stanhe.org"))
+  ;; back buffer
+  (defun back-to-previous-buffer ()
+	 (interactive)
+	 (switch-to-buffer nil))
+  ;; show paren in function
+  (define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+	  (t (save-excursion
+	      (ignore-errors (backward-up-list))
+	      (funcall fn)))))
+  ;; skeleton	    
+  (define-skeleton 1src
+      "Input src"
+      ""
+      "#+BEGIN_SRC emacs-lisp \n"
+      _ "\n"
+      "#+END_SRC")
+  (define-skeleton 1java
+      "Input src"
+      ""
+      "#+HEADER: :classname\n"
+      "#+BEGIN_SRC java \n"
+      _ "\n"
+      "#+END_SRC")
+  (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
+  (define-abbrev org-mode-abbrev-table "ijava" "" '1java)
+  ;; hippie expand
+  (setq hippie-expand-try-function-lisk '(try-expand-debbrev
+					  try-expand-debbrev-all-buffers
+					  try-expand-debbrev-from-kill
+					  try-complete-file-name-partially
+					  try-complete-file-name
+					  try-expand-all-abbrevs
+					  try-expand-list
+					  try-expand-line
+					  try-complete-lisp-symbol-partially
+					  try-complete-lisp-symbol))
+
+;; random color theme
+(defun show-me-the-colors ()  (interactive) (loop do (random-color-theme) (sit-for 3)))
+(defun random-color-theme ()
+  "Random color theme."
+  (interactive)
+  (unless (featurep 'counsel) (require 'counsel))
+  (let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
+	 (theme (nth (random (length available-themes)) available-themes)))
+    (counsel-load-theme-action theme)
+    (message "Color theme [%s] loaded." theme)))
+(defun load-my-theme ()
+  (interactive)
+  (load-theme 'monokai 1)
+  )
