@@ -1,9 +1,13 @@
-;;custom settings
+;;custom settings, not important settings .such as : installed themes
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
@@ -11,6 +15,9 @@
  '(eww-header-line-format "%u")
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-symbol-colors
+   (quote
+    ("#EFFF00" "#73CD4F" "#83DDFF" "MediumPurple1" "#66CDAA" "DarkOrange" "HotPink1" "#809FFF" "#ADFF2F")))
  '(highlight-tail-colors
    (quote
     (("#3C3D37" . 0)
@@ -21,7 +28,15 @@
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
+ '(hl-paren-background-colors
+   (quote
+    ("#00FF99" "#CCFF99" "#FFCC99" "#FF9999" "#FF99CC" "#CC99FF" "#9999FF" "#99CCFF" "#99FFCC" "#7FFF00")))
+ '(hl-paren-colors (quote ("#326B6B")))
  '(magit-diff-use-overlays nil)
+ '(org-src-block-faces (quote (("emacs-lisp" (:background "#F0FFF0")))))
+ '(package-selected-packages
+   (quote
+    (sublime-themes organic-green-theme calmer-forest-theme green-screen-theme use-package neotree ace-window company hungry-delete counsel evil hydra general smartparens which-key window-numbering popwin monokai-theme counsel-projectile magit keychain-environment multi-term clojure-mode clj-refactor cider paredit js2-mode gh-md markdown-mode)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)

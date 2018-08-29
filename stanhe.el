@@ -82,6 +82,7 @@
 	"r" 'random-color-theme
 	"s" 'show-me-the-colors
 	"m" 'load-my-theme
+	"t" 'counsel-load-theme
 	"f" 'my-config-file)
     (nvmap :prefix ","
 	"p" 'projectile-command-map
