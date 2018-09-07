@@ -76,7 +76,6 @@
     (general-evil-setup t)
     :config 
     (evil-mode 1)
-
     (nvmap :prefix "SPC"
 	"q" 'quit-window
 	"r" 'random-color-theme
@@ -102,6 +101,7 @@
 	"xB" 'list-buffers
 	"xd" 'dired
 	"xj" 'dired-jump
+	"xp" 'image-dired
 	"xs" 'save-buffer
 	"xc" 'save-buffers-kill-terminal
 	"xk" 'kill-buffer
@@ -131,6 +131,7 @@
   ("r" (text-scale-set 0) "reset text" :color blue)
   ("n" neotree-toggle "neotree" :color blue)
   ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+
   ("k" kill-buffer "kill-buffer" :color blue)
   ("b" ivy-switch-buffer "switch-buffer" :color blue)
   ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
@@ -159,6 +160,18 @@
       "TAB" 'neotree-enter
       "RET" 'neotree-enter
       "q" 'neotree-hide
+      ))
+
+(use-package image-mode
+    :config
+    (nvmap :status '(normal emacs)
+      :keymaps '(image-mode-map)
+      "n" 'image-next-file
+      "p" 'image-previous-file
+      "h" 'image-transform-fit-to-height
+      "w" 'image-transform-fit-to-width
+      "s" 'image-transform-reset
+      "r" 'image-rotate
       ))
 
 (use-package counsel
