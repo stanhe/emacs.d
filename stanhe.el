@@ -131,6 +131,7 @@
   ("r" (text-scale-set 0) "reset text" :color blue)
   ("n" neotree-toggle "neotree" :color blue)
   ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+  ("p" back-to-previous-buffer "swap-last" :color blue)
 
   ("k" kill-buffer "kill-buffer" :color blue)
   ("b" ivy-switch-buffer "switch-buffer" :color blue)
