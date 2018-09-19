@@ -8,8 +8,8 @@
 (package-initialize)
 
 ;; custom file
-(setq custom-file "~/.emacs.d/lisp/custom.el")
-(load custom-file)
+(load (expand-file-name "lisp/custom.el" user-emacs-directory))
+(load (expand-file-name "lisp/my-abbrev.el" user-emacs-directory))
 
 ;;init with org-file
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))

@@ -143,31 +143,30 @@
 	      "nt" 'neotree-toggle
 	      "gs" 'magit-status
 
-	      "mm" 'multi-term
-	      "mt" 'multi-term-dedicated-toggle
+	      "m m" 'multi-term
 	  )
       )
 
       (use-package hydra
 	:config
 	(defhydra hydra-zoom (global-map "<f2>")
-	"functions"
-	("q" keyboard-quit "quit" :color blue)
-	("g" text-scale-increase "in")
-	("l" text-scale-decrease "out")
-	("r" (text-scale-set 0) "reset text" :color blue)
-	("n" neotree-toggle "neotree" :color blue)
-	("m" multi-term-dedicated-toggle "multi-term" :color blue)
-	("p" back-to-previous-buffer "swap-last" :color blue)
+	    "functions"
+	    ("q" keyboard-quit "quit" :color blue)
+	    ("g" text-scale-increase "in")
+	    ("l" text-scale-decrease "out")
+	    ("r" (text-scale-set 0) "reset text" :color blue)
+	    ("n" neotree-toggle "neotree" :color blue)
+	    ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+	    ("p" back-to-previous-buffer "swap-last" :color blue)
 
-	("k" kill-buffer "kill-buffer" :color blue)
-	("b" ivy-switch-buffer "switch-buffer" :color blue)
-	("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
-	("=" balance-windows "balance-window" :color blue)
-	("<up>" enlarge-window "enlarge-window")
-	("<down>" shrink-window "balance-window")
-	("<left>" shrink-window-horizontally "shrink-horizontal")
-	("<right>" enlarge-window-horizontally "enlarge-horizontal")
+	    ("k" kill-buffer "kill-buffer" :color blue)
+	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
+	    ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
+	    ("=" balance-windows "balance-window" :color blue)
+	    ("<up>" enlarge-window "enlarge-window")
+	    ("<down>" shrink-window "balance-window")
+	    ("<left>" shrink-window-horizontally "shrink-horizontal")
+	    ("<right>" enlarge-window-horizontally "enlarge-horizontal")
 	))
 
       (use-package neotree
@@ -395,22 +394,6 @@
 	    (t (save-excursion
 		(ignore-errors (backward-up-list))
 		(funcall fn)))))
-    ;; skeleton	    
-    (define-skeleton 1src
-	"Input src"
-	""
-	"#+BEGIN_SRC emacs-lisp \n"
-	_ "\n"
-	"#+END_SRC")
-    (define-skeleton 1java
-	"Input src"
-	""
-	"#+HEADER: :classname\n"
-	"#+BEGIN_SRC java \n"
-	_ "\n"
-	"#+END_SRC")
-    (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
-    (define-abbrev org-mode-abbrev-table "ijava" "" '1java)
     ;; hippie expand
     (setq hippie-expand-try-function-lisk '(try-expand-debbrev
 					    try-expand-debbrev-all-buffers
