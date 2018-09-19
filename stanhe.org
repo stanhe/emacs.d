@@ -104,6 +104,7 @@
 	      "c" 'compile
 	      "SPC" 'random-color-theme
 	      "r" 'quickrun
+	      "a" 'quickrun-with-arg
 	      "s" 'show-me-the-colors
 	      "m" 'load-my-theme
 	      "n" 'display-line-numbers-mode
