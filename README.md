@@ -16,10 +16,16 @@ checkout the win branch.
 ## [Features](https://github.com/stanhe/emacs.d/blob/master/stanhe.org#%E5%8A%A0%E8%BD%BD%E7%9B%B8%E5%85%B3%E5%8C%85%E9%85%8D%E7%BD%AE)
 It's easy to start and use, try this:
 
-prefix key |functions|describe
+Prefix key |Functions|Describe
 -|-|-
-, x|main functions for edit|eg: (,xr):show recent .(,xf):open files.(,xj):dird
+, x|main functions for edit|eg: (,xr):show recent .(,xf):open files.(,xj):dird-jump
 F2|fast functions|eg: (f2-n):neotree.(f2-m):multi-term.(f2-b):swap buffer
-Space|other features|eg: (spc-t):change-theme.(spc-a):quickrun.
+Space|other features|eg: (spc-n):show line number.(spc-t):change-theme.(spc-a):quickrun.
 
+## Custom
+All config files :
+* [init.el](./init.el) start and init .
+* [stanhe.org](./stanhe.org) main config file.
+* [lisp/custom.el](./lisp/custom.el) custom settings.
+* [lisp/my-abbrev.el](./lisp/my-abbrev.el) abbrev and skeleton.
 
