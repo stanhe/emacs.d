@@ -65,10 +65,6 @@
 		     ) "My default packages")
 
     #+END_SRC
-
-    #+RESULTS:
-    : stanhe/packages
-
 *** 包安装
     #+BEGIN_SRC emacs-lisp
 (require 'cl)
@@ -134,14 +130,18 @@
 	      "xk" 'kill-buffer
 	      "xe" 'eval-last-sexp
 
-	      "aw" 'ace-swap-window
 	      "eb" 'eval-buffer
-	      "cg" 'counsel-git
+	      "aw" 'ace-swap-window
+	      "ag" 'counsel-ag
+	      "gf" 'counsel-git
+	      "gs" 'magit-status
+	      "gg" 'counsel-git-grep
+	      "go" 'counsel-git-log
+	      "gl" 'magit-log-current
 	      "oa" 'org-agenda
 
 	      "nf" 'neotree-find
 	      "nt" 'neotree-toggle
-	      "gs" 'magit-status
 
 	      "m m" 'multi-term
 	  )
@@ -422,5 +422,6 @@
     )
 
     #+END_SRC
+    
     
     
