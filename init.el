@@ -7,12 +7,12 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-;; custom file
-(load (expand-file-name "lisp/custom.el" user-emacs-directory))
-(load (expand-file-name "lisp/my-abbrev.el" user-emacs-directory))
-
 ;;init with org-file
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))
 
+;; custom file
+(require 'custom)
+(require 'my-abbrev)
 
+(my-autoload "gradle")
 
