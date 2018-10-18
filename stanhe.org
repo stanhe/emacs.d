@@ -1,6 +1,6 @@
-* Emacs 配置
-** 基础配置文件
-*** 界面及保存
+* Emacs Configurations
+** Base screen
+*** some default settings
     #+BEGIN_SRC emacs-lisp
 ;; base config
 (menu-bar-mode -1)
@@ -23,15 +23,15 @@
 (add-to-list 'load-path my-lisp-path)
 
     #+END_SRC
-** 包管理及配置文件
-*** 源管理
+** Packages and elpa configurations
+*** elpa
     #+BEGIN_SRC emacs-lisp
 ;init packages
 (when (>= emacs-major-version 24)
   (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
 			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
     #+END_SRC
-*** 包管理
+*** custom packages
     #+BEGIN_SRC emacs-lisp
 (defvar stanhe/packages '(
                      ;; ========basic=======
@@ -70,7 +70,7 @@
 		     ) "My default packages")
 
     #+END_SRC
-*** 包安装
+*** check and install 
     #+BEGIN_SRC emacs-lisp
 (require 'cl)
 
@@ -89,8 +89,7 @@
       (package-install pkg))))
     #+END_SRC
     
-*** 加载相关包配置
-    按上面包添加顺序初始化
+*** packages settings and keybindings
     #+BEGIN_SRC emacs-lisp
       (load-theme 'monokai 1)
       (require 'use-package)
@@ -365,8 +364,8 @@
 				      (interactive)
 				      (add-to-list 'company-backends 'company-jedi))))
     #+END_SRC
-** 优化 And Functions
-*** 优化快捷键
+** Custom Functions
+*** cover with better keybindings
     #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-h") 'delete-backward-char)
   (global-set-key (kbd "C-SPC") 'delete-window)
@@ -386,7 +385,7 @@
   ;; 					       (newline-and-indent)))
   ;; 					   )))
     #+END_SRC
-*** Functions
+*** my functions
     #+BEGIN_SRC emacs-lisp
 
       ;; my config file

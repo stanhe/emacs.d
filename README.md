@@ -9,11 +9,11 @@ main features support.
 git clone https://github.com/stanhe/emacs.d.git ~/.emacs.d
 ```
 ### windows
-partion features support.
+partion features support,available on win10.
 
 checkout the win branch.
 
-## [Features](https://github.com/stanhe/emacs.d/blob/master/stanhe.org#%E5%8A%A0%E8%BD%BD%E7%9B%B8%E5%85%B3%E5%8C%85%E9%85%8D%E7%BD%AE)
+## Features
 It's easy to start and use, try this:
 
 Prefix key |Functions|Describe
@@ -28,4 +28,5 @@ All config files :
 * [stanhe.org](./stanhe.org) main config file.
 * [lisp/custom.el](./lisp/custom.el) custom settings.
 * [lisp/my-abbrev.el](./lisp/my-abbrev.el) abbrev and skeleton.
+* [lisp/**](./lisp/) other customized modes.
 
