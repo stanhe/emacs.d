@@ -1,29 +1,34 @@
 ;; this is my custom gradle-mode
 
 (defun get-root-dir ()
+  "Get the project dir."
   (locate-dominating-file default-directory "gradlew"))
+
+
+(defun gradle-run-project-root (task)
+  "Run gradle task in project root dir."
+  (let ((root (get-root-dir)))
+    (when root
+      (cd root)
+      (shell-command (concat "./gradlew " task)))))
 
 ;;;###autoload
 (defun gradle-task (task)
   (interactive "sTask:")
-  (cd (get-root-dir))
-  (shell-command (concat "./gradlew " task)))
+  (gradle-run-project-root task))
 
 ;;;###autoload
 (defun gradle-run ()
   (interactive)
-  (cd (get-root-dir))
-  (shell-command "./gradlew run"))
+  (gradle-run-project-root "run"))
 
 (defun gradle-assemble ()
   (interactive)
-  (cd (get-root-dir))
-  (shell-command "./gradlew assemble"))
+  (gradle-run-project-root "assemble"))
 
 (defun gradle-clean ()
   (interactive)
-  (cd (get-root-dir))
-  (shell-command "./gradlew clean"))
+  (gradle-run-project-root "clean"))
 
 (defvar gradle-mode-map
   (let ((map (make-sparse-keymap)))

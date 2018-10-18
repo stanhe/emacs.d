@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "gradle-mode" "gradle-mode.el" (23496 13695
-;;;;;;  419033 562000))
+;;;### (autoloads nil "gradle-mode" "gradle-mode.el" (23496 16341
+;;;;;;  369033 556000))
 ;;; Generated autoloads from gradle-mode.el
 
 (autoload 'gradle-task "gradle-mode" "\
