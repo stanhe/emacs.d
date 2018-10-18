@@ -7,12 +7,9 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-;;init with org-file
+;;init with org-file.
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))
 
-;; custom file
-(require 'custom)
-(require 'my-abbrev)
-
+;;add all my custom modes.
 (my-autoload "gradle")
 

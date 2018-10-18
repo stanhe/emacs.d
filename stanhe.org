@@ -15,6 +15,8 @@
 (setq make-backup-files nil)
 (setq shell-command-switch "-ic")
 (setq initial-scratch-message (concat ";;Happy hacking, " user-login-name "\n\n"))
+(setq custom-file "~/.emacs.d/lisp/custom.el")
+(load custom-file)
 (setq-default abbrev-mode t)
 (setq-default my-lisp-path "~/.emacs.d/lisp/")
 (add-to-list 'exec-path "~/bin/")
@@ -92,6 +94,8 @@
     #+BEGIN_SRC emacs-lisp
       (load-theme 'monokai 1)
       (require 'use-package)
+
+      (require 'my-abbrev)
 
       (use-package evil
 	  :init
@@ -436,7 +440,9 @@
 	    (setq dis (replace-match "-autoload.el" nil nil src 0))
 	    (update-file-autoloads src t dis)
 	    (require (intern (file-name-base dis))))))
+
     #+END_SRC
+    
     
     
     
