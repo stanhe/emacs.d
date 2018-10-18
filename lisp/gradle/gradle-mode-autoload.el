@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "gradle-mode" "gradle-mode.el" (23496 16341
-;;;;;;  369033 556000))
+;;;### (autoloads nil "gradle-mode" "gradle-mode.el" (23496 19890
+;;;;;;  665700 222000))
 ;;; Generated autoloads from gradle-mode.el
 
 (autoload 'gradle-task "gradle-mode" "\
@@ -21,6 +21,8 @@
 my gradle mode
 
 \(fn &optional ARG)" t nil)
+
+(add-hook 'java-mode-hook 'gradle-mode)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "gradle-mode" '("get-root-dir" "gradle-")))
 

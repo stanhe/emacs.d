@@ -1,4 +1,7 @@
 ;; this is my custom gradle-mode
+;; main for project with gradle
+;; author: stanhe
+;; date: 2018-10-18
 
 (defun get-root-dir ()
   "Get the project dir."
@@ -43,4 +46,9 @@
 ;;;###autoload
 (define-minor-mode gradle-mode "my gradle mode")
 
+;;;###autoload
+(add-hook 'java-mode-hook 'gradle-mode)
+
 (provide 'gradle-mode)
+
+;;; my gradle-mode end.
