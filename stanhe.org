@@ -189,6 +189,7 @@
 	    "r" 'neotree-rename-node
 	    "R" 'neotree-change-root
 	    "c" 'neotree-create-node
+	    "C" 'neotree-copy-node
 	    "v" 'neotree-enter-vertical-split
 	    "h" 'neotree-enter-horizontal-split
 	    "a" 'neotree-enter-ace-window
@@ -442,6 +443,7 @@
 	    (require (intern (file-name-base dis))))))
 
     #+END_SRC
+    
     
     
     
