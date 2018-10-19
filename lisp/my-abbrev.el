@@ -2,10 +2,19 @@
 ;; sample use of abbrev --copied from Xah
 ;; Note:
 ;;      prevent abbrev expansion ma-me <C-q> SPC
-(clear-abbrev-table global-abbrev-table)
 
+;; hippie expand
+(setq hippie-expand-try-function-lisk '(try-expand-debbrev
+					try-expand-debbrev-all-buffers
+					try-expand-debbrev-from-kill
+					try-complete-file-name-partially
+					try-complete-file-name
+					try-expand-all-abbrevs
+					try-expand-list
+					try-expand-line
+					try-complete-lisp-symbol-partially
+					try-complete-lisp-symbol))
 ;; skeleton	    
-
 (define-skeleton 1src
     "Input src"
     ""
@@ -20,6 +29,7 @@
     _ "\n"
     "#+END_SRC")
 
+(clear-abbrev-table global-abbrev-table)
 ;; (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
 ;; (define-abbrev org-mode-abbrev-table "ijava" "" '1java)
 (define-abbrev-table 'global-abbrev-table

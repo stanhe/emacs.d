@@ -375,15 +375,6 @@
 				       (progn
 					 (end-of-line)
 					 (newline-and-indent))))
-  ;; (global-set-key (kbd "<C-return>") (lambda()
-  ;; 				     (interactive)
-  ;; 				     (progn(end-of-line)
-  ;; 					   (if(string-match ";\[\[:space:\]\]*$" (thing-at-point 'line t))
-  ;; 					       (newline-and-indent)
-  ;; 					     (progn
-  ;; 					       (insert ";")
-  ;; 					       (newline-and-indent)))
-  ;; 					   )))
     #+END_SRC
 *** my functions
     #+BEGIN_SRC emacs-lisp
@@ -403,17 +394,6 @@
 	      (t (save-excursion
 		  (ignore-errors (backward-up-list))
 		  (funcall fn)))))
-      ;; hippie expand
-      (setq hippie-expand-try-function-lisk '(try-expand-debbrev
-					      try-expand-debbrev-all-buffers
-					      try-expand-debbrev-from-kill
-					      try-complete-file-name-partially
-					      try-complete-file-name
-					      try-expand-all-abbrevs
-					      try-expand-list
-					      try-expand-line
-					      try-complete-lisp-symbol-partially
-					      try-complete-lisp-symbol))
       ;; random color theme
       (defun show-me-the-colors ()
 	(interactive) (loop do (random-color-theme) (sit-for 3)))
