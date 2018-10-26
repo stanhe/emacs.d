@@ -91,7 +91,7 @@
     
 *** packages settings and keybindings
     #+BEGIN_SRC emacs-lisp
-      (load-theme 'monokai 1)
+      ;;(load-theme 'monokai 1)
       (require 'use-package)
 
       (require 'my-abbrev)
@@ -396,15 +396,20 @@
 		  (funcall fn)))))
       ;; random color theme
       (defun show-me-the-colors ()
-	(interactive) (loop do (random-color-theme) (sit-for 3)))
-	  (defun random-color-theme ()
-	    "Random color theme."
-	    (interactive)
-	    (unless (featurep 'counsel) (require 'counsel))
-	    (let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
-		    (theme (nth (random (length available-themes)) available-themes)))
-		(counsel-load-theme-action theme)
-		(message "Color theme [%s] loaded." theme)))
+	(interactive)
+	(loop do
+	      (random-color-theme)
+	      (unless (sit-for 3)
+		(keyboard-quit))))
+
+      (defun random-color-theme ()
+	"Random color theme."
+	(interactive)
+	(unless (featurep 'counsel) (require 'counsel))
+	(let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
+	       (theme (nth (random (length available-themes)) available-themes)))
+	  (counsel-load-theme-action theme)
+	  (message "Color theme [%s] loaded." theme)))
       (defun load-my-theme ()
 	    (interactive)
 	    (load-theme 'monokai 1))
@@ -421,7 +426,18 @@
 	    (update-file-autoloads src t dis)
 	    (require (intern (file-name-base dis))))))
 
+      (defun choose-theme-by-time ()
+	"choose the theme by time now."
+	(interactive)
+	(let ((now (string-to-number (format-time-string "%H"))))
+	  (cond ((< now 12) (load-theme 'sanityinc-tomorrow-blue 1))
+		((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
+		(t (load-theme 'sanityinc-tomorrow-night 1)))))
+
+      (choose-theme-by-time)
+
     #+END_SRC
+    
     
     
     
