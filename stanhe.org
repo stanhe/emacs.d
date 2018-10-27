@@ -164,7 +164,7 @@
 	    ("l" text-scale-decrease "out")
 	    ("r" (text-scale-set 0) "reset text" :color blue)
 	    ("n" neotree-toggle "neotree" :color blue)
-	    ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+	    ("m" shell-pop-toggle "eshell" :color blue)
 	    ("p" back-to-previous-buffer "swap-last" :color blue)
 
 	    ("k" kill-buffer "kill-buffer" :color blue)
@@ -421,7 +421,7 @@
 	  (while (file-directory-p src)
 	    (add-to-list 'load-path src)
 	    (setq src (car (directory-files src t "\\-mode.el$")))
-	    (string-match ".el" src)
+	    (string-match ".el$" src)
 	    (setq dis (replace-match "-autoload.el" nil nil src 0))
 	    (update-file-autoloads src t dis)
 	    (require (intern (file-name-base dis))))))
