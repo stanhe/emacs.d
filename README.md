@@ -9,9 +9,8 @@ main features support.
 git clone https://github.com/stanhe/emacs.d.git ~/.emacs.d
 ```
 ### windows
-partion features support,available on win10.
 
-checkout the win branch.
+partion features support,checkout the win branch.
 
 ## Features
 It's easy to start and use, try this:
