@@ -2,15 +2,15 @@
 My config for shell script,clojure,python focused on Evil.
 
 ## Installation
-* emacs version >= 24
-### linux
-main features support.
-```
-git clone https://github.com/stanhe/emacs.d.git ~/.emacs.d
-```
+* emacs version >= 26
+
 ### windows
 
-partion features support,checkout the win branch.
+```
+git clone -b win https://github.com/stanhe/emacs.d.git ~/.emacs.d
+
+```
+checkout the win branch.
 
 ## Features
 It's easy to start and use, try this:
