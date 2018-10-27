@@ -2,7 +2,7 @@
 My config for shell script,clojure,python focused on Evil.
 
 ## Installation
-* emacs version >= 24
+* emacs version >= 26
 ### linux
 main features support.
 ```
@@ -10,7 +10,7 @@ git clone https://github.com/stanhe/emacs.d.git ~/.emacs.d
 ```
 ### windows
 
-partion features support,checkout the win branch.
+partion features support,checkout the [win branch](https://github.com/stanhe/emacs.d/tree/win).
 
 ## Features
 It's easy to start and use, try this:
