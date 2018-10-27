@@ -421,7 +421,7 @@
 	  (while (file-directory-p src)
 	    (add-to-list 'load-path src)
 	    (setq src (car (directory-files src t "\\-mode.el$")))
-	    (string-match ".el" src)
+	    (string-match ".el$" src)
 	    (setq dis (replace-match "-autoload.el" nil nil src 0))
 	    (update-file-autoloads src t dis)
 	    (require (intern (file-name-base dis))))))
