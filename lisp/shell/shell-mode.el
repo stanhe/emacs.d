@@ -20,6 +20,7 @@
     (if tmp-eshell
 	(switch-to-buffer my-shell)
     (switch-to-buffer (eshell)))
+    (eshell/cd default-directory)
     ))
 
 ;;;###autoload
@@ -28,8 +29,8 @@
   (interactive)
   (if (get-buffer-window my-shell)
       (delete-windows-on my-shell)
-    (shell-pop-bottom)
-    ))
+	(shell-pop-bottom)
+      ))
 
 ;;;###autoload
 (define-minor-mode pop-shell-mode "my pop-shell mode")
