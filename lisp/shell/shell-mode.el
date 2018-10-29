@@ -33,7 +33,8 @@
   (interactive)
   (if (get-buffer-window my-shell)
       (delete-windows-on my-shell)
-    (shell-pop-bottom)))
+    (shell-pop-bottom))
+  (bury-buffer my-shell))
 
 ;;;###autoload
 (define-minor-mode pop-shell-mode "my pop-shell mode")
