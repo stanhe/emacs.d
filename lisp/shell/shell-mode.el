@@ -5,7 +5,7 @@
 
 ;; pop-shell-shell
 
-(defvar my-shell "*my-eshell*" "my open shell name,use eshell.")
+(defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
 
 (defun shell-pop-bottom()
 "pop eshell at bottom"
@@ -17,9 +17,7 @@
 	(rename-buffer my-shell)
 	(switch-to-buffer pos-buffer)))
     (select-window (display-buffer-in-side-window tmp-eshell '((side . bottom))))
-    (cd dir)
-    (insert (concat "ls"))
-    (eshell-send-input)))
+    (cd dir)))
 
 ;;;###autoload
 (defun shell-pop-toggle ()
