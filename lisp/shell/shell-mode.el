@@ -8,16 +8,23 @@
 (defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
 (defvar pre-path nil "pre open directory.")
 
+(defun get-current-directory ()
+  "get current directory."
+ (file-name-directory (or (buffer-file-name) default-directory)))
+
 (defun shell-pop-bottom()
 "pop eshell at bottom"
 (interactive)
-(let ((pos-buffer (current-buffer))(tmp-eshell (get-buffer my-shell)) (dir (file-name-directory (or (buffer-file-name) default-directory))))
+(let ((pos-buffer (current-buffer))
+      (tmp-eshell (get-buffer my-shell))
+      (dir (get-current-directory)))
     (unless tmp-eshell
       (setq tmp-eshell (eshell "New"))
       (with-current-buffer tmp-eshell
 	(rename-buffer my-shell)
 	(switch-to-buffer pos-buffer)))
-    (select-window (display-buffer-in-side-window tmp-eshell '((side . bottom))))
+    (select-window
+     (display-buffer-in-side-window tmp-eshell '((side . bottom))))
     (unless (equal pre-path dir)
 	(eshell/cd dir)
 	(eshell-send-input)
