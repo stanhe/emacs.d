@@ -418,13 +418,14 @@
       (defun my-autoload (dir)
 	"my-autoload load my custom mode from ~/.emacs.d/lisp/"
 	(let (dis (src (concat my-lisp-path dir)))
-	  (while (file-directory-p src)
+	  (when (file-directory-p src)
 	    (add-to-list 'load-path src)
 	    (setq src (car (directory-files src t "\\-mode.el$")))
 	    (string-match ".el$" src)
 	    (setq dis (replace-match "-autoload.el" nil nil src 0))
 	    (update-file-autoloads src t dis)
-	    (require (intern (file-name-base dis))))))
+	    (require (intern (file-name-base dis)))
+	    (kill-buffer (file-name-nondirectory dis)))))
 
       (defun choose-theme-by-time ()
 	"choose the theme by time now."

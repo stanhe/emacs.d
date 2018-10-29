@@ -7,22 +7,16 @@
 
 (defvar my-shell "*my-eshell*" "my open shell name,use eshell.")
 
-(defun get-mini-size()
-  "the smallest size."
-  (let ((size (floor (* 0.3 (window-total-height)))))
-	(- size)))
-
 (defun shell-pop-bottom()
 "pop eshell at bottom"
 (interactive)
-(let ((w (split-window-below (get-mini-size))) (tmp-eshell (get-buffer my-shell)) (dir (file-name-directory (or (buffer-file-name) default-directory))))
-    (select-window w)
-    (if tmp-eshell
-	  (switch-to-buffer my-shell)
-      (progn
-	(switch-to-buffer (eshell))
-	(rename-buffer my-shell)))
-    (eshell/pushd ".")
+(let ((pos-buffer (current-buffer))(tmp-eshell (get-buffer my-shell)) (dir (file-name-directory (or (buffer-file-name) default-directory))))
+    (unless tmp-eshell
+      (setq tmp-eshell (eshell "New"))
+      (with-current-buffer tmp-eshell
+	(rename-buffer my-shell)
+	(switch-to-buffer pos-buffer)))
+    (select-window (display-buffer-in-side-window tmp-eshell '((side . bottom))))
     (cd dir)
     (insert (concat "ls"))
     (eshell-send-input)))
