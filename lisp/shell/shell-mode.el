@@ -6,6 +6,7 @@
 ;; pop-shell-shell
 
 (defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
+(defvar pre-path nil "pre open directory.")
 
 (defun shell-pop-bottom()
 "pop eshell at bottom"
@@ -17,7 +18,10 @@
 	(rename-buffer my-shell)
 	(switch-to-buffer pos-buffer)))
     (select-window (display-buffer-in-side-window tmp-eshell '((side . bottom))))
-    (cd dir)))
+    (unless (equal pre-path dir)
+	(eshell/cd dir)
+	(eshell-send-input)
+	(setq pre-path dir))))
 
 ;;;###autoload
 (defun shell-pop-toggle ()
