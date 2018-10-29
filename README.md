@@ -10,16 +10,16 @@ git clone https://github.com/stanhe/emacs.d.git ~/.emacs.d
 ```
 ### windows
 
-partion features support,checkout the [win branch](https://github.com/stanhe/emacs.d/tree/win).
+[win branch](https://github.com/stanhe/emacs.d/tree/win).
 
 ## Features
 It's easy to start and use, try this:
 
-Prefix key |Functions|Describe
+Prefix key |Functions|Description
 -|-|-
-, x|main functions for edit|eg: (,xr):show recent .(,xf):open files.(,xj):dird-jump
-F2|fast functions|eg: (f2-n):neotree.(f2-m):multi-term.(f2-b):swap buffer
-Space|other features|eg: (spc-n):show line number.(spc-t):change-theme.(spc-a):quickrun.
+, x|main functions for edit| [,xr]:show recent .[,xf]:open files.[,xj]:dird-jump
+F2|fast functions| [f2-n]:neotree.[f2-m]:multi-term.[f2-b]:swap buffer
+Space|other features| [spc-n]:show line number.[spc-t]:change-theme.[spc-a]:quickrun.
 
 ## Custom
 All config files :
