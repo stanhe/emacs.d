@@ -10,25 +10,27 @@
 
 (defun get-current-directory ()
   "get current directory."
- (file-name-directory (or (buffer-file-name) default-directory)))
+  (file-name-directory (or (buffer-file-name) default-directory)))
 
 (defun shell-pop-bottom()
-"pop eshell at bottom"
-(interactive)
-(let ((pos-buffer (current-buffer))
-      (tmp-eshell (get-buffer my-shell))
-      (dir (get-current-directory)))
+  "pop eshell at bottom"
+  (interactive)
+  (let ((pos-buffer (current-buffer))
+	(tmp-eshell (get-buffer my-shell))
+	(dir (get-current-directory)))
     (unless tmp-eshell
       (setq tmp-eshell (eshell "New"))
       (with-current-buffer tmp-eshell
 	(rename-buffer my-shell)
 	(switch-to-buffer pos-buffer)))
-    (select-window
-     (display-buffer-in-side-window tmp-eshell '((side . bottom))))
-    (unless (equal pre-path dir)
-	(eshell/cd dir)
-	(eshell-send-input)
-	(setq pre-path dir))))
+    (setq window
+	  (select-window
+	   (display-buffer-in-side-window tmp-eshell '((side . bottom))) t))
+    (set-window-dedicated-p window t)
+    (when (and pre-path (not (equal pre-path dir)))
+      (eshell/cd dir)
+      (eshell-send-input))
+    (setq pre-path dir)))
 
 ;;;###autoload
 (defun shell-pop-toggle ()
