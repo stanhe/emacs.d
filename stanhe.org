@@ -52,7 +52,6 @@
 		     counsel-projectile
 		     magit
 		     keychain-environment
-                     multi-term
                      quickrun
 		     ;; ========feature========
 		     ;; clojure
@@ -233,17 +232,6 @@
 	  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 	  (global-set-key (kbd "C-c g") 'counsel-git)
 	  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
-
-      (use-package multi-term
-	:init
-	(setq multi-term-dedicated-select-after-open-p t
-	      multi-term-program "/bin/zsh")
-	:config
-	(nvmap :states '(insert normal)
-	  ;"C-n" 'multi-term-next
-	  ;"C-p" 'multi-term-prev
-	  "C-d" 'term-send-eof
-	  ))
 
       (use-package company
 	  :init
