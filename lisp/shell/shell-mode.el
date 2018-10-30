@@ -13,6 +13,7 @@
 
 (defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
 (defvar pre-path nil "pre open directory.")
+(defvar pre-parent-path nil "pre parent directory.")
 
 (defun get-current-directory (&optional buffer)
   "get current directory."
@@ -64,10 +65,10 @@
 	(switch-to-buffer nil)
       (progn
 	(switch-to-buffer shell)
-	(when (and pre-path (not (equal pre-path dir)))
+	(when (and pre-parent-path (not (equal pre-parent-path dir)))
 	  (eshell/cd dir)
 	  (eshell-send-input))))
-    (setq pre-path dir)
+    (setq pre-parent-path dir)
     (bury-buffer shell)))
 
 ;;;###autoload
