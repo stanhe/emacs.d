@@ -11,10 +11,14 @@
 ;;      open eshell with project mode,open git or gradle project.
 
 
-(defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
+;;define 
+(defvar my-shell " *BOTTOM-TERMINAL*" "my shell name,use eshell.")
+(defvar my-full-shell " *FULL-TERMINAL*" "my full shell name,use eshell.")
+
 (defvar pre-path nil "pre open directory.")
 (defvar pre-parent-path nil "pre parent directory.")
 
+;;function
 (defun get-current-directory (&optional buffer)
   "get current directory."
   (if (not buffer)
@@ -40,7 +44,7 @@
 	(tmp-eshell (get-buffer my-shell))
 	(dir (get-current-directory)))
     (unless tmp-eshell
-      (setq tmp-eshell (eshell "New"))
+      (setq tmp-eshell (eshell 100))
       (with-current-buffer tmp-eshell
 	(rename-buffer my-shell)
 	(switch-to-buffer pos-buffer)))
@@ -58,10 +62,13 @@
   "fast jump to eshll,it's the same as M-x :eshell "
   (interactive)
   (let* ((buffer (current-buffer))
-	 (shell (eshell))
+	 (shell (get-buffer my-full-shell))
 	 (dir (get-project-root-directory buffer)))
-    (message "current dir : %s" dir)
-    (if (equal "*eshell*" (buffer-name buffer))
+    (unless shell
+      (setq shell (eshell 101))
+      (with-current-buffer shell
+	(rename-buffer my-full-shell)))
+    (if (equal my-full-shell (buffer-name buffer))
 	(switch-to-buffer nil)
       (progn
 	(switch-to-buffer shell)
