@@ -3,7 +3,13 @@
 ;; author: stanhe
 ;; date: 2018-10-27
 
-;; pop-shell-shell
+;; just bind fast-eshell-pop and shell-pop-toggle to your key-bindings
+;;
+;; shell-pop-toggle:
+;;      pop-eshell as side window,much like some IDE.
+;; fast-eshell-pop:
+;;      open eshell with project mode,open git or gradle project.
+
 
 (defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
 (defvar pre-path nil "pre open directory.")
@@ -22,7 +28,9 @@
 (defun get-project-root-directory (buffer)
   "find current project root,for git or gradle."
   (with-current-buffer buffer
-    (or (get-parent-dir "gradlew") (get-parent-dir ".git") (get-current-directory))))
+    (or (get-parent-dir "gradlew")
+	(get-parent-dir ".git")
+	(get-current-directory))))
 
 (defun shell-pop-bottom()
   "pop eshell at bottom"
