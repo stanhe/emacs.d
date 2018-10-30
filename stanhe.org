@@ -52,7 +52,6 @@
 		     counsel-projectile
 		     magit
 		     keychain-environment
-                     multi-term
                      quickrun
 		     ;; ========feature========
 		     ;; clojure
@@ -160,13 +159,13 @@
 	(defhydra hydra-zoom (global-map "<f2>")
 	    "functions"
 	    ("q" keyboard-quit "quit" :color blue)
-	    ("g" text-scale-increase "in")
-	    ("l" text-scale-decrease "out")
+	    ("i" text-scale-increase "text-increase")
+	    ("d" text-scale-decrease "text-decrease")
 	    ("r" (text-scale-set 0) "reset text" :color blue)
 	    ("n" neotree-toggle "neotree" :color blue)
-	    ("m" multi-term-dedicated-toggle "multi-term" :color blue)
+	    ("m" eshell-pop-toggle "multi-term" :color blue)
+	    ("l" fast-eshell-pop "multi-term" :color blue)
 	    ("p" back-to-previous-buffer "swap-last" :color blue)
-
 	    ("k" kill-buffer "kill-buffer" :color blue)
 	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
 	    ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
@@ -233,17 +232,6 @@
 	  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 	  (global-set-key (kbd "C-c g") 'counsel-git)
 	  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
-
-      (use-package multi-term
-	:init
-	(setq multi-term-dedicated-select-after-open-p t
-	      multi-term-program "/bin/zsh")
-	:config
-	(nvmap :states '(insert normal)
-	  ;"C-n" 'multi-term-next
-	  ;"C-p" 'multi-term-prev
-	  "C-d" 'term-send-eof
-	  ))
 
       (use-package company
 	  :init
