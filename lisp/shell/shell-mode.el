@@ -8,9 +8,12 @@
 (defvar my-shell " *BOTTOM-TERMINAL*" "my open shell name,use eshell.")
 (defvar pre-path nil "pre open directory.")
 
-(defun get-current-directory ()
+(defun get-current-directory (&optional buffer)
   "get current directory."
-  (file-name-directory (or (buffer-file-name) default-directory)))
+  (if (not buffer)
+      (file-name-directory (or (buffer-file-name) default-directory))
+    (with-current-buffer buffer
+      (file-name-directory (or (buffer-file-name) default-directory)))))
 
 (defun shell-pop-bottom()
   "pop eshell at bottom"
@@ -36,11 +39,18 @@
 (defun fast-eshell-pop ()
   "fast jump to eshll,it's the same as M-x :eshell "
   (interactive)
-  (let ((buffer (current-buffer)) (shell (eshell)))
+  (let* ((buffer (current-buffer))
+	 (shell (eshell))
+	 (dir (get-current-directory buffer)))
+    (message "current dir : %s" dir)
     (if (equal "*eshell*" (buffer-name buffer))
 	(switch-to-buffer nil)
       (progn
-	(switch-to-buffer shell)))
+	(switch-to-buffer shell)
+	(when (and pre-path (not (equal pre-path dir)))
+	  (eshell/cd dir)
+	  (eshell-send-input))))
+    (setq pre-path dir)
     (bury-buffer shell)))
 
 ;;;###autoload

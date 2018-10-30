@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "shell-mode" "shell-mode.el" (23511 46962 0
+;;;### (autoloads nil "shell-mode" "shell-mode.el" (23511 49127 0
 ;;;;;;  0))
 ;;; Generated autoloads from shell-mode.el
 
