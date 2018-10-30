@@ -33,13 +33,23 @@
     (setq pre-path dir)))
 
 ;;;###autoload
+(defun fast-eshell-pop ()
+  "fast jump to eshll,it's the same as M-x :eshell "
+  (interactive)
+  (let ((buffer (current-buffer)) (shell (eshell)))
+    (if (equal "*eshell*" (buffer-name buffer))
+	(switch-to-buffer nil)
+      (progn
+	(switch-to-buffer shell)))
+    (bury-buffer shell)))
+
+;;;###autoload
 (defun shell-pop-toggle ()
   "pop eshell or hide."
   (interactive)
   (if (get-buffer-window my-shell)
       (delete-windows-on my-shell)
-    (shell-pop-bottom))
-  (bury-buffer my-shell))
+    (shell-pop-bottom)))
 
 ;;;###autoload
 (define-minor-mode pop-shell-mode "my pop-shell mode")

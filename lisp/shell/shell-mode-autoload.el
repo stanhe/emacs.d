@@ -3,9 +3,14 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "shell-mode" "shell-mode.el" (23510 62553 0
+;;;### (autoloads nil "shell-mode" "shell-mode.el" (23511 46962 0
 ;;;;;;  0))
 ;;; Generated autoloads from shell-mode.el
+
+(autoload 'fast-eshell-pop "shell-mode" "\
+fast jump to eshll,it's the same as M-x :eshell 
+
+\(fn)" t nil)
 
 (autoload 'shell-pop-toggle "shell-mode" "\
 pop eshell or hide.
