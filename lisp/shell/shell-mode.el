@@ -15,6 +15,15 @@
     (with-current-buffer buffer
       (file-name-directory (or (buffer-file-name) default-directory)))))
 
+(defun get-parent-dir (name)
+  "Get the parent name dir."
+  (locate-dominating-file default-directory name))
+
+(defun get-project-root-directory (buffer)
+  "find current project root,for git or gradle."
+  (with-current-buffer buffer
+    (or (get-parent-dir "gradlew") (get-parent-dir ".git") (get-current-directory))))
+
 (defun shell-pop-bottom()
   "pop eshell at bottom"
   (interactive)
@@ -41,7 +50,7 @@
   (interactive)
   (let* ((buffer (current-buffer))
 	 (shell (eshell))
-	 (dir (get-current-directory buffer)))
+	 (dir (get-project-root-directory buffer)))
     (message "current dir : %s" dir)
     (if (equal "*eshell*" (buffer-name buffer))
 	(switch-to-buffer nil)

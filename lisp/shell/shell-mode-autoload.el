@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "shell-mode" "shell-mode.el" (23511 49127 0
+;;;### (autoloads nil "shell-mode" "shell-mode.el" (23511 51773 0
 ;;;;;;  0))
 ;;; Generated autoloads from shell-mode.el
 
@@ -22,7 +22,7 @@ my pop-shell mode
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "shell-mode" '("get-current-directory" "pre-path" "my-shell")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "shell-mode" '("get-" "pre-path" "my-shell")))
 
 ;;;***
 
