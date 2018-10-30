@@ -12,5 +12,5 @@
 
 ;;add all my custom modes.
 (my-autoload "gradle")
-(my-autoload "shell")
+(my-autoload "pop-eshell")
 

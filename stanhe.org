@@ -163,7 +163,7 @@
 	    ("d" text-scale-decrease "decrease-text-size")
 	    ("r" (text-scale-set 0) "reset text" :color blue)
 	    ("n" neotree-toggle "neotree" :color blue)
-	    ("m" shell-pop-toggle "eshell" :color blue)
+	    ("m" eshell-pop-toggle "eshell" :color blue)
 	    ("p" back-to-previous-buffer "swap-last" :color blue)
 	    ("k" kill-buffer "kill-buffer" :color blue)
 	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
