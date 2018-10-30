@@ -1,7 +1,7 @@
 /*
 !init.el
 !.gitignore
-!lisp/**/*.el
+!lisp/
 !elpa
 !stanhe.org
 !README.md
