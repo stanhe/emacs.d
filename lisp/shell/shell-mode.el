@@ -13,10 +13,11 @@
 
 ;;define 
 (defvar my-shell " *BOTTOM-TERMINAL*" "my shell name,use eshell.")
+
 (defvar my-full-shell " *FULL-TERMINAL*" "my full shell name,use eshell.")
 
-(defvar pre-path nil "pre open directory.")
-(defvar pre-parent-path nil "pre parent directory.")
+(defvar pre-path nil "previous open directory.")
+(defvar pre-parent-path nil "previous parent directory.")
 
 ;;function
 (defun get-current-directory (&optional buffer)
@@ -43,6 +44,7 @@
   (let ((pos-buffer (current-buffer))
 	(tmp-eshell (get-buffer my-shell))
 	(dir (get-current-directory)))
+    ;;check if my-shell exist,if not create one.
     (unless tmp-eshell
       (setq tmp-eshell (eshell 100))
       (with-current-buffer tmp-eshell
@@ -64,17 +66,21 @@
   (let* ((buffer (current-buffer))
 	 (shell (get-buffer my-full-shell))
 	 (dir (get-project-root-directory buffer)))
+    ;;check if my-full-shell exist,if not create one.
     (unless shell
       (setq shell (eshell 101))
       (with-current-buffer shell
 	(rename-buffer my-full-shell)))
+    ;;check and handle swap.
     (if (equal my-full-shell (buffer-name buffer))
 	(switch-to-buffer nil)
-      (progn
-	(switch-to-buffer shell)
-	(when (and pre-parent-path (not (equal pre-parent-path dir)))
-	  (eshell/cd dir)
-	  (eshell-send-input))))
+      (if (setq exist-window (get-buffer-window my-full-shell 'A))
+	  (select-window exist-window)
+	(progn
+	    (switch-to-buffer shell)
+	    (when (and pre-parent-path (not (equal pre-parent-path dir)))
+	    (eshell/cd dir)
+	    (eshell-send-input)))))
     (setq pre-parent-path dir)
     (bury-buffer shell)))
 
