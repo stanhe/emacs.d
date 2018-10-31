@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "gradle-mode" "gradle-mode.el" (23508 15841
+;;;### (autoloads nil "gradle-mode" "gradle-mode.el" (23507 52833
 ;;;;;;  0 0))
 ;;; Generated autoloads from gradle-mode.el
 
