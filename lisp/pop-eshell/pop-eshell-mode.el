@@ -13,7 +13,6 @@
 
 ;;define 
 (defvar my-eshell " *BOTTOM-TERMINAL*" "my shell name,use eshell.")
-
 (defvar my-full-eshell " *FULL-TERMINAL*" "my full shell name,use eshell.")
 
 (defvar pre-path nil "previous open directory.")
@@ -84,6 +83,14 @@
     (setq pre-parent-path dir)
     (bury-buffer shell)))
 
+;; keymaps
+(defvar pop-eshell-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c C-e C-f") 'fast-eshell-pop)
+    (define-key map (kbd "C-c C-e C-e") 'eshell-pop-toggle)
+  map)
+  "pop eshell mode key maps.")
+
 ;;;###autoload
 (defun eshell-pop-toggle ()
   "pop eshell or hide."
@@ -93,7 +100,8 @@
     (eshell-pop-bottom)))
 
 ;;;###autoload
-(define-minor-mode pop-eshell-mode "my pop eshell mode")
+(define-minor-mode pop-eshell-mode "my pop eshell mode"
+  :global t)
 
 (provide 'pop-eshell-mode)
 ;;; my pop-eshell-mode end.
