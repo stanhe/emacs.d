@@ -4,13 +4,13 @@
 
 
 ;;;### (autoloads nil "pop-eshell-mode" "pop-eshell-mode.el" (23513
-;;;;;;  21793 0 0))
+;;;;;;  26468 0 0))
 ;;; Generated autoloads from pop-eshell-mode.el
 
 (autoload 'fast-eshell-pop "pop-eshell-mode" "\
 fast jump to eshll,it's the same as M-x :eshell 
 
-\(fn)" t nil)
+\(fn &optional PRE-ARG)" t nil)
 
 (autoload 'eshell-pop-toggle "pop-eshell-mode" "\
 pop eshell or hide.
