@@ -12,4 +12,7 @@
 
 ;;add all my custom modes.
 (my-autoload "gradle")
+
 (my-autoload "pop-eshell")
+(setq pop-find-parent-directory '(".git" "gradlew"))
+
