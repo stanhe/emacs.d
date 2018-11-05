@@ -4,3 +4,5 @@
 !elpa
 !stanhe.org
 !README.md
+lisp/**/*-autoload.el
+!eshell/alias
