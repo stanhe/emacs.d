@@ -12,7 +12,11 @@
 
 ;;add all my custom modes.
 (my-autoload "gradle")
-
 (my-autoload "pop-eshell")
-(setq pop-find-parent-directory '(".git" "gradlew"))
 
+
+;;my config for modules and methods
+(choose-theme-by-time)
+(setq pop-find-parent-directory '(".git" "gradlew"))
+(setq my-run-application-plist '(git-bash "c:/Program Files/Git/git-bash.exe"
+				chrome "c:/Program Files (x86)/Google/Chrome/Application/chrome.exe"))

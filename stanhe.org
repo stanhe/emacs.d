@@ -110,7 +110,8 @@
 	      "m" 'load-my-theme
 	      "n" 'display-line-numbers-mode
 	      "t" 'counsel-load-theme
-	      "f" 'my-config-file)
+	      "f" 'open-file-browse
+	      "o" 'open-win-application )
 	  (nvmap :prefix ","
 	      "p" 'projectile-command-map
 	      "v" 'evil-visual-block
@@ -424,8 +425,19 @@
 		((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
 		(t (load-theme 'sanityinc-tomorrow-night 1)))))
 
-      (choose-theme-by-time)
+      (defun open-file-browse ()
+	(interactive)
+	(browse-url-of-file default-directory))
 
+      (defun open-win-application ()
+	"start my application with w32."
+	(interactive)
+	(require 'ivy)
+	(let ((app-list (loop for (k v) on my-run-application-plist by (function cddr) collect k)))
+	  (ivy-read "Open-application: "
+		    app-list
+		    :action '(1 ("o" (lambda (name)
+				       (w32-shell-execute "open" (plist-get my-run-application-plist (intern name))))) "open"))))
     #+END_SRC
     
     
