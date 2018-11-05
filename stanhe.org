@@ -14,6 +14,7 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 (setq shell-command-switch "-ic")
+(prefer-coding-system 'utf-8-unix)
 (setq initial-scratch-message (concat ";;Happy hacking, " user-login-name "\n\n"))
 (setq custom-file "~/.emacs.d/lisp/custom.el")
 (load custom-file)
