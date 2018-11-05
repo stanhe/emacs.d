@@ -437,7 +437,7 @@
 	  (ivy-read "Open-application: "
 		    app-list
 		    :action '(1 ("o" (lambda (name)
-				       (w32-shell-execute "open" (plist-get my-run-application-plist (intern name))))) "open"))))
+				       (w32-shell-execute "open" (plist-get my-run-application-plist (intern name)))) "open")))))
     #+END_SRC
     
     
