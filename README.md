@@ -18,11 +18,13 @@ git clone -b win https://github.com/stanhe/emacs.d.git .emacs.d
 
 ```
 
+3. that's all,now enjoy your emacs.
+
 ### linux
 
-[<font color=#0000CD >master branch.</font>](https://github.com/stanhe/emacs.d)
+[<font color=#FF1493 >master branch.</font>](https://github.com/stanhe/emacs.d)
 
-3. that's all,now enjoy your emacs.
+
 ## Features
 It's easy to start and use, try this:
 
