@@ -30,9 +30,9 @@ It's easy to start and use, try this:
 
 Prefix key |Functions|Description
 -|-|-
-, x|main functions for edit|[,xr]:show recent. [,xf]:open files. [,xj]:dird-jump
-F2|fast functions|[f2-n]:neotree. [f2-m]:bottom-eshell. [f2-b]:swap buffer
-Space|other features|[spc-n]:show line number. [spc-t]:change-theme. [spc-a]:quickrun.
+, x|main functions for edit|<img src="./screenshot/pre-dot.gif">
+F2|fast functions|<img src="./screenshot/pre-f2.gif">
+Space|other features|<img src="./screenshot/pre-spc.gif">
 
 ## Custom
 All config files :

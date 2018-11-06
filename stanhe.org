@@ -161,7 +161,7 @@
 	(defhydra hydra-zoom (global-map "<f2>")
 	    "functions"
 	    ("q" keyboard-quit "quit" :color blue)
-	    ("i" text-scale-increase "increase-text-size")
+	    ("j" text-scale-increase "increase-text-size")
 	    ("d" text-scale-decrease "decrease-text-size")
 	    ("r" (text-scale-set 0) "reset text" :color blue)
 	    ("n" neotree-toggle "neotree" :color blue)
