@@ -430,15 +430,22 @@
 	(interactive)
 	(browse-url-of-file default-directory))
 
-      (defun open-win-application ()
-	"start my application with w32."
-	(interactive)
+      (defun open-win-application (&optional dir)
+	"start my application with w32, with prefix to input custom directory."
+	(interactive "P")
+	(setq debug-on-error t)
 	(require 'ivy)
-	(let ((app-list (loop for (k v) on my-run-application-plist by (function cddr) collect k)))
-	  (ivy-read "Open-application: "
-		    app-list
-		    :action '(1 ("o" (lambda (name)
-				       (w32-shell-execute "open" (plist-get my-run-application-plist (intern name)))) "open")))))
+	(let ((desktop (concat (file-name-as-directory (concat (file-name-as-directory "c:/Users") user-login-name)) "Desktop")))
+	  (if (and current-prefix-arg (equal "" (setq dir (read-from-minibuffer "Input app directory(defalut is desktop): "))))
+	      (setq dir desktop))
+	  (let* ((custom-app-dir custom-open-win-apps-dir)(dir (if dir dir (if (file-exists-p custom-app-dir) custom-app-dir desktop)))
+		 (dir-lnks (if (file-exists-p dir) (directory-files dir t "\\.lnk$"))))
+	    (ivy-read "Open-application: "
+		      (mapcar 'file-name-base dir-lnks)
+		      :action '(1 ("o" (lambda (name)
+					 (w32-shell-execute "open" (concat (file-name-as-directory dir) name ".lnk"))) "open")
+				  ("d" (lambda (name)
+					 (message "application path is: %s " (concat (file-name-as-directory dir) name))) "directory"))))))
     #+END_SRC
     
     

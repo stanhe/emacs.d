@@ -18,5 +18,4 @@
 ;;my config for modules and methods
 (choose-theme-by-time)
 (setq pop-find-parent-directory '(".git" "gradlew"))
-(setq my-run-application-plist '(git-bash "d:/Program Files/Git/git-bash.exe"
-				chrome "c:/Program Files (x86)/Google/Chrome/Application/chrome.exe"))
+(setq custom-open-win-apps-dir "d:/Eapps")
