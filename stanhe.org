@@ -439,11 +439,11 @@
 	  (if (and current-prefix-arg (equal "" (setq dir (read-from-minibuffer "Input app directory(defalut is desktop): "))))
 	      (setq dir desktop))
 	  (let* ((custom-app-dir custom-open-win-apps-dir)(dir (if dir dir (if (file-exists-p custom-app-dir) custom-app-dir desktop)))
-		 (dir-lnks (if (file-exists-p dir) (directory-files dir t "\\.lnk$"))))
+		 (dir-lnks (if (file-exists-p dir) (directory-files dir t "[^ \\.]"))))
 	    (ivy-read "Open-application: "
 		      (mapcar 'file-name-base dir-lnks)
 		      :action '(1 ("o" (lambda (name)
-					 (w32-shell-execute "open" (concat (file-name-as-directory dir) name ".lnk"))) "open")
+					 (w32-shell-execute "open" (concat (file-name-as-directory dir) name ))) "open")
 				  ("d" (lambda (name)
 					 (message "application path is: %s " (concat (file-name-as-directory dir) name))) "directory"))))))
     #+END_SRC
