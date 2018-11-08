@@ -442,6 +442,6 @@
 	"shut down my computer."
 	(interactive)
 	(setq current-prefix-arg '(4))
-	(when (call-interactively 'save-some-buffers)
-	  (w32-shell-execute "open" "c:/Windows/System32/shutdown.exe" " -s -t 3 -c \"See you stan.\"")))
+	(call-interactively 'save-some-buffers)
+	(w32-shell-execute "open" "c:/Windows/System32/shutdown.exe" " -s -t 3 -c \"See you stan.\""))
     #+END_SRC
