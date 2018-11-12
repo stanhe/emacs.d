@@ -14,3 +14,5 @@
 (my-autoload "gradle")
 (my-autoload "pop-eshell")
 
+;;load my functions
+(choose-theme-by-time)

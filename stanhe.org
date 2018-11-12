@@ -394,9 +394,10 @@
 	(interactive)
 	(unless (featurep 'counsel) (require 'counsel))
 	(let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
-	       (theme (nth (random (length available-themes)) available-themes)))
+	       (theme (seq-random-elt available-themes)))
 	  (counsel-load-theme-action theme)
 	  (message "Color theme [%s] loaded." theme)))
+
       (defun load-my-theme ()
 	    (interactive)
 	    (load-theme 'monokai 1))
@@ -421,8 +422,6 @@
 	  (cond ((< now 12) (load-theme 'sanityinc-tomorrow-blue 1))
 		((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
 		(t (load-theme 'sanityinc-tomorrow-night 1)))))
-
-      (choose-theme-by-time)
 
     #+END_SRC
     
