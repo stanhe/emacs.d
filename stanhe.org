@@ -391,7 +391,7 @@
 	(interactive)
 	(unless (featurep 'counsel) (require 'counsel))
 	(let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
-	       (theme (nth (random (length available-themes)) available-themes)))
+	       (theme (seq-random-elt available-themes)))
 	  (counsel-load-theme-action theme)
 	  (message "Color theme [%s] loaded." theme)))
       (defun load-my-theme ()
@@ -449,3 +449,4 @@
 	(call-interactively 'save-some-buffers)
 	(w32-shell-execute "open" "c:/Windows/System32/shutdown.exe" " -s -t 3 -c \"See you stan.\""))
     #+END_SRC
+    
