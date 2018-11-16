@@ -10,12 +10,16 @@
 ;;init with org-file.
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))
 
+
+
 ;;add all my custom modes.
-(my-autoload "gradle")
-(my-autoload "pop-eshell")
-
-
-;;my config for modules and methods
+(init-my-load-path)
 (choose-theme-by-time)
-(setq pop-find-parent-directory '(".git" "gradlew"))
 (setq custom-open-win-apps-dir "d:/Eapps")
+
+(use-package pop-eshell-mode)
+(use-package gradle-mode
+  :init
+  (setq pop-find-parent-directory '(".git" "gradlew")))
+
+

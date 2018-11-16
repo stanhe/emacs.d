@@ -62,10 +62,10 @@ this function will check the parent directory for special file in order. "
       (if (setq parent (cl-some #'get-parent-dir pop-find-parent-directory))
 	  parent
 	(get-current-directory))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; side window bottom ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun eshell-pop-bottom()
   "pop eshell at bottom"
-  (interactive)
   (let ((pos-buffer (current-buffer))
 	(tmp-eshell (get-buffer my-eshell))
 	(dir (get-current-directory)))
