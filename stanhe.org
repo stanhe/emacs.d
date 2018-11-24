@@ -402,18 +402,11 @@
 	    (interactive)
 	    (load-theme 'monokai 1))
 
-      ;; my-autoload
-      (defun my-autoload (dir)
-	"my-autoload load my custom mode from ~/.emacs.d/lisp/"
-	(let (dis (src (concat my-lisp-path dir)))
-	  (when (file-directory-p src)
-	    (add-to-list 'load-path src)
-	    (setq src (car (directory-files src t "\\-mode.el$")))
-	    (string-match ".el$" src)
-	    (setq dis (replace-match "-autoload.el" nil nil src 0))
-	    (update-file-autoloads src t dis)
-	    (require (intern (file-name-base dis)))
-	    (kill-buffer (file-name-nondirectory dis)))))
+      (defun init-my-load-path()
+	      "add lisp/ load path"
+	      (dolist (path (directory-files my-lisp-path t "[^.]"))
+		(when (file-directory-p path)
+		    (add-to-list 'load-path path))))
 
       (defun choose-theme-by-time ()
 	"choose the theme by time now."
