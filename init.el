@@ -17,8 +17,8 @@
 (choose-theme-by-time)
 (setq custom-open-win-apps-dir "d:/Eapps")
 
-(use-package pop-eshell-mode)
-(use-package gradle-mode
+(use-package gradle-mode)
+(use-package pop-eshell-mode
   :init
   (setq pop-find-parent-directory '(".git" "gradlew")))
 
