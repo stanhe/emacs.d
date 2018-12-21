@@ -112,7 +112,8 @@
 	      "n" 'display-line-numbers-mode
 	      "t" 'counsel-load-theme
 	      "f" 'open-file-browse
-	      "o" 'open-win-application )
+	      ;;"o" 'open-win-application
+	      )
 	  (nvmap :prefix ","
 	      "p" 'projectile-command-map
 	      "v" 'evil-visual-block
@@ -160,6 +161,7 @@
 	:config
 	(defhydra hydra-zoom (global-map "<f2>")
 	    "functions"
+	    ("o" open-win-application "open app" :color blue)
 	    ("q" keyboard-quit "quit" :color blue)
 	    ("j" text-scale-increase "increase-text-size")
 	    ("d" text-scale-decrease "decrease-text-size")
@@ -356,6 +358,8 @@
 ** Custom Functions
 *** cover with better keybindings
     #+BEGIN_SRC emacs-lisp
+      (global-set-key (kbd "<f5>") 'org-agenda-list)
+      (global-set-key (kbd "<f9>") 'delete-other-windows)
       (global-set-key (kbd "C-h") 'delete-backward-char)
       (global-set-key (kbd "C-SPC") 'delete-window)
       (global-set-key (kbd "M-/") 'hippie-expand)
@@ -444,5 +448,6 @@
 	(call-interactively 'save-some-buffers)
 	(w32-shell-execute "open" "c:/Windows/System32/shutdown.exe" " -s -t 3 -c \"See you stan.\""))
     #+END_SRC
+    
     
     
