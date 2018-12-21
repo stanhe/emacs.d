@@ -260,6 +260,9 @@
 	  (setq org-src-fontify-natively t
 		org-log-done 'time
 		org-agenda-files '("~/org/")
+		org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
+				    (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+				    (sequence "|" "CANCELED(c)"))
 		org-confirm-babel-evaluate nil))
 
       (use-package smartparens-config
