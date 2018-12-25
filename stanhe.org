@@ -3,7 +3,6 @@
 *** some default settings
     #+BEGIN_SRC emacs-lisp
 ;; base config
-(menu-bar-mode)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 ;;(global-linum-mode 1)
@@ -360,6 +359,45 @@
 
     #+END_SRC
 ** Custom Functions
+*** adb functions and menu 
+#+BEGIN_SRC emacs-lisp
+
+  (defun adb-home ()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 3 " 0))
+
+  (defun adb-back ()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 4 " 0))
+
+  (defun adb-input()
+    (interactive)
+    (let ((input (read-string "inupt string: ")))
+      (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
+
+  (define-key-after
+    global-map
+    [menu-bar mymenu]
+    (cons "ADB" (make-sparse-keymap ""))
+    'tools)
+
+  (define-key
+    global-map
+    [menu-bar mymenu back]
+    '("Back" . adb-back))
+
+  (define-key
+    global-map
+    [menu-bar mymenu  home]
+    '("Home" . adb-home))
+
+  (define-key
+    global-map
+    [menu-bar mymenu  input]
+    '("Input" . adb-input))
+  (menu-bar-mode)
+
+#+END_SRC
 *** cover with better keybindings
     #+BEGIN_SRC emacs-lisp
       (global-set-key (kbd "<f5>") 'org-agenda-list)
