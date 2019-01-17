@@ -110,7 +110,7 @@
 	      "m" 'load-my-theme
 	      "n" 'display-line-numbers-mode
 	      "t" 'counsel-load-theme
-	      "f" 'open-file-browse
+	      ;;"f" 'open-file-browse
 	      ;;"o" 'open-win-application
 	      )
 	  (nvmap :prefix ","
@@ -158,7 +158,7 @@
 
       (use-package hydra
 	:config
-	(defhydra hydra-zoom (global-map "<f2>")
+	(defhydra custom (global-map "<f2>")
 	    "functions"
 	    ("o" open-win-application "open app" :color blue)
 	    ("q" keyboard-quit "quit" :color blue)
@@ -171,6 +171,7 @@
 	    ("k" kill-buffer "kill-buffer" :color blue)
 	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
 	    ("l" fast-eshell-pop "eshell" :color blue)
+	    ("f" open-file-browse "browse" :color blue)
 
 	    ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
 	    ("=" balance-windows "balance-window" :color blue)
@@ -179,7 +180,13 @@
 	    ("<left>" shrink-window-horizontally "shrink-horizontal")
 	    ("<right>" enlarge-window-horizontally "enlarge-horizontal")
 	    ("<f4>" shut-down-win "shut-down" :color blue)
-	))
+	    )
+	(defhydra stanhe (global-map "<f5>")
+	  "efficiency"
+	    ("o" org-agenda-list "agenda" :color blue)
+	    ("k" show-my-okr "OKR" :color blue)
+	  )
+	)
 
       (use-package neotree
 	  :config
@@ -383,6 +390,11 @@
 
   (define-key
     global-map
+    [menu-bar mymenu  input]
+    '("Input" . adb-input))
+
+  (define-key
+    global-map
     [menu-bar mymenu back]
     '("Back" . adb-back))
 
@@ -391,16 +403,12 @@
     [menu-bar mymenu  home]
     '("Home" . adb-home))
 
-  (define-key
-    global-map
-    [menu-bar mymenu  input]
-    '("Input" . adb-input))
   (menu-bar-mode)
 
 #+END_SRC
 *** cover with better keybindings
     #+BEGIN_SRC emacs-lisp
-      (global-set-key (kbd "<f5>") 'org-agenda-list)
+      ;;(global-set-key (kbd "<f5>") 'org-agenda-list)
       (global-set-key (kbd "<f9>") 'delete-other-windows)
       (global-set-key (kbd "C-h") 'delete-backward-char)
       (global-set-key (kbd "C-SPC") 'delete-window)
@@ -489,6 +497,11 @@
 	(setq current-prefix-arg '(4))
 	(call-interactively 'save-some-buffers)
 	(w32-shell-execute "open" "c:/Windows/System32/shutdown.exe" " -s -t 3 -c \"See you stan.\""))
+
+      ;; my config file
+      (defun show-my-okr ()
+	  (interactive)
+	  (find-file "~/org/OKR.org"))
     #+END_SRC
     
     
