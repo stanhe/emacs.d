@@ -3,6 +3,7 @@
 *** some default settings
     #+BEGIN_SRC emacs-lisp
 ;; base config
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 ;;(global-linum-mode 1)
@@ -23,6 +24,7 @@
 (add-to-list 'load-path my-lisp-path)
 (set-frame-parameter (selected-frame) 'alpha '(91 . 50))
 (add-to-list 'default-frame-alist '(alpha . (91 . 50)))
+(set-face-attribute 'default nil :height 120)
 
     #+END_SRC
 ** Packages and elpa configurations
@@ -403,7 +405,11 @@
     [menu-bar mymenu  home]
     '("Home" . adb-home))
 
-  (menu-bar-mode)
+  (define-key
+    global-map
+    [menu-bar mymenu  input]
+    '("Input" . adb-input))
+  ;;(menu-bar-mode -1)
 
 #+END_SRC
 *** cover with better keybindings
