@@ -384,6 +384,23 @@
     (let ((input (read-string "inupt string: ")))
       (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
 
+  (defun adb-sigle-del()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0))
+
+  (defun adb-mult-del()
+    (interactive)
+    (dotimes (number 10)
+      (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0)))
+
+  (defun adb-enter()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 66 " 0))
+
+  (defun adb-next()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 61 " 0))
+
   (define-key-after
     global-map
     [menu-bar mymenu]
