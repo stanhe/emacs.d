@@ -352,7 +352,41 @@
 				      (add-to-list 'company-backends 'company-jedi))))
     #+END_SRC
 ** Custom Functions
-*** cover with better keybindings
+*** adb functions
+    #+BEGIN_SRC emacs-lisp 
+      (defun adb-home ()
+	(interactive)
+	(w32-shell-execute "open" "adb" " shell input keyevent 3 " 0))
+
+      (defun adb-back ()
+	(interactive)
+	(w32-shell-execute "open" "adb" " shell input keyevent 4 " 0))
+
+      (defun adb-input()
+	(interactive)
+	(let ((input (read-string "inupt string: ")))
+	  (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
+
+      (defun adb-sigle-del()
+	(interactive)
+	(w32-shell-execute "open" "adb" " shell input keyevent 67 " 0))
+
+      (defun adb-mult-del()
+	(interactive)
+	(dotimes (number 10)
+	  (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0)))
+
+      (defun adb-enter()
+	(interactive)
+	(w32-shell-execute "open" "adb" " shell input keyevent 66 " 0))
+
+      (defun adb-next()
+	(interactive)
+	(w32-shell-execute "open" "adb" " shell input keyevent 61 " 0))
+
+     #+END_SRC
+
+****** cover with better keybindings
     #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-h") 'delete-backward-char)
   (global-set-key (kbd "C-SPC") 'delete-window)
