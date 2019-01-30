@@ -355,6 +355,7 @@
     #+END_SRC
 ** Custom Functions
 *** adb functions
+
     #+BEGIN_SRC emacs-lisp 
       (defun adb-home ()
 	(interactive)
