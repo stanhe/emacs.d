@@ -446,6 +446,10 @@
       (defun my-config-file ()
 	  (interactive)
 	  (find-file "~/.emacs.d/stanhe.org"))
+      ;; my test file
+      (defun my-test-file ()
+	  (interactive)
+	  (find-file "~/.emacs.d/lisp/my-test.el"))
       ;; back buffer
       (defun back-to-previous-buffer ()
 	      (interactive)

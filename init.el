@@ -10,13 +10,12 @@
 ;;init with org-file.
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))
 
-
-
 ;;add all my custom modes.
 (init-my-load-path)
 (choose-theme-by-time)
 (setq custom-open-win-apps-dir "d:/Eapps")
 
+(use-package my-test)
 (use-package gradle-mode)
 (use-package pop-eshell-mode
   :init
