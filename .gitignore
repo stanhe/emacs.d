@@ -8,3 +8,4 @@ lisp/**/*-autoload.el
 !eshell/alias
 !screenshot
 elpa/gnupg
+!py
