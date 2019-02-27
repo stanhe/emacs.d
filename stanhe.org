@@ -401,6 +401,11 @@
     (interactive)
     (w32-shell-execute "open" "adb" " shell input keyevent 61 " 0))
 
+  (defun adb-cmd()
+    (interactive)
+    (let ((input (read-string "input string: ")))
+      (w32-shell-execute "open" "adb" input 0)))
+
   (define-key-after
     global-map
     [menu-bar mymenu]
