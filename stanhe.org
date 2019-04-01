@@ -185,8 +185,9 @@
 	    )
 	(defhydra stanhe (global-map "<f5>")
 	  "efficiency"
-	    ("o" org-agenda-list "agenda" :color blue)
-	    ("k" show-my-okr "OKR" :color blue)
+	    ("o" show-my-okr "OKR" :color blue)
+	    ("k" org-agenda-list "agenda" :color blue)
+	    ("r" show-my-gtd "OKR-detail" :color blue)
 	  )
 	)
 
@@ -534,6 +535,10 @@
       (defun show-my-okr ()
 	  (interactive)
 	  (find-file "~/org/OKR.org"))
+      ;; my okr file
+      (defun show-my-gtd ()
+	  (interactive)
+	  (find-file "~/org/2019.org"))
     #+END_SRC
     
     
