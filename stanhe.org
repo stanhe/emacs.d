@@ -106,7 +106,7 @@
 	      "q" 'quit-window
 	      "c" 'compile
 	      "SPC" 'random-color-theme
-	      "r" 'quickrun
+	      "r" 'quickrun-shell
 	      "a" 'quickrun-with-arg
 	      "s" 'show-me-the-colors
 	      "m" 'load-my-theme
