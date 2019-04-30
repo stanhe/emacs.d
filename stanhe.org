@@ -153,8 +153,6 @@
 
 	      "nf" 'neotree-find
 	      "nt" 'neotree-toggle
-
-	      "m m" 'multi-term
 	  )
       )
 
