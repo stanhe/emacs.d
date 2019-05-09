@@ -507,7 +507,11 @@
 	"start my application with w32, with prefix to input custom directory."
 	(interactive)
 	;(setq debug-on-error t)
-	(let* ((desktop (concat "c:/Users/" user-login-name "/desktop/"))
+	(let* ((default-desk (concat "c:/Users/" user-login-name "/desktop"))
+	       (admain-desk "c:Users/Administrator/desktop")
+	       (desktop (if (file-directory-p default-desk)
+			    default-desk
+			  admain-desk))
 	       (custom-app-dir (if (and custom-open-win-apps-dir (file-exists-p custom-open-win-apps-dir) (not current-prefix-arg))
 				   custom-open-win-apps-dir
 				 desktop)))
