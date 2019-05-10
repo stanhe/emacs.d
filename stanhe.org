@@ -525,6 +525,9 @@
 		    :history 'file-name-history
 		    :caller 'open-file-application
 		    )))
+      (ivy-set-actions
+       'open-file-application
+       '(("d" delete-file "delete")))
 
       (defun shut-down-win ()
 	"shut down my computer."
