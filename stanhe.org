@@ -112,7 +112,7 @@
 	      "m" 'load-my-theme
 	      "n" 'display-line-numbers-mode
 	      "t" 'counsel-load-theme
-	      ;;"f" 'open-file-browse
+	      "f" 'find-desk-file
 	      ;;"o" 'open-win-application
 	      )
 	  (nvmap :prefix ","
@@ -545,6 +545,16 @@
       (defun show-my-gtd ()
 	  (interactive)
 	  (find-file "~/org/2019.org"))
+
+      (defun find-desk-file()
+	(interactive)
+	(let* ((default-desk (concat "c:/Users/" user-login-name "/desktop"))
+	       (admain-desk "c:Users/Administrator/desktop")
+	       (desktop (if (file-directory-p default-desk)
+				  default-desk
+			  admain-desk)))
+	  (counsel-find-file desktop)))
+
     #+END_SRC
     
     
