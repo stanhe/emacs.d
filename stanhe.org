@@ -554,7 +554,6 @@
 				  default-desk
 			  admain-desk)))
 	  (counsel-find-file desktop)))
-
     #+END_SRC
     
     
