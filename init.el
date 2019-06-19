@@ -20,10 +20,3 @@
 (use-package pop-eshell-mode
   :init
   (setq pop-find-parent-directory '(".git" "gradlew")))
-
-;;for rest my eyes
-(setq mRestTimer (notify_hour "have a rest!"))
-(defun cancel-rest-timer()
-  (interactive)
-  (cancel-timer mRestTimer))
-
