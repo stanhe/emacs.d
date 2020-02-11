@@ -544,7 +544,7 @@
       ;; my okr file
       (defun show-my-gtd ()
 	  (interactive)
-	  (find-file "~/org/2019.org"))
+	  (find-file "~/org/2020.org"))
 
       (defun find-desk-file()
 	(interactive)

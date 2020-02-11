@@ -9,7 +9,8 @@
 (defun notify_hour (msg)
   "notify every hour"
   (interactive)
-  (run-at-time 3600 3600 #'notify_py msg)
+  (let ((interval (* 3 3600)))
+    (run-at-time interval interval #'notify_py msg)) ;;notify every 3 hour
   ;;(run-at-time 5 10 #'notify_py msg)
   )
 
