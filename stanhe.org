@@ -554,7 +554,12 @@
 				  default-desk
 			  admain-desk)))
 	  (counsel-find-file desktop)))
+      ;;打开git-bash
+      (defun gbash()
+	(interactive)
+	(w32-shell-execute "open" custom-git-bash-path))
     #+END_SRC
+    
     
     
     

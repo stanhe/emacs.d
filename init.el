@@ -13,7 +13,10 @@
 ;;add all my custom modes.
 (init-my-load-path)
 (choose-theme-by-time)
+;; 应用路径
 (setq custom-open-win-apps-dir "d:/Eapps")
+;; 本机git-bash路径
+(setq custom-git-bash-path "c:/Program Files/Git/git-bash.exe")
 
 (use-package my-test)
 (use-package gradle-mode)
