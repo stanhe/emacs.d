@@ -1,17 +1,17 @@
-alias adbe adb-enter
-alias adbn adb-next
-alias adbh adb-home
-alias adbi adb-input
-alias gci git commit
-alias gck git checkout
-alias gl git lg
-alias gcmsg git commit -m
-alias gf git pull
-alias gp git push
-alias gdc git diff --cached
-alias gd git diff
-alias gii git init
-alias gaa git add .
-alias adbb adb-back
+alias ggrep git grep $*
 alias gst git status
-alias ggrep git grep
+alias adbb adb-back
+alias gaa git add .
+alias gii git init
+alias gd git diff
+alias gdc git diff --cached
+alias gp git push
+alias gf git pull
+alias gcmsg git commit -m
+alias gl git lg
+alias gck git checkout
+alias gci git commit
+alias adbi adb-input
+alias adbh adb-home
+alias adbn adb-next
+alias adbe adb-enter
