@@ -142,6 +142,7 @@
 	      "eb" 'eval-buffer
 	      "aw" 'ace-swap-window
 	      "ag" 'counsel-ag
+	      "gb" 'gbash
 	      "gf" 'counsel-git
 	      "gs" 'magit-status
 	      "gg" 'counsel-git-grep

@@ -14,3 +14,4 @@ alias gii git init
 alias gaa git add .
 alias adbb adb-back
 alias gst git status
+alias ggrep git grep
