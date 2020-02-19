@@ -1,4 +1,4 @@
-alias ggrep git grep $*
+alias ggrep git grep -n $*
 alias gst git status
 alias adbb adb-back
 alias gaa git add .
@@ -7,7 +7,7 @@ alias gd git diff
 alias gdc git diff --cached
 alias gp git push
 alias gf git pull
-alias gcmsg git commit -m
+alias gcmsg git commit -m $*
 alias gl git lg
 alias gck git checkout
 alias gci git commit

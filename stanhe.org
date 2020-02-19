@@ -555,10 +555,15 @@
 				  default-desk
 			  admain-desk)))
 	  (counsel-find-file desktop)))
+
       ;;打开git-bash
       (defun gbash()
 	(interactive)
 	(w32-shell-execute "open" custom-git-bash-path))
+
+      ;Clear the eshell buffer.
+      (defun eshell/clear ()      
+	 (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
     #+END_SRC
     
     
