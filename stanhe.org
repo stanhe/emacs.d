@@ -563,7 +563,11 @@
 
       ;Clear the eshell buffer.
       (defun eshell/clear ()      
-	 (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
+	(let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
+
+      ;;format milliseconds to date
+      (defun milliseconds (cTime)
+	(format-time-string "%Y-%m-%d %H:%M:%S" (seconds-to-time (/ cTime 1000))))
     #+END_SRC
     
     
