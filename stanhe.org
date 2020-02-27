@@ -449,14 +449,17 @@
 
       ;; my config file
       (defun my-config-file ()
+	"open my config file , it's refer to stanhe.org"
 	  (interactive)
 	  (find-file "~/.emacs.d/stanhe.org"))
       ;; my test file
       (defun my-test-file ()
+	"open test file,contain some new test features"
 	  (interactive)
 	  (find-file "~/.emacs.d/lisp/my-test.el"))
       ;; back buffer
       (defun back-to-previous-buffer ()
+	"go back to previous buffer!"
 	      (interactive)
 	      (switch-to-buffer nil))
       ;; show paren in function
@@ -468,6 +471,7 @@
 		  (funcall fn)))))
       ;; random color theme
       (defun show-me-the-colors ()
+	"show all themes,interval 3s!"
 	(interactive)
 	(loop do
 	      (random-color-theme)
@@ -483,6 +487,7 @@
 	  (counsel-load-theme-action theme)
 	  (message "Color theme [%s] loaded." theme)))
       (defun load-my-theme ()
+	"load monokai,i like this one!"
 	    (interactive)
 	    (load-theme 'monokai 1))
 
@@ -501,6 +506,7 @@
 	      (add-to-list 'load-path path))))
 
       (defun open-file-browse ()
+	"open window file browse in current directory"
 	(interactive)
 	(browse-url-of-file default-directory))
 
@@ -540,14 +546,17 @@
 
       ;; my config file
       (defun show-my-okr ()
+	"open my okr file!"
 	  (interactive)
 	  (find-file "~/org/OKR.org"))
       ;; my okr file
       (defun show-my-gtd ()
+	"open my GTD file!"
 	  (interactive)
 	  (find-file "~/org/2020.org"))
 
       (defun find-desk-file()
+	"find file on my desk for win!"
 	(interactive)
 	(let* ((default-desk (concat "c:/Users/" user-login-name "/desktop"))
 	       (admain-desk "c:Users/Administrator/desktop")
@@ -558,15 +567,18 @@
 
       ;;打开git-bash
       (defun gbash()
+	"open git bash,need set `custom-git-bash-path' first."
 	(interactive)
 	(w32-shell-execute "open" custom-git-bash-path))
 
       ;Clear the eshell buffer.
       (defun eshell/clear ()      
+	"clear buffer of eshell."
 	(let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
 
       ;;format milliseconds to date
       (defun milliseconds (cTime)
+	"format milliseconds to Y-m-d H:M:S"
 	(format-time-string "%Y-%m-%d %H:%M:%S" (seconds-to-time (/ cTime 1000))))
     #+END_SRC
     
