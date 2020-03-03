@@ -15,3 +15,4 @@ alias adbi adb-input
 alias adbh adb-home
 alias adbn adb-next
 alias adbe adb-enter
+alias killbash taskkill /F /IM bash.exe
