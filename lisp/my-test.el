@@ -31,6 +31,6 @@
     (cancel-timer mRestTimer)))
 
 (start-rest-timer)
-(notify "11:00" "请开始点餐！！！")
+(notify "11:00am" "请开始点餐！！！")
 (notify "17:30" "请注意下班打卡！！！")
 (run-at-time "17:30" nil #'cancel-rest-timer)
