@@ -151,8 +151,6 @@
 
 	      "nf" 'neotree-find
 	      "nt" 'neotree-toggle
-
-	      "m m" 'multi-term
 	  )
       )
 
@@ -165,8 +163,8 @@
 	    ("d" text-scale-decrease "text-decrease")
 	    ("r" (text-scale-set 0) "reset text" :color blue)
 	    ("n" neotree-toggle "neotree" :color blue)
-	    ("m" eshell-pop-toggle "multi-term" :color blue)
-	    ("l" fast-eshell-pop "multi-term" :color blue)
+	    ("m" eshell-pop-toggle "eshell bottom" :color blue)
+	    ("l" fast-eshell-pop "eshell full window" :color blue)
 	    ("p" back-to-previous-buffer "swap-last" :color blue)
 	    ("k" kill-buffer "kill-buffer" :color blue)
 	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
@@ -231,7 +229,7 @@
 	  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 	  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 	  (global-set-key (kbd "<f1> l") 'counsel-find-library)
-	  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+	  ;;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 	  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 	  (global-set-key (kbd "C-c g") 'counsel-git)
 	  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
@@ -453,6 +451,10 @@
 		((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
 		(t (load-theme 'sanityinc-tomorrow-night 1)))))
 
+      ;Clear the eshell buffer.
+	   (defun eshell/clear ()      
+	      "clear buffer of eshell."
+	      (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
     #+END_SRC
     
     
