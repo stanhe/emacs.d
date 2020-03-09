@@ -114,6 +114,7 @@
 	      "t" 'counsel-load-theme
 	      "f" 'open-file-browse
 	      "g" 'gbash
+	      "e" 'eval-current-line
 	      ;;"o" 'open-win-application
 	      )
 	  (nvmap :prefix ","
@@ -593,6 +594,13 @@
       (defun milliseconds (cTime)
 	"format milliseconds to Y-m-d H:M:S"
 	(format-time-string "%Y-%m-%d %H:%M:%S" (seconds-to-time (/ cTime 1000))))
+
+      ;;eval current line
+      (defun eval-current-line()
+	"eval current line"
+	(interactive)
+	(end-of-line)
+	(call-interactively 'eval-last-sexp))
     #+END_SRC
     
     
