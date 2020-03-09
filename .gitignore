@@ -3,6 +3,7 @@
 !.gitignore
 !lisp/
 !elpa
+!eshell/alias
 !stanhe.org
 !README.md
 

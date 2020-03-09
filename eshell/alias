@@ -1,0 +1,63 @@
+alias - cd - $*
+alias 1 cd - $*
+alias 2 cd -2 $*
+alias 3 cd -3 $*
+alias 4 cd -4 $*
+alias 5 cd -5 $*
+alias 6 cd -6 $*
+alias 7 cd -7 $*
+alias 8 cd -8 $*
+alias 9 cd -9 $*
+alias _ sudo  $*
+alias l ls -lah $*
+alias la ls -lAh $*
+alias ll ls -lh $*
+alias ls ls --color=tty $*
+alias lsa ls -lah $*
+alias md mkdir -p $*
+alias gaa git add . $*
+alias gii git init $*
+alias gst git status $*
+alias gsh git stash $*
+alias gd git diff $*
+alias gb git branch $*
+alias gbs gb && gsf gb $*
+alias gdc git diff --cached $*
+alias gp git push $*
+alias gf git pull $*
+alias gcmsg git commit -m $* 
+alias gcps gitCreatePreStatus
+alias gl git lg $*
+alias gck git checkout $*
+alias gckm git checkout master $*
+alias gcks checkoutSub $*
+alias gbds deleteBranch $*
+alias gcksm checkoutMaster $*
+#alias gcksm gckm && gsf gckm $*
+alias gsf git submodule foreach  $*
+alias gsu git submodule update  $*
+alias gff gf && gsf gf $*
+alias gci git commit  $*
+alias grh git reset --hard   $*
+alias ggrep git grep  $*
+alias adbi adb shell input text # action input
+alias adbh adb shell input keyevent 3 # action home
+alias adbb adb shell input keyevent 4 # action back
+alias adbn adb shell input keyevent 61 # action next
+alias adbe adb shell input keyevent 66 # action enter
+alias adbd adb shell input keyevent 67 # action delete
+alias adbwd adb shell svc wifi disable # disable wifi
+alias adbwe adb shell svc wifi enable # enable wifi
+alias adbfd adb shell settings put global airplane_mode_on 0 # close airplane mode
+alias adbfe adb shell settings put global airplane_mode_on 1 # open airplane mode
+alias adbne adbwe && adbfd # enable net
+alias adbnd adbwd && adbfe # disable net
+alias adbp adb pull mnt/sdcard/KtSmart # pull to sdcard
+alias adbr adb reboot # reboot machine
+alias adbl adb shell ls $* # ls
+alias adbc adb shell sqlite3 sdcard/ktsmart/db/db_kt.sqlite && .table
+alias adbg adb shell ps | grep $*
+alias adbk adb shell kill  $*
+alias adbbc adb shell am broadcast -a  # eg: adb shell am broadcast -a com.android.test --es test_string “this is test string” --ei test_int 100 --ez test_boolean true
+alias adbsa adb shell am start -n  # start activity pkg/.activity
+alias alg adb logcat | grep --color=auto  #adb logcat grep file
