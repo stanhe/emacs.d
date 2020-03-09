@@ -510,7 +510,7 @@
       (defun open-file-browse (dir)
 	"open window file browse in current directory"
 	(interactive (list (if current-prefix-arg
-			       (file-name-as-directory (read-directory-name " Input Directory: " default-directory))
+			       (file-name-as-directory (read-directory-name " Input Directory to open folder: " default-directory))
 			     default-directory)))
 	      (browse-url-of-file dir))
 
