@@ -173,6 +173,7 @@
 	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
 	    ("l" fast-eshell-pop "eshell" :color blue)
 	    ("f" open-file-browse "browse" :color blue)
+	    ("g" gbash "browse" :color blue)
 
 	    ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
 	    ("=" balance-windows "balance-window" :color blue)
@@ -566,10 +567,13 @@
 	  (counsel-find-file desktop)))
 
       ;;打开git-bash
-      (defun gbash()
+      (defun gbash(dir)
 	"open git bash,need set `custom-git-bash-path' first."
-	(interactive)
-	(w32-shell-execute "open" custom-git-bash-path))
+	(interactive (list (if current-prefix-arg
+			 (file-name-as-directory
+			  (read-directory-name "Project directory: " (concat "c:/Users/" user-login-name "/Projects/")))
+			 default-directory)))
+	(w32-shell-execute "open" "c:/Program Files/Git/git-bash.exe" (concat "--cd=" dir)))
 
       ;Clear the eshell buffer.
       (defun eshell/clear ()      
