@@ -599,8 +599,10 @@
       (defun eval-current-line()
 	"eval current line"
 	(interactive)
-	(end-of-line)
-	(call-interactively 'eval-last-sexp))
+	(with-current-buffer (current-buffer)
+	  (save-excursion
+	    (end-of-line)
+	    (call-interactively 'eval-last-sexp))))
     #+END_SRC
     
     
