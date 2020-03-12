@@ -267,14 +267,16 @@
 
       (use-package org
 	  :init
-	  (setq org-src-fontify-natively t
-		org-log-done 'time
-		org-agenda-files '("~/org/")
-		org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
-				    (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-				    (sequence "DELAY(l)" "|" "CANCELED(c)")
-				    (sequence "|" "NOTE(n)"))
-		org-confirm-babel-evaluate nil))
+	  (setq
+	   org-src-fontify-natively t
+	   org-log-done 'time
+	   org-agenda-files '("~/org/")
+	   org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
+			       (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+			       (sequence "DELAY(l)" "|" "CANCELED(c)")
+			       (sequence "|" "NOTE(n)"))
+	   org-confirm-babel-evaluate nil
+	   org-agenda-include-diary t))
 
       (use-package smartparens-config
 	  :config
@@ -599,10 +601,9 @@
       (defun eval-current-line()
 	"eval current line"
 	(interactive)
-	(with-current-buffer (current-buffer)
-	  (save-excursion
-	    (end-of-line)
-	    (call-interactively 'eval-last-sexp))))
+	(save-excursion
+	  (end-of-line)
+	  (call-interactively 'eval-last-sexp)))
     #+END_SRC
     
     
