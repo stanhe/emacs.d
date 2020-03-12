@@ -19,15 +19,19 @@
     "Input src"
     ""
     "#+BEGIN_SRC emacs-lisp \n"
-    _ "\n"
-    "#+END_SRC")
+    >"    "_ ?\n
+    >"#+END_SRC")
+
 (define-skeleton 1java
     "Input src"
     ""
-    "#+HEADER: :classname\n"
-    "#+BEGIN_SRC java \n"
-    _ "\n"
-    "#+END_SRC")
+    "#+HEADER: :classname T1"?\n
+    >"#+BEGIN_SRC java"?\n
+    >"  class T1{" ?\n
+    > -2"    public static void main(String[] args){"?\n
+    > -4"      System.out.println(\"test1\");"_ ?\n
+    > -6"  }}"?\n
+    > -2"#+END_SRC"?\n)
 
 (clear-abbrev-table global-abbrev-table)
 ;; (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
