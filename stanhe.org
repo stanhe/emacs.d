@@ -109,9 +109,9 @@
 	      "r" 'quickrun
 	      "a" 'quickrun-with-arg
 	      "s" 'show-me-the-colors
-	      "m" 'load-my-theme
+	      "m" 'counsel-load-theme
 	      "n" 'display-line-numbers-mode
-	      "t" 'counsel-load-theme
+	      "t" 'sth-open-in-terminal
 	      "e" 'my-eval-current-end
 	      "f" 'my-config-file)
 	  (nvmap :prefix ","
@@ -433,10 +433,6 @@
 	       (theme (seq-random-elt available-themes)))
 	  (counsel-load-theme-action theme)
 	  (message "Color theme [%s] loaded." theme)))
-
-      (defun load-my-theme ()
-	    (interactive)
-	    (load-theme 'monokai 1))
 
       (defun init-my-load-path()
 	      "add lisp/ load path"
