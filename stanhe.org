@@ -112,6 +112,7 @@
 	      "m" 'load-my-theme
 	      "n" 'display-line-numbers-mode
 	      "t" 'counsel-load-theme
+	      "e" 'my-eval-current-end
 	      "f" 'my-config-file)
 	  (nvmap :prefix ","
 	      "p" 'projectile-command-map
@@ -451,11 +452,29 @@
 		((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
 		(t (load-theme 'sanityinc-tomorrow-night 1)))))
 
-      ;Clear the eshell buffer.
-	   (defun eshell/clear ()      
+      (defun eshell/clear ()      
 	      "clear buffer of eshell."
 	      (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
+
+      (defun my-eval-current-end()
+	"goto current line tail ,and eval it"
+	(interactive)
+	(save-excursion
+	  (end-of-line)
+	  (call-interactively 'eval-last-sexp)))
+
+      (defun sth-open-in-terminal()
+	"open current dir in a new terminal window."
+	(interactive)
+	(cond
+	 ((string-equal system-type "gnu/linux")
+	  (let ((process-connection-type nil))
+	    (start-process "" nil "gnome-terminal" (concat "--working-directory=" default-directory))))
+	 ((string-equal system-type "windows-nt")
+	  (let ((process-connection-type nil))
+	    (start-process "" nil "powershell" "start-process" "powershell"  "-workingDirectory" default-directory)))))
     #+END_SRC
+    
     
     
     
