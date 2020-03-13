@@ -15,10 +15,10 @@
 (choose-theme-by-time)
 ;; 应用路径
 ;;(setq custom-open-win-apps-dir "d:/Eapps")
-(defconst custom-open-win-apps-dir "d:/Eapps" "refer to the custom directory of all apps")
+(defconst custom-open-win-apps-dir (concat "c:/Users/" user-login-name "/Eapps") "refer to the custom directory of all apps")
 ;; 本机git-bash路径
 ;;(setq custom-git-bash-path "c:/Program Files/Git/git-bash.exe")
-(defconst custom-git-bash-path "c:/Program Files/Git/git-bash.exe" "refer to custom git bash path")
+(defconst custom-git-bash-path "c:/Program Files/Git/" "refer to custom git bash path")
 
 (use-package my-test)
 (use-package gradle-mode)

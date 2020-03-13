@@ -109,9 +109,9 @@
 	      "r" 'quickrun-shell
 	      "a" 'quickrun-with-arg
 	      "s" 'show-me-the-colors
-	      "m" 'load-my-theme
+	      "m" 'counsel-load-theme
 	      "n" 'display-line-numbers-mode
-	      "t" 'counsel-load-theme
+	      "t" 'sth-inner-git-bash
 	      "f" 'open-file-browse
 	      "g" 'gbash
 	      "e" 'eval-current-line
@@ -176,6 +176,8 @@
 	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
 	    ("l" fast-eshell-pop "eshell" :color blue)
 	    ("f" find-desk-file "browse" :color blue)
+	    ("t" sth-fast-bash "git bash" :color blue)
+	    ("SPC" delete-other-windows "single window" :color blue)
 
 	    ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
 	    ("=" balance-windows "balance-window" :color blue)
@@ -491,10 +493,6 @@
 	       (theme (seq-random-elt available-themes)))
 	  (counsel-load-theme-action theme)
 	  (message "Color theme [%s] loaded." theme)))
-      (defun load-my-theme ()
-	"load monokai,i like this one!"
-	    (interactive)
-	    (load-theme 'monokai 1))
 
       (defun choose-theme-by-time ()
 	"choose the theme by time now."
@@ -586,7 +584,7 @@
 		     ))
 		default-directory
 		)))
-	(w32-shell-execute "open" "c:/Program Files/Git/git-bash.exe" (concat "--cd=" dir)))
+	(w32-shell-execute "open" (concat custom-git-bash-path "git-bash.exe") (concat "--cd=" dir)))
 
       ;Clear the eshell buffer.
       (defun eshell/clear ()      
@@ -605,6 +603,37 @@
 	(save-excursion
 	  (end-of-line)
 	  (call-interactively 'eval-last-sexp)))
+
+      (defun sth-inner-git-bash ()
+	"open git-bash in emacs!"
+	(interactive)
+	(let ((explicit-shell-file-name (concat custom-git-bash-path "bin/bash.exe" ))
+	      (prefer-coding-system 'utf-8)
+	      (shell-command-switch "-ic")
+	      (explicit-bash.exe-args '("--login" "-i")))
+	      (call-interactively 'shell)))
+
+      (defun sth-fast-bash ()
+	"fast forward to git-bash need function `sth-inner-git-bash' and var `custom-git-bash-path'"
+	(interactive)
+	(let* ((shell-name "*git-bash*")
+	       (buffer (current-buffer))
+	       (shell (get-buffer shell-name))
+	       (dir (get-current-directory buffer)))
+	  ;;check if my-full-eshell exist,if not create one.
+	  (unless shell
+	    (setq shell (sth-inner-git-bash))
+	    (with-current-buffer shell
+	      (rename-buffer shell-name)))
+	  ;;check and handle swap.
+	  (if (equal shell-name (buffer-name buffer))
+	      (let ((length (length (mapcar #'window-buffer (window-list)))))
+		(if (> length 1)
+		    (delete-window)
+		  (back-to-previous-buffer)))
+	    (if (setq exist-window (get-buffer-window shell-name 'A))
+		  (select-window exist-window)
+		(switch-to-buffer shell)))))
     #+END_SRC
     
     
