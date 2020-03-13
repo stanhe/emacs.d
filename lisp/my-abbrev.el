@@ -63,12 +63,11 @@
 
 (define-skeleton sth-defun
   "define my function by skeleton"
-  >"(defun " (skeleton-read "Function name:")"("("Param: " str " ") ")" \n
+  >"(defun " (skeleton-read "Function name:")"("(skeleton-read "Params: ")")" \n
   >"\"" (skeleton-read "Docstring: ") "\"" \n
   >(if (y-or-n-p "interactive?:") "\(interactive\)\n" "")
-  >"(" _ "))" \n
+  >"(" _  "))" \n
 )
-
 
 (clear-abbrev-table global-abbrev-table)
 ;; (define-abbrev org-mode-abbrev-table "isrc" "" '1src)
