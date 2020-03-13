@@ -115,6 +115,7 @@
 	      "f" 'open-file-browse
 	      "g" 'gbash
 	      "e" 'eval-current-line
+	      "df" 'sth-defun
 	      ;;"o" 'open-win-application
 	      )
 	  (nvmap :prefix ","
