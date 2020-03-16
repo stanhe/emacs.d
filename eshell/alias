@@ -1,3 +1,4 @@
+alias la ls -lsah
 alias ggrep git grep -n $*
 alias gst git status
 alias adbb adb-back
