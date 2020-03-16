@@ -25,4 +25,3 @@
 (use-package pop-eshell-mode
   :init
   (setq pop-find-parent-directory '(".git" "gradlew" ".projectile")))
-(put 'erase-buffer 'disabled nil)
