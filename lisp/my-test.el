@@ -31,6 +31,13 @@
     (cancel-timer mRestTimer)))
 
 (start-rest-timer)
-(notify "11:00am" "请开始点餐！！！")
-(notify "17:30" "请注意下班打卡！！！")
-(run-at-time "17:30" nil #'cancel-rest-timer)
+
+(defun sth-timers()
+  "my timers"
+  (let ((now (string-to-number (format-time-string "%H"))))
+    (if (< now 18) (notify "17:30" "请注意下班打卡！！！") nil)
+    (if (< now 11) (notify "11:00am" "请开始点餐！！！") nil)
+    ))
+
+(run-at-time "17:35" nil #'cancel-rest-timer)
+(run-with-idle-timer 1 nil (lambda () (sth-timers)))

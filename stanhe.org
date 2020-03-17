@@ -2,6 +2,10 @@
 ** some default settings
 #+BEGIN_SRC emacs-lisp
 ;; base config
+(setq load-prefer-newer t)
+(setq gc-cons-threshold 50000000)
+(setq large-file-warning-threshold 100000000)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -53,7 +57,6 @@
 			    window-numbering
 			    popwin
 			    counsel-projectile
-			    magit
 			    quickrun
 			    ) "My default packages")
 
@@ -90,6 +93,7 @@
     (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
   (use-package evil
+    :defer 1
     :init
     (general-evil-setup t)
     :config 
@@ -139,10 +143,10 @@
       "ag" 'counsel-ag
       "gb" 'gbash
       "gf" 'counsel-git
-      "gs" 'magit-status
+      ;"gs" 'magit-status
       "gg" 'counsel-git-grep
       "go" 'counsel-git-log
-      "gl" 'magit-log-current
+      ;"gl" 'magit-log-current
       "gt" 'gradle-task
       "gr" 'gradle-run
       "oa" 'org-agenda
@@ -153,6 +157,7 @@
     )
 
   (use-package hydra
+    :defer 3
     :config
     (defhydra custom (global-map "<f2>")
       "functions"
@@ -223,6 +228,7 @@
       ))
 
   (use-package counsel
+    :defer 3
     :init
     (setq ivy-use-virtual-buffers t
 	  ivy-count-format "(%d/%d) "
@@ -315,7 +321,8 @@
     (define-key dired-mode-map (kbd "C-o") (lambda () (interactive) (progn (w32-shell-execute "open" (dired-filename-at-point))(message "open: %s" (dired-filename-at-point)))))
     )
 
-  (use-package ace-window)
+  (use-package ace-window
+    :defer 2)
 
   (use-package projectile
     :defer 3
@@ -325,7 +332,7 @@
     (projectile-mode))
 
   (use-package magit
-    :defer 6
+    :disabled
     :init
     (keychain-refresh-environment)
     (setq magit-completing-read-function 'ivy-completing-read))

@@ -12,10 +12,7 @@
 
 ;;add all my custom modes.
 (init-my-load-path)
-(choose-theme-by-time)
-;; 应用路径
 (defconst custom-open-win-apps-dir (concat "c:/Users/" user-login-name "/Eapps") "refer to the custom directory of all apps")
-;; 本机git-bash路径
 (defconst custom-git-bash-path "c:/Program Files/Git/" "refer to custom git bash path")
 
 (use-package my-test)
@@ -23,3 +20,5 @@
 (use-package pop-eshell-mode
   :init
   (setq pop-find-parent-directory '(".git" "gradlew" ".projectile")))
+
+(run-with-idle-timer 1 nil (lambda () (choose-theme-by-time)))
