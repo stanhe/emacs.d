@@ -104,7 +104,6 @@
     (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
   (use-package evil
-    :defer 1
     :init
     (general-evil-setup t)
     :config 
@@ -203,7 +202,7 @@
     )
 
   (use-package neotree
-    :defer 6
+    :defer 3
     :config
     (setq neo-smart-open t)
     (nvmap :status '(normal emacs)
@@ -238,7 +237,6 @@
       ))
 
   (use-package counsel
-    :defer 3
     :init
     (setq ivy-use-virtual-buffers t
 	  ivy-count-format "(%d/%d) "
@@ -267,6 +265,7 @@
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
   (use-package company
+    :defer 3
     :init
     (global-company-mode 1)
     (setq company-idle-delay 0.1
@@ -279,10 +278,12 @@
       "C-p" 'company-select-previous))
 
   (use-package hungry-delete
+    :defer 3
     :config
     (global-hungry-delete-mode))
 
   (use-package org
+    :defer 3
     :init
     (setq
      org-src-fontify-natively t
@@ -296,6 +297,7 @@
      org-agenda-include-diary t))
 
   (use-package smartparens-config
+    :defer 5
     :config
     (show-paren-mode)
     (smartparens-global-mode)
@@ -330,6 +332,7 @@
   (use-package ace-window)
 
   (use-package projectile
+    :defer 3
     :init
     (setq projectile-completion-system 'ivy)
     :config
@@ -350,7 +353,8 @@
       "k" 'quickrun--kill-running-process
       ))
 
-  (use-package paredit)
+  (use-package paredit
+    :defer 6)
 
   ;; ====================================== feature ====================================
   ;; markdown
