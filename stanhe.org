@@ -1,6 +1,5 @@
 * Emacs Configurations
-** Base screen
-*** some default settings
+** some default settings
 #+BEGIN_SRC emacs-lisp
 ;; base config
 (menu-bar-mode -1)
@@ -53,22 +52,9 @@
 			    which-key
 			    window-numbering
 			    popwin
-			    monokai-theme
 			    counsel-projectile
 			    magit
-			    keychain-environment
 			    quickrun
-			    ;; ========feature========
-			    ;; clojure
-			    clojure-mode
-			    clj-refactor
-			    cider
-			    paredit
-			    ;; markdown 
-			    js2-mode
-			    gh-md
-			    markdown-mode
-
 			    ) "My default packages")
 
 #+END_SRC
@@ -355,51 +341,6 @@
 
   (use-package paredit
     :defer 6)
-
-  ;; ====================================== feature ====================================
-  ;; markdown
-  (use-package markdown-mode
-    :disabled
-    :mode (("README\\.md\\'" . gfm-mode)
-	   ("\\.md\\'" . markdown-mode)
-	   ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "multimarkdown"))
-
-  (use-package gh-md
-    :disabled)
-
-  (use-package js2-mode
-    :disabled
-    :init
-    (setq auto-mode-alist
-	  (append
-	   '(("\\.js\\'" . js2-mode))
-	   auto-mode-alist)))
-
-  ;; clojure
-  (use-package clojure-mode
-    :disabled
-    :init
-    (add-hook 'clojure-mode-hook #'paredit-mode)
-    :config
-    (setq cider-repl-result-prefix ";; => ")
-    (nvmap :states '(insert normal emacs)
-      :keymaps 'cider-mode-map
-      "M-." 'cider-find-var
-      "DEL" 'hungry-delete-backward
-      "M-DEL" 'paredit-backward-delete
-      ))
-
-  (use-package clj-refactor
-    :disabled
-    :init
-    (defun my-clojure-mode-hook ()
-      (clj-refactor-mode 1)
-      (yas-minor-mode 1)
-      (cljr-add-keybindings-with-prefix "C-c C-m"))
-    :config
-    (add-hook 'clojure-mode-hook #'my-clojure-mode-hook))
-
 #+END_SRC
 ** Custom Functions
 *** adb functions and menu 
