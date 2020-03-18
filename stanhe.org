@@ -469,7 +469,7 @@
       (counsel-load-theme-action theme)
       (message "Color theme [%s] loaded." theme)))
 
-  (defun choose-theme-by-time ()
+  (defun sth-theme-by-time ()
     "choose the theme by time now."
     (interactive)
     (let ((now (string-to-number (format-time-string "%H"))))

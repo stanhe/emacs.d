@@ -21,4 +21,4 @@
   :init
   (setq pop-find-parent-directory '(".git" "gradlew" ".projectile")))
 
-;;(run-with-idle-timer 1 nil (lambda () (choose-theme-by-time)))
+;;(run-with-idle-timer 1 nil (lambda () (sth-theme-by-time)))
