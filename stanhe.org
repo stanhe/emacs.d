@@ -612,12 +612,12 @@
 	    (select-window exist-window)
 	  (switch-to-buffer shell)))))
 
-  (defun sth-loading(seconds)
+  (defun sth-loading(seconds msg)
     "my custom loading."
     (dotimes-with-progress-reporter
-      (k (* seconds 100))
-      "Loading Emacs plugins..."
-    (sit-for 0.01)))
+	(k (* seconds 100))
+	msg
+      (sit-for 0.01)))
 #+END_SRC
 
 
