@@ -104,14 +104,17 @@
       "SPC" 'random-color-theme
       "r" 'quickrun-shell
       "a" 'quickrun-with-arg
+      "o" 'sth-open-win-application
+      "b" 'ivy-switch-buffer
       "s" 'show-me-the-colors
       "m" 'counsel-load-theme
       "n" 'display-line-numbers-mode
       "t" 'sth-inner-git-bash
-      "f" 'open-file-browse
       "g" 'gbash
       "e" 'eval-current-line
       "df" 'sth-defun
+      "fb" 'open-file-browse
+      "ff" 'counsel-find-file
       ;;"o" 'open-win-application
       )
     (nvmap :prefix ","
@@ -490,7 +493,7 @@
 			 default-directory)))
     (browse-url-of-file dir))
 
-  (defun open-win-application ()
+  (defun sth-open-win-application ()
     "start my application with w32, with prefix to input custom directory."
     (interactive)
 					  ;(setq debug-on-error t)
