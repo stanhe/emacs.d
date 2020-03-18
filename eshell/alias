@@ -10,7 +10,7 @@ alias gp git push
 alias gf git pull
 alias gcmsg git commit -m $*
 alias gl git lg $*
-alias gck git checkout &*
+alias gck git checkout $*
 alias gci git commit $*
 alias adbi adb-input
 alias adbh adb-home
