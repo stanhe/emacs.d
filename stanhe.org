@@ -611,6 +611,13 @@
 	(if (setq exist-window (get-buffer-window shell-name 'A))
 	    (select-window exist-window)
 	  (switch-to-buffer shell)))))
+
+  (defun sth-loading(seconds)
+    "my custom loading."
+    (dotimes-with-progress-reporter
+      (k (* seconds 100))
+      "Loading Emacs plugins..."
+    (sit-for 0.01)))
 #+END_SRC
 
 
