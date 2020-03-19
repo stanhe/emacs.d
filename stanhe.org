@@ -429,24 +429,24 @@
     "open my config file , it's refer to stanhe.org"
     (interactive)
     (find-file "~/.emacs.d/stanhe.org"))
-  ;; my test file
+
   (defun my-test-file ()
     "open test file,contain some new test features"
     (interactive)
     (find-file "~/.emacs.d/lisp/my-test.el"))
-  ;; back buffer
+
   (defun back-to-previous-buffer ()
     "go back to previous buffer!"
     (interactive)
     (switch-to-buffer nil))
-  ;; show paren in function
+
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens."
     (cond ((looking-at-p "\\s(") (funcall fn))
 	  (t (save-excursion
 	       (ignore-errors (backward-up-list))
 	       (funcall fn)))))
-  ;; random color theme
+
   (defun show-me-the-colors ()
     "show all themes,interval 3s!"
     (interactive)
@@ -601,15 +601,19 @@
       (sit-for 0.01)))
 
   (defun sth-idate()
-      "insert current date"
-      (interactive)
-      (insert (format-time-string "%Y-%m-%d")))
+    "insert current date"
+    (interactive)
+    (insert (format-time-string "%Y-%m-%d")))
 
-  (defun eshell/mclear ()
+  (defun sth-eshell-clear ()
     "clear buffer of eshell."
     (interactive)
     (let ((eshell-buffer-maximum-lines 0))
       (eshell-truncate-buffer)))
+
+  (defun eshell/_ec ()
+    "clear buffer of eshell."
+    (funcall 'sth-eshell-clear))
 #+END_SRC
 *** cover with better keybindings
 #+BEGIN_SRC emacs-lisp
