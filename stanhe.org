@@ -354,6 +354,7 @@
 
   (use-package paredit
     :defer 6)
+
 #+END_SRC
 ** Custom Functions
 *** adb functions and menu 
@@ -422,20 +423,8 @@
   ;;(menu-bar-mode -1)
 
 #+END_SRC
-*** cover with better keybindings
-#+BEGIN_SRC emacs-lisp
-  ;;(global-set-key (kbd "<f5>") 'org-agenda-list)
-  (global-set-key (kbd "<f9>") 'delete-other-windows)
-  (global-set-key (kbd "C-h") 'delete-backward-char)
-  (global-set-key (kbd "C-SPC") 'delete-window)
-  (global-set-key (kbd "M-/") 'hippie-expand)
-  (global-set-key (kbd "<C-return>") (lambda () (interactive) (progn (end-of-line) (newline-and-indent))))
-#+END_SRC
-
 *** my functions
 #+BEGIN_SRC emacs-lisp
-
-  ;; my config file
   (defun my-config-file ()
     "open my config file , it's refer to stanhe.org"
     (interactive)
@@ -547,7 +536,6 @@
 		      admain-desk)))
       (counsel-find-file desktop)))
 
-  ;;打开git-bash
   (defun gbash(dir)
     "open git bash,need set `custom-git-bash-path' first."
     (interactive
@@ -563,17 +551,10 @@
 	    )))
     (w32-shell-execute "open" (concat custom-git-bash-path "git-bash.exe") (concat "--cd=" dir)))
 
-					  ;Clear the eshell buffer.
-  (defun eshell/clear ()      
-    "clear buffer of eshell."
-    (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
-
-  ;;format milliseconds to date
   (defun milliseconds (cTime)
     "format milliseconds to Y-m-d H:M:S"
     (format-time-string "%Y-%m-%d %H:%M:%S" (seconds-to-time (/ cTime 1000))))
 
-  ;;eval current line
   (defun eval-current-line()
     "eval current line"
     (interactive)
@@ -624,9 +605,21 @@
       (interactive)
       (insert (format-time-string "%Y-%m-%d")))
 
+  (defun eshell/mclear ()
+    "clear buffer of eshell."
+    (interactive)
+    (let ((eshell-buffer-maximum-lines 0))
+      (eshell-truncate-buffer)))
 #+END_SRC
-
-
-
-
+*** cover with better keybindings
+#+BEGIN_SRC emacs-lisp
+  ;;(global-set-key (kbd "<f5>") 'org-agenda-list)
+  (global-set-key (kbd "<f9>") 'delete-other-windows)
+  (global-set-key (kbd "C-h") 'delete-backward-char)
+  (global-set-key (kbd "C-SPC") 'delete-window)
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  (global-set-key (kbd "<C-return>") (lambda ()
+				      (interactive)
+				      (progn (end-of-line) (newline-and-indent))))
+#+END_SRC
 
