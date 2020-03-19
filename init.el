@@ -25,4 +25,4 @@
   (add-hook 'eshell-mode-hook (lambda () (local-set-key (kbd "C-l") #'sth-eshell-clear))))
 
 ;;(run-with-idle-timer 1 nil (lambda () (sth-theme-by-time)))
-(run-with-idle-timer 1 nil (lambda () (sth-loading 5 "Loading Emacs plugins...")))
+(run-with-idle-timer 1 nil (lambda () (sth-loading 3 "Loading Emacs plugins...")))

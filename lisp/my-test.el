@@ -32,10 +32,11 @@
 
 (defun sth-timers()
   "my timers"
-  (let ((now (string-to-number (format-time-string "%H"))))
+  (let ((now (string-to-number (format-time-string "%H%M"))))
     (start-rest-timer)
-    (if (< now 18) (notify "17:30" "请注意下班打卡！！！") nil)
-    (if (< now 11) (notify "11:00am" "请开始点餐！！！") nil)
+    (if (< now 1800) (notify "17:30" "请注意下班打卡！！！") nil)
+    (if (< now 1500) (notify "14:10" "领口罩时间 14:00~15:00 ！！！") nil)
+    (if (< now 1110) (notify "11:00" "请开始点餐！！！") nil)
     ))
 
 (run-at-time "17:35" nil #'cancel-rest-timer)
