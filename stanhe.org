@@ -105,12 +105,12 @@
       "rr" 'quickrun-shell
       "ra" 'quickrun-with-arg
       "o" 'sth-open-win-application
-      "b" 'ivy-switch-buffer
+      "bk" 'kill-buffer
+      "bs" 'ivy-switch-buffer
+      "bb" 'back-to-previous-buffer
       "s" 'show-me-the-colors
       "m" 'counsel-load-theme
       "n" 'display-line-numbers-mode
-      "t" 'sth-inner-git-bash
-      "k" 'kill-buffer
       "g" 'gbash
       "e" 'eval-current-line
       "df" 'sth-defun
@@ -618,6 +618,12 @@
 	(k (* seconds 100))
 	msg
       (sit-for 0.01)))
+
+  (defun sth-idate()
+      "insert current date"
+      (interactive)
+      (insert (format-time-string "%Y-%m-%d")))
+
 #+END_SRC
 
 
