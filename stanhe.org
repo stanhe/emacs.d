@@ -593,11 +593,11 @@
 	    (select-window exist-window)
 	  (switch-to-buffer shell)))))
 
-  (defun sth-loading(seconds msg)
+  (defmacro sth-loading(seconds msg &optional action)
     "my custom loading."
-    (dotimes-with-progress-reporter
-	(k (* seconds 100))
-	msg
+    `(dotimes-with-progress-reporter
+	(k (* ,seconds 100) (when ,action ,action))
+	,msg
       (sit-for 0.01)))
 
   (defun sth-idate()
