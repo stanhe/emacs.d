@@ -239,6 +239,7 @@
     (setq ivy-use-virtual-buffers t
 	  ivy-count-format "(%d/%d) "
 	  ivy-height 20
+	  ivy-extra-directories nil
 	  enable-recursive-minibuffers t)
     :config 
     (ivy-mode 1)

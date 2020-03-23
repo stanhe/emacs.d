@@ -35,7 +35,6 @@
   (let ((now (string-to-number (format-time-string "%H%M"))))
     (start-rest-timer)
     (if (< now 1800) (notify "17:30" "请注意下班打卡！！！") nil)
-    (if (< now 1500) (notify "14:10" "领口罩时间 14:00~15:00 ！！！") nil)
     (if (< now 1110) (notify "11:00" "请开始点餐！！！") nil)
     ))
 
