@@ -6,7 +6,7 @@ My config for shell script,clojure,python focused on Evil.
 ### linux
 main features support.
 ```
-git clone https://github.com/stanhe/emacs.d.git ~/.emacs.d
+git clone -b linux https://github.com/stanhe/emacs.d.git ~/.emacs.d
 ```
 ### windows
 
