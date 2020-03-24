@@ -22,7 +22,7 @@ git clone -b win https://github.com/stanhe/emacs.d.git .emacs.d
 
 ### linux
 
-[<font color=#FF1493 >master branch.</font>](https://github.com/stanhe/emacs.d/tree/linux)
+[<font color=#FF1493 >linux branch.</font>](https://github.com/stanhe/emacs.d/tree/linux)
 
 
 ## Features
