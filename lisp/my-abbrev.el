@@ -18,20 +18,28 @@
 (define-skeleton 1src
     "Input src"
     ""
-    "#+BEGIN_SRC emacs-lisp \n"
+    >"#+BEGIN_SRC emacs-lisp \n"
     >"    "_ ?\n
     >"#+END_SRC")
 
 (define-skeleton 1java
     "Input src"
     ""
-    "#+HEADER: :classname T1"?\n
+    >"#+HEADER: :classname T1"?\n
     >"#+BEGIN_SRC java"?\n
     >"  class T1{" ?\n
     > -2"    public static void main(String[] args){"?\n
     > -4"      System.out.println(\"test1\");"_ ?\n
     > -6"  }}"?\n
     > -2"#+END_SRC"?\n)
+
+(define-skeleton sth-defun
+  "define my function by skeleton"
+  >"(defun " (skeleton-read "Function name:")"("(skeleton-read "Params: ")")" \n
+  >"\"" (skeleton-read "Docstring: ") "\"" \n
+  >(if (y-or-n-p "interactive?:") "\(interactive\)\n" "")
+  >"(" _  "))" \n
+)
 
 (clear-abbrev-table global-abbrev-table)
 ;; (define-abbrev org-mode-abbrev-table "isrc" "" '1src)

@@ -1,7 +1,7 @@
 * Emacs Configurations
 ** Base screen
 *** some default settings
-    #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
 ;; base config
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -24,459 +24,464 @@
 (add-to-list 'default-frame-alist '(alpha . (91 . 50)))
 ;;(set-frame-parameter (selected-frame) 'alpha '(91 . 50))
 
-    #+END_SRC
+#+END_SRC
 ** Packages and elpa configurations
 *** elpa
-    #+BEGIN_SRC emacs-lisp
-;init packages
-(when (>= emacs-major-version 24)
-  (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp
+					  ;init packages
+  (when (>= emacs-major-version 24)
+    (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
+			     ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
+#+END_SRC
 *** custom packages
-    #+BEGIN_SRC emacs-lisp
-(defvar stanhe/packages '(
-                     ;; ========basic=======
-                     use-package
-                     neotree
-                     ace-window
-		     company
-		     hungry-delete
-		     counsel
-		     evil
-		     hydra
-		     general
-		     smartparens
-		     which-key
-		     window-numbering
-		     popwin
-		     monokai-theme
-		     counsel-projectile
-		     magit
-		     keychain-environment
-                     quickrun
-		     ;; ========feature========
-		     ;; clojure
-		     clojure-mode
-		     clj-refactor
-		     cider
-		     paredit
-		     ;; markdown 
-		     js2-mode
-                     gh-md
-                     markdown-mode
-		     ;;python
-		     company-jedi;;python auto-company https://github.com/syohex/emacs-company-jedi
+#+BEGIN_SRC emacs-lisp
+  (defvar stanhe/packages '(
+			    ;; ========basic=======
+			    use-package
+			    neotree
+			    ace-window
+			    company
+			    hungry-delete
+			    counsel
+			    evil
+			    hydra
+			    general
+			    smartparens
+			    which-key
+			    window-numbering
+			    popwin
+			    monokai-theme
+			    counsel-projectile
+			    magit
+			    keychain-environment
+			    quickrun
+			    ;; ========feature========
+			    ;; clojure
+			    clojure-mode
+			    clj-refactor
+			    cider
+			    paredit
+			    ;; markdown 
+			    js2-mode
+			    gh-md
+			    markdown-mode
+			    ;;python
+			    company-jedi;;python auto-company https://github.com/syohex/emacs-company-jedi
 
-		     ) "My default packages")
+			    ) "My default packages")
 
-    #+END_SRC
+#+END_SRC
 *** check and install 
-    #+BEGIN_SRC emacs-lisp
-(require 'cl)
+#+BEGIN_SRC emacs-lisp
+  (require 'cl)
 
-(setq package-selected-packages stanhe/packages)
+  (setq package-selected-packages stanhe/packages)
 
-(defun stanhe/packages-install-p ()
-  (loop for pkg in stanhe/packages
-	when (not (package-installed-p pkg)) do (return nil)
-	finally (return t)))
+  (defun stanhe/packages-install-p ()
+    (loop for pkg in stanhe/packages
+	  when (not (package-installed-p pkg)) do (return nil)
+	  finally (return t)))
 
-(unless (stanhe/packages-install-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg stanhe/packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
-    #+END_SRC
-    
+  (unless (stanhe/packages-install-p)
+    (message "%s" "Refreshing package database...")
+    (package-refresh-contents)
+    (dolist (pkg stanhe/packages)
+      (when (not (package-installed-p pkg))
+	(package-install pkg))))
+#+END_SRC
 *** packages settings and keybindings
-    #+BEGIN_SRC emacs-lisp
-      ;;(load-theme 'monokai 1)
-      (require 'use-package)
+#+BEGIN_SRC emacs-lisp
+  (require 'use-package)
 
-      (require 'my-abbrev)
+  (require 'my-abbrev)
 
-      (use-package evil
-	  :init
-	  (general-evil-setup t)
-	  :config 
-	  (evil-mode 1)
-	  (nvmap :prefix "SPC"
-	      "q" 'quit-window
-	      "c" 'compile
-	      "SPC" 'random-color-theme
-	      "r" 'quickrun
-	      "a" 'quickrun-with-arg
-	      "s" 'show-me-the-colors
-	      "m" 'counsel-load-theme
-	      "n" 'display-line-numbers-mode
-	      "t" 'sth-open-in-terminal
-	      "e" 'my-eval-current-end
-	      "f" 'my-config-file)
-	  (nvmap :prefix ","
-	      "p" 'projectile-command-map
-	      "v" 'evil-visual-block
+  (use-package evil
+    :init
+    (general-evil-setup t)
+    :config 
+    (evil-mode 1)
+    (nvmap :prefix "SPC"
+      "q" 'quit-window
+      "c" 'compile
+      "SPC" 'random-color-theme
+      "r" 'quickrun
+      "a" 'quickrun-with-arg
+      "bk" 'kill-buffer
+      "bs" 'ivy-switch-buffer
+      "bb" 'back-to-previous-buffer
+      "s" 'show-me-the-colors
+      "m" 'counsel-load-theme
+      "n" 'display-line-numbers-mode
+      "g" 'sth-open-in-terminal
+      "e" 'my-eval-current-end
+      "df" 'sth-defun
+      "fb" 'open-file-browse
+      "ff" 'counsel-find-file
+      "fr" 'counsel-recentf
+      "x" 'counsel-M-x
+      "fm" 'my-config-file)
+    (nvmap :prefix ","
+      "p" 'projectile-command-map
+      "v" 'evil-visual-block
 
-	      "x1" 'delete-other-windows
-	      "xo" 'other-window
-	      "x0" 'delete-window
-	      "xq" 'delete-window
-	      "x2" 'split-window-below
-	      "x3" 'split-window-right
-	      "xf" 'counsel-find-file
-	      "xm" 'counsel-M-x
-	      "xr" 'counsel-recentf
-	      "xb" 'ivy-switch-buffer
-	      "bb" 'back-to-previous-buffer
-	      "xB" 'list-buffers
-	      "xd" 'dired
-	      "xj" 'dired-jump
-	      "xp" 'image-dired
-	      "xs" 'save-buffer
-	      "xc" 'save-buffers-kill-terminal
-	      "xk" 'kill-buffer
-	      "xe" 'eval-last-sexp
+      "x1" 'delete-other-windows
+      "xo" 'other-window
+      "x0" 'delete-window
+      "xq" 'delete-window
+      "x2" 'split-window-below
+      "x3" 'split-window-right
+      "xf" 'counsel-find-file
+      "xm" 'counsel-M-x
+      "xr" 'counsel-recentf
+      "xb" 'ivy-switch-buffer
+      "bb" 'back-to-previous-buffer
+      "xB" 'list-buffers
+      "xd" 'dired
+      "xj" 'dired-jump
+      "xp" 'image-dired
+      "xs" 'save-buffer
+      "xc" 'save-buffers-kill-terminal
+      "xk" 'kill-buffer
+      "xe" 'eval-last-sexp
 
-	      "eb" 'eval-buffer
-	      "aw" 'ace-swap-window
-	      "ag" 'counsel-ag
-	      "gf" 'counsel-git
-	      "gs" 'magit-status
-	      "gg" 'counsel-git-grep
-	      "go" 'counsel-git-log
-	      "gl" 'magit-log-current
-	      "gt" 'gradle-task
-	      "gr" 'gradle-run
-	      "oa" 'org-agenda
+      "eb" 'eval-buffer
+      "aw" 'ace-swap-window
+      "ag" 'counsel-ag
+      "gf" 'counsel-git
+      "gs" 'magit-status
+      "gg" 'counsel-git-grep
+      "go" 'counsel-git-log
+      "gl" 'magit-log-current
+      "gt" 'gradle-task
+      "gr" 'gradle-run
+      "oa" 'org-agenda
 
-	      "nf" 'neotree-find
-	      "nt" 'neotree-toggle
-	  )
+      "nf" 'neotree-find
+      "nt" 'neotree-toggle
       )
+    )
 
-      (use-package hydra
-	:config
-	(defhydra hydra-zoom (global-map "<f2>")
-	    "functions"
-	    ("q" keyboard-quit "quit" :color blue)
-	    ("i" text-scale-increase "text-increase")
-	    ("d" text-scale-decrease "text-decrease")
-	    ("r" (text-scale-set 0) "reset text" :color blue)
-	    ("n" neotree-toggle "neotree" :color blue)
-	    ("m" eshell-pop-toggle "eshell bottom" :color blue)
-	    ("l" fast-eshell-pop "eshell full window" :color blue)
-	    ("p" back-to-previous-buffer "swap-last" :color blue)
-	    ("k" kill-buffer "kill-buffer" :color blue)
-	    ("b" ivy-switch-buffer "switch-buffer" :color blue)
+  (use-package hydra
+    :config
+    (defhydra hydra-zoom (global-map "<f2>")
+      "functions"
+      ("q" keyboard-quit "quit" :color blue)
+      ("i" text-scale-increase "text-increase")
+      ("d" text-scale-decrease "text-decrease")
+      ("r" (text-scale-set 0) "reset text" :color blue)
+      ("n" neotree-toggle "neotree" :color blue)
+      ("m" eshell-pop-toggle "eshell bottom" :color blue)
+      ("l" fast-eshell-pop "eshell full window" :color blue)
+      ("p" back-to-previous-buffer "swap-last" :color blue)
+      ("k" kill-buffer "kill-buffer" :color blue)
+      ("b" ivy-switch-buffer "switch-buffer" :color blue)
 
-	    ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
-	    ("=" balance-windows "balance-window" :color blue)
-	    ("<up>" enlarge-window "enlarge-window")
-	    ("<down>" shrink-window "balance-window")
-	    ("<left>" shrink-window-horizontally "shrink-horizontal")
-	    ("<right>" enlarge-window-horizontally "enlarge-horizontal")
-	))
+      ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
+      ("=" balance-windows "balance-window" :color blue)
+      ("<up>" enlarge-window "enlarge-window")
+      ("<down>" shrink-window "balance-window")
+      ("<left>" shrink-window-horizontally "shrink-horizontal")
+      ("<right>" enlarge-window-horizontally "enlarge-horizontal")
+      ))
 
-      (use-package neotree
-	  :config
-	  (setq neo-smart-open t)
-	  (nvmap :status '(normal emacs)
-	    :keymaps 'neotree-mode-map
-	    "s" 'neotree-hidden-file-toggle
-	    "g" 'neotree-refresh
-	    "d" 'neotree-delete-node
-	    "r" 'neotree-rename-node
-	    "R" 'neotree-change-root
-	    "c" 'neotree-create-node
-	    "C" 'neotree-copy-node
-	    "v" 'neotree-enter-vertical-split
-	    "h" 'neotree-enter-horizontal-split
-	    "a" 'neotree-enter-ace-window
-	    "SPC" 'neotree-quick-look
-	    "TAB" 'neotree-enter
-	    "RET" 'neotree-enter
-	    "q" 'neotree-hide
-	    ))
+  (use-package neotree
+    :config
+    (setq neo-smart-open t)
+    (nvmap :status '(normal emacs)
+      :keymaps 'neotree-mode-map
+      "s" 'neotree-hidden-file-toggle
+      "g" 'neotree-refresh
+      "d" 'neotree-delete-node
+      "r" 'neotree-rename-node
+      "R" 'neotree-change-root
+      "c" 'neotree-create-node
+      "C" 'neotree-copy-node
+      "v" 'neotree-enter-vertical-split
+      "h" 'neotree-enter-horizontal-split
+      "a" 'neotree-enter-ace-window
+      "SPC" 'neotree-quick-look
+      "TAB" 'neotree-enter
+      "RET" 'neotree-enter
+      "q" 'neotree-hide
+      ))
 
-      (use-package image-mode
-	  :config
-	  (nvmap :status '(normal emacs)
-	    :keymaps '(image-mode-map)
-	    "n" 'image-next-file
-	    "p" 'image-previous-file
-	    "h" 'image-transform-fit-to-height
-	    "w" 'image-transform-fit-to-width
-	    "s" 'image-transform-reset
-	    "r" 'image-rotate
-	    ))
+  (use-package image-mode
+    :config
+    (nvmap :status '(normal emacs)
+      :keymaps '(image-mode-map)
+      "n" 'image-next-file
+      "p" 'image-previous-file
+      "h" 'image-transform-fit-to-height
+      "w" 'image-transform-fit-to-width
+      "s" 'image-transform-reset
+      "r" 'image-rotate
+      ))
 
-      (use-package counsel
-	  :init
-	  (setq ivy-use-virtual-buffers t
-		ivy-count-format "(%d/%d) "
-		ivy-height 20
-		enable-recursive-minibuffers t)
-	  :config 
-	  (ivy-mode 1)
-	  (ivy-set-actions
-	      'counsel-find-file
-	      '(("m" delete-file "delete")))
-	  (global-set-key "\C-s" 'swiper)
-	  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-	  (global-set-key (kbd "<f6>") 'ivy-resume)
-	  (global-set-key (kbd "M-x") 'counsel-M-x)
-	  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-	  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-	  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-	  (global-set-key (kbd "<f1> l") 'counsel-find-library)
-	  ;;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-	  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-	  (global-set-key (kbd "C-c g") 'counsel-git)
-	  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+  (use-package counsel
+    :init
+    (setq ivy-use-virtual-buffers t
+	  ivy-count-format "(%d/%d) "
+	  ivy-height 20
+	  ivy-extra-directories nil
+	  enable-recursive-minibuffers t)
+    :config 
+    (ivy-mode 1)
+    (ivy-set-actions
+     'counsel-find-file
+     '(("m" delete-file "delete")))
+    (global-set-key "\C-s" 'swiper)
+    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+    (global-set-key (kbd "<f6>") 'ivy-resume)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    (global-set-key (kbd "<f1> l") 'counsel-find-library)
+    ;;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+    (global-set-key (kbd "C-c g") 'counsel-git)
+    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
-      (use-package company
-	  :init
-	  (global-company-mode 1)
-	  (setq company-idle-delay 0.1
-		company-minimum-prefix-length 1)
-	  :hook(after-init-hook . global-company-mode)
-	  :config
-	  (nvmap
-	    :states '(insert)
-	    "C-n" 'company-select-next
-	    "C-p" 'company-select-previous))
+  (use-package company
+    :init
+    (global-company-mode 1)
+    (setq company-idle-delay 0.1
+	  company-minimum-prefix-length 1)
+    :hook(after-init-hook . global-company-mode)
+    :config
+    (nvmap
+      :states '(insert)
+      "C-n" 'company-select-next
+      "C-p" 'company-select-previous))
 
-      (use-package hungry-delete
-	  :config
-	  (global-hungry-delete-mode))
+  (use-package hungry-delete
+    :config
+    (global-hungry-delete-mode))
 
-      (use-package org
-	  :init
-	  (setq org-src-fontify-natively t
-		org-log-done 'time
-		org-agenda-files '("~/org/")
-		org-confirm-babel-evaluate nil))
+  (use-package org
+    :init
+    (setq org-src-fontify-natively t
+	  org-log-done 'time
+	  org-agenda-files '("~/org/")
+	  org-confirm-babel-evaluate nil))
 
-      (use-package smartparens-config
-	  :config
-	  (show-paren-mode)
-	  (smartparens-global-mode)
-	  (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil))
+  (use-package smartparens-config
+    :config
+    (show-paren-mode)
+    (smartparens-global-mode)
+    (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil))
 
-      (use-package which-key
-	  :config
-	  (which-key-mode 1))
+  (use-package which-key
+    :config
+    (which-key-mode 1))
 
-      (use-package window-numbering
-	  :config
-	  (window-numbering-mode 1))
+  (use-package window-numbering
+    :config
+    (window-numbering-mode 1))
 
-      (use-package popwin
-	  :config
-	  (popwin-mode 1))
+  (use-package popwin
+    :config
+    (popwin-mode 1))
 
-      (use-package dired-x)
-      (use-package dired
-	  :init
-	  (setq dired-recursive-deletes 'always
-		dired-recursive-copies 'always
-		dired-dwim-target t)
-	  :config
-	  (put 'dired-find-alternate-file 'disabled nil)
-	  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
+  (use-package dired-x)
+  (use-package dired
+    :init
+    (setq dired-recursive-deletes 'always
+	  dired-recursive-copies 'always
+	  dired-dwim-target t)
+    :config
+    (put 'dired-find-alternate-file 'disabled nil)
+    (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
 
-      (use-package ace-window)
+  (use-package ace-window)
 
-      (use-package projectile
-	  :init
-	  (setq projectile-completion-system 'ivy)
-	  :config
-	  (projectile-mode))
+  (use-package projectile
+    :init
+    (setq projectile-completion-system 'ivy)
+    :config
+    (projectile-mode))
 
-      (use-package magit
-	  :init
-	  (keychain-refresh-environment)
-	  (setq magit-completing-read-function 'ivy-completing-read))
+  (use-package magit
+    :init
+    (keychain-refresh-environment)
+    (setq magit-completing-read-function 'ivy-completing-read))
 
-      (use-package quickrun
-	  :config
-	  (nvmap :status '(normal emacs)
-	    :keymaps 'quickrun--mode-map
-	      "q" 'quit-window
-	      "k" 'quickrun--kill-running-process))
+  (use-package quickrun
+    :config
+    (nvmap :status '(normal emacs)
+      :keymaps 'quickrun--mode-map
+      "q" 'quit-window
+      "k" 'quickrun--kill-running-process))
 
-      ;; ====================================== feature ====================================
-      ;; markdown
-      (use-package markdown-mode
-	:mode (("README\\.md\\'" . gfm-mode)
-	       ("\\.md\\'" . markdown-mode)
-	       ("\\.markdown\\'" . markdown-mode))
-	:init (setq markdown-command "multimarkdown"))
+  ;; ====================================== feature ====================================
+  ;; markdown
+  (use-package markdown-mode
+    :mode (("README\\.md\\'" . gfm-mode)
+	   ("\\.md\\'" . markdown-mode)
+	   ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
 
-      (use-package gh-md)
+  (use-package gh-md)
 
-      (use-package js2-mode
-	:init
-	(setq auto-mode-alist
-	    (append
-	     '(("\\.js\\'" . js2-mode))
-	     auto-mode-alist)))
+  (use-package js2-mode
+    :init
+    (setq auto-mode-alist
+	  (append
+	   '(("\\.js\\'" . js2-mode))
+	   auto-mode-alist)))
 
-      ;; clojure
-      (use-package clojure-mode
-	:init
-	(add-hook 'clojure-mode-hook #'paredit-mode)
-	:config
-	(setq cider-repl-result-prefix ";; => ")
-	(nvmap :states '(insert normal emacs)
-	    ;;:keymaps 'cider-mode-map
-	    "M-." 'cider-find-var
-	    "DEL" 'hungry-delete-backward
-	    "M-DEL" 'paredit-backward-delete
-	    ))
+  ;; clojure
+  (use-package clojure-mode
+    :init
+    (add-hook 'clojure-mode-hook #'paredit-mode)
+    :config
+    (setq cider-repl-result-prefix ";; => ")
+    (nvmap :states '(insert normal emacs)
+      ;;:keymaps 'cider-mode-map
+      "M-." 'cider-find-var
+      "DEL" 'hungry-delete-backward
+      "M-DEL" 'paredit-backward-delete
+      ))
 
-      (use-package clj-refactor
-	:init
-	(defun my-clojure-mode-hook ()
-	  (clj-refactor-mode 1)
-	  (yas-minor-mode 1)
-	  (cljr-add-keybindings-with-prefix "C-c C-m"))
-	:config
-	(add-hook 'clojure-mode-hook #'my-clojure-mode-hook))
+  (use-package clj-refactor
+    :init
+    (defun my-clojure-mode-hook ()
+      (clj-refactor-mode 1)
+      (yas-minor-mode 1)
+      (cljr-add-keybindings-with-prefix "C-c C-m"))
+    :config
+    (add-hook 'clojure-mode-hook #'my-clojure-mode-hook))
 
-      ;;python
-      (use-package company-jedi
-	:config
-	(add-hook 'python-mode-hook (lambda ()
-				      (interactive)
-				      (add-to-list 'company-backends 'company-jedi))))
-    #+END_SRC
+  ;;python
+  (use-package company-jedi
+    :config
+    (add-hook 'python-mode-hook (lambda ()
+				  (interactive)
+				  (add-to-list 'company-backends 'company-jedi))))
+#+END_SRC
 ** Custom Functions
 *** adb functions
+#+BEGIN_SRC emacs-lisp 
+  (defun adb-home ()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 3 " 0))
 
-    #+BEGIN_SRC emacs-lisp 
-      (defun adb-home ()
-	(interactive)
-	(w32-shell-execute "open" "adb" " shell input keyevent 3 " 0))
+  (defun adb-back ()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 4 " 0))
 
-      (defun adb-back ()
-	(interactive)
-	(w32-shell-execute "open" "adb" " shell input keyevent 4 " 0))
+  (defun adb-input()
+    (interactive)
+    (let ((input (read-string "inupt string: ")))
+      (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
 
-      (defun adb-input()
-	(interactive)
-	(let ((input (read-string "inupt string: ")))
-	  (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
+  (defun adb-sigle-del()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0))
 
-      (defun adb-sigle-del()
-	(interactive)
-	(w32-shell-execute "open" "adb" " shell input keyevent 67 " 0))
+  (defun adb-mult-del()
+    (interactive)
+    (dotimes (number 10)
+      (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0)))
 
-      (defun adb-mult-del()
-	(interactive)
-	(dotimes (number 10)
-	  (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0)))
+  (defun adb-enter()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 66 " 0))
 
-      (defun adb-enter()
-	(interactive)
-	(w32-shell-execute "open" "adb" " shell input keyevent 66 " 0))
-
-      (defun adb-next()
-	(interactive)
-	(w32-shell-execute "open" "adb" " shell input keyevent 61 " 0))
-
-     #+END_SRC
-
-*** cover with better keybindings
-  #+BEGIN_SRC emacs-lisp
-    (global-set-key (kbd "C-h") 'delete-backward-char)
-    (global-set-key (kbd "C-SPC") 'delete-window)
-    (global-set-key (kbd "M-/") 'hippie-expand)
-    (global-set-key (kbd "<C-return>") (lambda ()
-					 (interactive)
-					 (progn
-					   (end-of-line)
-					   (newline-and-indent))))
-  #+END_SRC
+  (defun adb-next()
+    (interactive)
+    (w32-shell-execute "open" "adb" " shell input keyevent 61 " 0))
+    
+#+END_SRC
 *** my functions
-    #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
+  (defun my-config-file ()
+    "my config file"
+    (interactive)
+    (find-file "~/.emacs.d/stanhe.org"))
+  (defun back-to-previous-buffer ()
+    (interactive)
+    (switch-to-buffer nil))
+  (define-advice show-paren-function (:around (fn) fix-show-paren-function)
+    "Highlight enclosing parens."
+    (cond ((looking-at-p "\\s(") (funcall fn))
+	  (t (save-excursion
+	       (ignore-errors (backward-up-list))
+	       (funcall fn)))))
+  (defun show-me-the-colors ()
+    "random color theme"
+    (interactive)
+    (loop do
+	  (random-color-theme)
+	  (unless (sit-for 3)
+	    (keyboard-quit))))
 
-      ;; my config file
-      (defun my-config-file ()
-	  (interactive)
-	  (find-file "~/.emacs.d/stanhe.org"))
-      ;; back buffer
-      (defun back-to-previous-buffer ()
-	      (interactive)
-	      (switch-to-buffer nil))
-      ;; show paren in function
-      (define-advice show-paren-function (:around (fn) fix-show-paren-function)
-      "Highlight enclosing parens."
-      (cond ((looking-at-p "\\s(") (funcall fn))
-	      (t (save-excursion
-		  (ignore-errors (backward-up-list))
-		  (funcall fn)))))
-      ;; random color theme
-      (defun show-me-the-colors ()
-	(interactive)
-	(loop do
-	      (random-color-theme)
-	      (unless (sit-for 3)
-		(keyboard-quit))))
+  (defun random-color-theme ()
+    "Random color theme."
+    (interactive)
+    (unless (featurep 'counsel) (require 'counsel))
+    (let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
+	   (theme (seq-random-elt available-themes)))
+      (counsel-load-theme-action theme)
+      (message "Color theme [%s] loaded." theme)))
 
-      (defun random-color-theme ()
-	"Random color theme."
-	(interactive)
-	(unless (featurep 'counsel) (require 'counsel))
-	(let* ((available-themes (mapcar 'symbol-name (custom-available-themes)))
-	       (theme (seq-random-elt available-themes)))
-	  (counsel-load-theme-action theme)
-	  (message "Color theme [%s] loaded." theme)))
+  (defun init-my-load-path()
+    "add lisp/ load path"
+    (dolist (path (directory-files my-lisp-path t "[^.]"))
+      (when (file-directory-p path)
+	(add-to-list 'load-path path))))
 
-      (defun init-my-load-path()
-	      "add lisp/ load path"
-	      (dolist (path (directory-files my-lisp-path t "[^.]"))
-		(when (file-directory-p path)
-		    (add-to-list 'load-path path))))
+  (defun choose-theme-by-time ()
+    "choose the theme by time now."
+    (interactive)
+    (let ((now (string-to-number (format-time-string "%H"))))
+      (cond ((< now 12) (load-theme 'sanityinc-tomorrow-blue 1))
+	    ((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
+	    (t (load-theme 'sanityinc-tomorrow-night 1)))))
 
-      (defun choose-theme-by-time ()
-	"choose the theme by time now."
-	(interactive)
-	(let ((now (string-to-number (format-time-string "%H"))))
-	  (cond ((< now 12) (load-theme 'sanityinc-tomorrow-blue 1))
-		((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
-		(t (load-theme 'sanityinc-tomorrow-night 1)))))
+  (defun eshell/clear ()      
+    "clear buffer of eshell."
+    (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
 
-      (defun eshell/clear ()      
-	      "clear buffer of eshell."
-	      (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
+  (defun my-eval-current-end()
+    "goto current line tail ,and eval it"
+    (interactive)
+    (save-excursion
+      (end-of-line)
+      (call-interactively 'eval-last-sexp)))
 
-      (defun my-eval-current-end()
-	"goto current line tail ,and eval it"
-	(interactive)
-	(save-excursion
-	  (end-of-line)
-	  (call-interactively 'eval-last-sexp)))
+  (defun sth-open-in-terminal()
+    "open current dir in a new terminal window."
+    (interactive)
+    (cond
+     ((string-equal system-type "gnu/linux")
+      (let ((process-connection-type nil))
+	(start-process "" nil "gnome-terminal" (concat "--working-directory=" default-directory))))
+     ((string-equal system-type "windows-nt")
+      (let ((process-connection-type nil))
+	(start-process "" nil "powershell" "start-process" "powershell"  "-workingDirectory" default-directory)))))
 
-      (defun sth-open-in-terminal()
-	"open current dir in a new terminal window."
-	(interactive)
-	(cond
-	 ((string-equal system-type "gnu/linux")
-	  (let ((process-connection-type nil))
-	    (start-process "" nil "gnome-terminal" (concat "--working-directory=" default-directory))))
-	 ((string-equal system-type "windows-nt")
-	  (let ((process-connection-type nil))
-	    (start-process "" nil "powershell" "start-process" "powershell"  "-workingDirectory" default-directory)))))
+  (defmacro _loading(seconds msg &optional action)
+     "my custom loading."
+     `(dotimes-with-progress-reporter
+	  (k (* ,seconds 100) (when ,action ,action))
+	  ,msg
+       (sit-for 0.01)))
 
-    #+END_SRC
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  (defun open-file-browse()
+    "open file in browse"
+    (interactive)
+    (let ((process-connection-type nil))
+      (start-process "" nil "nautilus" (expand-file-name  default-directory))))
+#+END_SRC
+*** cover with better keybindings
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-h") 'delete-backward-char)
+  (global-set-key (kbd "C-SPC") 'delete-window)
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  (global-set-key (kbd "<C-return>") (lambda ()
+				       (interactive)
+				       (progn
+					 (end-of-line)
+					 (newline-and-indent))))
+#+END_SRC

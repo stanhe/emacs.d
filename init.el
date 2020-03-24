@@ -18,5 +18,4 @@
   :init
   (setq pop-find-parent-directory '(".git" "gradlew")))
 
-
-
+;;(run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (load-theme 'monokai))))
