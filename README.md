@@ -1,5 +1,5 @@
 # Concise Emacs
-My config for shell script,clojure,python focused on Evil.
+My config for shell script,python,Hand tools focused on Evil.
 
 ## Installation
 * emacs version >= 26
@@ -22,7 +22,7 @@ git clone -b win https://github.com/stanhe/emacs.d.git .emacs.d
 
 ### linux
 
-[<font color=#FF1493 >master branch.</font>](https://github.com/stanhe/emacs.d)
+[<font color=#FF1493 >master branch.</font>](https://github.com/stanhe/emacs.d/tree/linux)
 
 
 ## Features
