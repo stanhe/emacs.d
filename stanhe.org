@@ -118,6 +118,7 @@
       "ff" 'counsel-find-file
       "fr" 'counsel-recentf
       "x" 'counsel-M-x
+      "y" 'sth-copy-word
       ;;"o" 'open-win-application
       )
     (nvmap :prefix ","
@@ -615,6 +616,13 @@
   (defun eshell/_ec ()
     "clear buffer of eshell."
     (funcall 'sth-eshell-clear))
+
+  (defun sth-copy-word()
+    "copy word at point."
+    (interactive)
+    (save-excursion
+      (let ((start (progn (backward-word)(point)))(end (progn (forward-word) (point))))
+	(evil-yank start end))))
 #+END_SRC
 *** cover with better keybindings
 #+BEGIN_SRC emacs-lisp
