@@ -4,8 +4,8 @@
 !elpa
 !stanhe.org
 !README.md
-lisp/**/*-autoload.el
+!lisp/*.el
+/lisp/**/*-autoload.el
 !eshell/alias
 !screenshot
-elpa/gnupg
 !py

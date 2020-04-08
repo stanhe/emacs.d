@@ -15,6 +15,7 @@
 (defconst custom-open-win-apps-dir (concat "c:/Users/" user-login-name "/Eapps") "refer to the custom directory of all apps")
 (defconst custom-git-bash-path "c:/Program Files/Git/" "refer to custom git bash path")
 
+(use-package my-timer)
 (use-package my-test)
 (use-package gradle-mode)
 (use-package pop-eshell-mode
