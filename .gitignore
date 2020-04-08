@@ -5,7 +5,7 @@
 !stanhe.org
 !README.md
 !lisp/*.el
-/lisp/**/*-autoload.el
+lisp/**/*-autoload.el
 !eshell/alias
 !screenshot
 !py
