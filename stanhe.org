@@ -423,7 +423,7 @@
   (defun adb-input()
     (interactive)
     (let ((input (read-string "inupt string: ")))
-      (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
+      (w32-shell-execute "open" "adb" (concat "shell input text " (replace-regexp-in-string " " "%s" input)) 0)))
 
   (defun adb-sigle-del()
     (interactive)
@@ -665,6 +665,7 @@
 
   (defun eshell/_ec ()
     "clear buffer of eshell."
+    (interactive)
     (funcall 'sth-eshell-clear))
 
   (defun sth-copy-word()
