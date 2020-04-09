@@ -99,6 +99,7 @@
     :config 
     (evil-mode 1)
     (nvmap :prefix "SPC"
+      "a" 'sth-adb/body
       "q" 'quit-window
       "c" 'compile
       "SPC" 'random-color-theme
@@ -150,10 +151,10 @@
       "ag" 'counsel-ag
       "gb" 'gbash
       "gf" 'counsel-git
-      ;"gs" 'magit-status
+					  ;"gs" 'magit-status
       "gg" 'counsel-git-grep
       "go" 'counsel-git-log
-      ;"gl" 'magit-log-current
+					  ;"gl" 'magit-log-current
       "gt" 'gradle-task
       "gr" 'gradle-run
       "oa" 'org-agenda
@@ -191,12 +192,61 @@
       ("<right>" enlarge-window-horizontally "enlarge-horizontal")
       ("<f4>" shut-down-win "shut-down" :color blue)
       )
-    (defhydra stanhe (global-map "<f5>")
+    (defhydra sth-org (global-map "<f5>")
       "efficiency"
       ("o" show-my-okr "OKR" :color blue)
       ("k" org-agenda-list "agenda" :color blue)
       ("r" show-my-gtd "OKR-detail" :color blue)
       )
+    (defhydra sth-adb (:color pink
+			  :hint nil)
+      "
+  ^Home^             ^Input^           ^Delete^          ^Action
+  ^^^^^^^^-----------------------------------------------------------------
+  _h_: home          _i_: input        _d_: delete       _e_: enter
+  _b_: back          _c_: cmd          _m_: multDelete   _n_: next
+  "
+      ("h" adb-home)
+      ("b" adb-back)
+      ("i" adb-input)
+      ("c" adb-cmd)
+      ("d" adb-sigle-del)
+      ("m" adb-mult-del)
+      ("e" adb-enter)
+      ("n" adb-next)
+      ("c" nil "cancel")
+      )
+    (defhydra hydra-buffer-menu (:color pink
+					:hint nil)
+      "
+  ^Mark^             ^Unmark^           ^Actions^          ^Search
+  ^^^^^^^^-----------------------------------------------------------------
+  _m_: mark          _u_: unmark        _x_: execute       _R_: re-isearch
+  _s_: save          _U_: unmark up     _b_: bury          _I_: isearch
+  _d_: delete        ^ ^                _g_: refresh       _O_: multi-occur
+  _D_: delete up     ^ ^                _T_: files only: % -28`Buffer-menu-files-only
+  _~_: modified
+  "
+      ("m" Buffer-menu-mark)
+      ("u" Buffer-menu-unmark)
+      ("U" Buffer-menu-backup-unmark)
+      ("d" Buffer-menu-delete)
+      ("D" Buffer-menu-delete-backwards)
+      ("s" Buffer-menu-save)
+      ("~" Buffer-menu-not-modified)
+      ("x" Buffer-menu-execute)
+      ("b" Buffer-menu-bury)
+      ("g" revert-buffer)
+      ("T" Buffer-menu-toggle-files-only)
+      ("O" Buffer-menu-multi-occur :color blue)
+      ("I" Buffer-menu-isearch-buffers :color blue)
+      ("R" Buffer-menu-isearch-buffers-regexp :color blue)
+      ("c" nil "cancel")
+      ("v" Buffer-menu-select "select" :color blue)
+      ("o" Buffer-menu-other-window "other-window" :color blue)
+      ("q" quit-window "quit" :color blue))
+
+    (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
     )
 
   (use-package neotree
@@ -420,8 +470,8 @@
 
   (define-key
     global-map
-    [menu-bar mymenu  input]
-    '("Input" . adb-input))
+    [menu-bar mymenu  cmd]
+    '("Cmd" . adb-cmd))
   ;;(menu-bar-mode -1)
 
 #+END_SRC
