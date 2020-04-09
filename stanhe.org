@@ -214,7 +214,7 @@
       ("m" adb-mult-del)
       ("e" adb-enter)
       ("n" adb-next)
-      ("c" nil "cancel")
+      ("q" nil "cancel")
       )
     (defhydra hydra-buffer-menu (:color pink
 					:hint nil)
