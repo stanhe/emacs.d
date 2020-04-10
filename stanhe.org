@@ -206,10 +206,12 @@
   ^^^^^^^^-----------------------------------------------------------------
   _h_: home          _i_: input        _d_: delete       _e_: enter
   _b_: back          _c_: cmd          _m_: multDelete   _n_: next
+  ^ ^                _r_: cycleInput
   "
       ("h" adb-home)
       ("b" adb-back)
       ("i" adb-input-enter)
+      ("r" adb-cycle-input-enter)
       ("c" adb-cmd)
       ("d" adb-sigle-del)
       ("m" adb-mult-del)
@@ -453,6 +455,13 @@
     (interactive)
     (adb-input)
     (adb-enter))
+
+  (defun adb-cycle-input-enter()
+    "cycle input and enter"
+    (interactive)
+    (adb-input)
+    (adb-enter)
+    (adb-input))
 
   (define-key-after
     global-map
