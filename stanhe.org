@@ -118,6 +118,7 @@
       "fb" 'open-file-browse
       "ff" 'counsel-find-file
       "fr" 'counsel-recentf
+      "fs" 'save-buffer
       "x" 'counsel-M-x
       "y" 'sth-copy-word
       ;;"o" 'open-win-application
@@ -208,7 +209,7 @@
   "
       ("h" adb-home)
       ("b" adb-back)
-      ("i" adb-input)
+      ("i" adb-input-enter)
       ("c" adb-cmd)
       ("d" adb-sigle-del)
       ("m" adb-mult-del)
@@ -445,7 +446,13 @@
   (defun adb-cmd()
     (interactive)
     (let ((input (read-string "input string: ")))
-      (w32-shell-execute "open" "adb" input 0)))
+      (w32-shell-execute "open" "adb" (concat " shell " input) 0)))
+
+  (defun adb-input-enter()
+    "input adb text and enter"
+    (interactive)
+    (adb-input)
+    (adb-enter))
 
   (define-key-after
     global-map
