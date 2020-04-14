@@ -101,6 +101,7 @@
     (nvmap :prefix "SPC"
       "a" 'sth-adb/body
       "q" 'quit-window
+      "p" 'projectile-command-map
       "c" 'compile
       "SPC" 'random-color-theme
       "rr" 'quickrun-shell
