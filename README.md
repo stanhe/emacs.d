@@ -30,9 +30,9 @@ It's easy to start and use, try this:
 
 Prefix key |Functions|Description
 -|-|-
-, x|main functions for edit|<img src="./screenshot/pre-dot.gif">
-F2|fast functions|<img src="./screenshot/pre-f2.gif">
-Space|other features|<img src="./screenshot/pre-spc.gif">
+, x|main functions for edit|<img src="https://gitee.com/stanhe/gif/raw/master/pre-dot.gif">
+F2|fast functions|<img src="https://gitee.com/stanhe/gif/raw/master/pre-f2.gif">
+Space|other features|<img src="https://gitee.com/stanhe/gif/raw/master/pre-spc.gif">
 
 ## Custom
 All config files :
