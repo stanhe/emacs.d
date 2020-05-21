@@ -708,8 +708,8 @@
   (defun sth-set-map-path()
     "set sth-map-paths"
     (interactive)
-    (let* ((p1 "c:/Users/stan/Software/tools/.mcd_path")
-	   (p2 "c:/Users/stan/tools/.mcd_path")
+    (let* ((p1 (concat "c:/Users/" user-login-name "/Software/tools/.mcd_path"))
+	   (p2 (concat "c:/Users/" user-login-name "/tools/.mcd_path"))
 	   (sth-map-path
 	    (cond
 	     ((file-exists-p p1) p1)
