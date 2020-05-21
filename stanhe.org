@@ -117,7 +117,7 @@
       "e" 'eval-current-line
       "df" 'sth-defun
       "fb" 'open-file-browse
-      "ff" 'counsel-find-file
+      "ff" 'sth-find-file
       "fr" 'counsel-recentf
       "fs" 'save-buffer
       "x" 'counsel-M-x
@@ -134,7 +134,7 @@
       "xq" 'delete-window
       "x2" 'split-window-below
       "x3" 'split-window-right
-      "xf" 'counsel-find-file
+      "xf" 'sth-find-file
       "xm" 'counsel-M-x
       "xr" 'counsel-recentf
       "xb" 'ivy-switch-buffer
@@ -698,6 +698,36 @@
     (save-excursion
       (let ((start (progn (backward-word)(point)))(end (progn (forward-word) (point))))
 	(evil-yank start end))))
+
+  (defun sth-read-lines (filePath)
+    "Return a list of lines of a file at filePath."
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (split-string (buffer-string) "\n" t)))
+
+  (defun sth-set-map-path()
+    "set sth-map-paths"
+    (let* ((p1 "c:/Users/stan/Software/tools/.mcd_path")
+	   (p2 "c:/Users/stan/tools/.mcd_path")
+	   (sth-map-path
+	    (cond
+	     ((file-exists-p p1) p1)
+	     ((file-exists-p p2) p2))))
+      (setq sth-map-paths (mapcar
+       (lambda (arg)(replace-regexp-in-string "\"" "" arg))
+       (sth-read-lines sth-map-path)))))
+
+  (defun sth-find-file(dir)
+    "my find file."
+    (interactive
+     (list(if current-prefix-arg
+	      (let ((val (prefix-numeric-value current-prefix-arg)))
+		(if sth-map-paths (some (lambda (arg)(if (= (string-to-number (car (split-string arg))) val) (nth 1 (split-string arg)) nil)) sth-map-paths)
+		  default-directory)
+		)
+	    default-directory
+	    )))
+    (counsel-find-file dir))
 #+END_SRC
 *** cover with better keybindings
 #+BEGIN_SRC emacs-lisp

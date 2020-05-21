@@ -11,6 +11,7 @@
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))
 
 ;;add all my custom modes.
+(sth-set-map-path) ;;set my map-files
 (init-my-load-path)
 (defconst custom-open-win-apps-dir (concat "c:/Users/" user-login-name "/Eapps") "refer to the custom directory of all apps")
 (defconst custom-git-bash-path "c:/Program Files/Git/" "refer to custom git bash path")
