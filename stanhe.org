@@ -672,9 +672,9 @@
   (defmacro sth-loading(seconds msg &optional action)
     "my custom loading."
     `(dotimes-with-progress-reporter
-	(k (* ,seconds 100) (when ,action ,action))
-	,msg
-      (sit-for 0.01)))
+	 (k (* ,seconds 100) (when ,action ,action))
+	 ,msg
+       (sit-for 0.01)))
 
   (defun sth-idate()
     "insert current date"
@@ -713,10 +713,14 @@
 	   (sth-map-path
 	    (cond
 	     ((file-exists-p p1) p1)
-	     ((file-exists-p p2) p2))))
-      (setq sth-map-paths (mapcar
-       (lambda (arg)(replace-regexp-in-string "\"" "" arg))
-       (sth-read-lines sth-map-path)))))
+	     ((file-exists-p p2) p2)
+	     (t nil))))
+      (if sth-map-path 
+	  (setq sth-map-paths (mapcar
+			       (lambda (arg)(replace-regexp-in-string "\"" "" arg))
+			       (sth-read-lines sth-map-path)))
+	(setq sth-map-paths nil)
+	)))
 
   (defun sth-find-file(dir)
     "my find file."
