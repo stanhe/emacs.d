@@ -6,7 +6,7 @@ alias gaa git add .
 alias gii git init
 alias gd git diff
 alias gdc git diff --cached
-alias gp git push
+alias gpush git push
 alias gf git pull
 alias gcmsg git commit -m $*
 alias gl git lg $*
