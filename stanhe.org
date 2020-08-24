@@ -118,6 +118,7 @@
       "df" 'sth-defun
       "fb" 'open-file-browse
       "ff" 'sth-find-file
+      "fw" 'sth-open-in-wsl
       "fr" 'counsel-recentf
       "fs" 'save-buffer
       "x" 'counsel-M-x
@@ -300,7 +301,8 @@
     (ivy-mode 1)
     (ivy-set-actions
      'counsel-find-file
-     '(("D" delete-file "delete")))
+     '(("D" delete-file "delete")
+       ("e" sth-open-in-wsl "wsl")))
     (ivy-set-actions
      'open-file-application
      '(("d" dired "dired")
@@ -733,6 +735,17 @@
 	    default-directory
 	    )))
     (counsel-find-file dir))
+
+  (defun sth-open-in-wsl(dir)
+    "open file with wsl-terminal"
+    (interactive (list (if current-prefix-arg
+			   (file-name-as-directory (read-directory-name " Input Directory to open folder: " default-directory))
+			 default-directory)))
+    ;;(message "==> path is: %s" dir)
+    (w32-shell-execute "open" "open-wsl" (concat "-W " (if (file-directory-p dir)
+							   dir
+							 (file-name-directory dir)))))
+
 #+END_SRC
 *** cover with better keybindings
 #+BEGIN_SRC emacs-lisp
