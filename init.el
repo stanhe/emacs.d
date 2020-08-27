@@ -22,7 +22,7 @@
 (use-package pop-eshell-mode
   :init
   (setq pop-find-parent-directory '(".git" "gradlew" ".projectile"))
-  :commands (fast-eshell-pop eshell-pop-togger)
+  :commands (fast-eshell-pop eshell-pop-toggle)
   :config
   (add-hook 'eshell-mode-hook (lambda () (local-set-key (kbd "C-l") #'sth-eshell-clear))))
 
