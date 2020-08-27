@@ -302,7 +302,9 @@
     (ivy-set-actions
      'counsel-find-file
      '(("D" delete-file "delete")
-       ("e" sth-open-in-wsl "wsl")))
+       ("e" sth-open-in-wsl "wsl")
+       ("f" open-file-browse "open in file browse")
+       ("g" gbash "open in git-bash")))
     (ivy-set-actions
      'open-file-application
      '(("d" dired "dired")
