@@ -130,7 +130,7 @@
       "xq" 'delete-window
       "x2" 'split-window-below
       "x3" 'split-window-right
-      "xf" 'counsel-find-file
+      "xf" 'sth-find-file
       "xm" 'counsel-M-x
       "xr" 'counsel-recentf
       "xb" 'ivy-switch-buffer
@@ -473,6 +473,11 @@
     (interactive)
     (let ((process-connection-type nil))
       (start-process "" nil "nautilus" (expand-file-name  default-directory))))
+      
+  (defun sth-find-file()
+    "my find file"
+    (interactive)
+    (counsel-find-file "~/"))
 #+END_SRC
 *** cover with better keybindings
 #+BEGIN_SRC emacs-lisp
