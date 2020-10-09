@@ -481,7 +481,10 @@
     (counsel-find-file "~/"))
 #+END_SRC
 *** cover with better keybindings
+
 #+BEGIN_SRC emacs-lisp
+
+  (define-key evil-insert-state-map (kbd "jj") 'evil-normal-state)    
   (global-set-key (kbd "C-h") 'delete-backward-char)
   (global-set-key (kbd "C-SPC") 'delete-window)
   (global-set-key (kbd "M-/") 'hippie-expand)
