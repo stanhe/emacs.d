@@ -23,6 +23,7 @@
 (add-to-list 'load-path my-lisp-path)
 (add-to-list 'default-frame-alist '(alpha . (91 . 50)))
 ;;(set-frame-parameter (selected-frame) 'alpha '(91 . 50))
+(setq mac-command-modifier 'control)
 
 #+END_SRC
 ** Packages and elpa configurations
