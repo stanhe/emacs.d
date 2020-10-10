@@ -314,6 +314,11 @@
       "q" 'quit-window
       "k" 'quickrun--kill-running-process))
 
+  (use-package key-chord
+    :config
+    (key-chord-mode 1)
+    (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
+
   ;; ====================================== feature ====================================
   ;; markdown
   (use-package markdown-mode
@@ -484,7 +489,6 @@
 
 #+BEGIN_SRC emacs-lisp
 
-  (define-key evil-insert-state-map (kbd "jj") 'evil-normal-state)    
   (global-set-key (kbd "C-h") 'delete-backward-char)
   (global-set-key (kbd "C-SPC") 'delete-window)
   (global-set-key (kbd "M-/") 'hippie-expand)
