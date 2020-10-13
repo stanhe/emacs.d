@@ -102,6 +102,8 @@
     :config 
     (evil-mode 1)
     (nvmap :prefix "SPC"
+      "tn" 'fast-eshell-pop
+      "tm" 'eshell-pop-toggle
       "q" 'quit-window
       "c" 'compile
       "SPC" 'random-color-theme

@@ -16,6 +16,8 @@
 (use-package gradle-mode)
 (use-package pop-eshell-mode
   :init
-  (setq pop-find-parent-directory '(".git" "gradlew")))
+  (setq pop-find-parent-directory '(".git" "gradlew"))
+  :config
+  (pop-eshell-mode))
 
 ;;(run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (load-theme 'monokai))))
