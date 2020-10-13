@@ -38,6 +38,7 @@
 #+BEGIN_SRC emacs-lisp
   (defvar stanhe/packages '(
 			    ;; ========basic=======
+			    benchmark-init
 			    use-package
 			    neotree
 			    ace-window
@@ -70,12 +71,12 @@
 #+END_SRC
 *** check and install 
 #+BEGIN_SRC emacs-lisp
-  (require 'cl)
+  (require 'cl-lib)
 
   (setq package-selected-packages stanhe/packages)
 
   (defun stanhe/packages-install-p ()
-    (loop for pkg in stanhe/packages
+    (cl-loop for pkg in stanhe/packages
 	  when (not (package-installed-p pkg)) do (return nil)
 	  finally (return t)))
 
@@ -280,14 +281,17 @@
     (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil))
 
   (use-package which-key
+    :defer 1
     :config
     (which-key-mode 1))
 
   (use-package window-numbering
+    :defer 3
     :config
     (window-numbering-mode 1))
 
   (use-package popwin
+    :defer 3
     :config
     (popwin-mode 1))
 
@@ -314,6 +318,7 @@
     (projectile-mode))
 
   (use-package magit
+    :defer 5
     :init
     (keychain-refresh-environment)
     (setq magit-completing-read-function 'ivy-completing-read))
@@ -334,6 +339,7 @@
 
   ;; ====================================== feature ====================================
   (use-package js2-mode
+    :disabled
     :defer 5
     :init
     (setq auto-mode-alist
@@ -343,6 +349,7 @@
 
   ;; clojure
   (use-package clojure-mode
+    :disabled
     :defer 5
     :init
     (add-hook 'clojure-mode-hook #'paredit-mode)
@@ -356,6 +363,7 @@
       ))
 
   (use-package clj-refactor
+    :disabled
     :defer 5
     :init
     (defun my-clojure-mode-hook ()
@@ -367,6 +375,7 @@
 
   ;;python
   (use-package company-jedi
+    :disabled
     :defer 5
     :config
     (add-hook 'python-mode-hook (lambda ()
@@ -425,7 +434,7 @@
   (defun show-me-the-colors ()
     "random color theme"
     (interactive)
-    (loop do
+    (cl-loop do
 	  (random-color-theme)
 	  (unless (sit-for 3)
 	    (keyboard-quit))))
