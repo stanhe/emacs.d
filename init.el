@@ -6,6 +6,7 @@
 ;; You may delete these explanatory comments.
 (setq package-enable-at-startup nil)
 (package-initialize)
+(setq byte-compile-warnings '(cl-functions))
 
 ;;init with org-file.
 (org-babel-load-file (expand-file-name "stanhe.org" user-emacs-directory))
