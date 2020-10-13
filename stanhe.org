@@ -38,7 +38,6 @@
 #+BEGIN_SRC emacs-lisp
   (defvar stanhe/packages '(
 			    ;; ========basic=======
-			    benchmark-init
 			    use-package
 			    neotree
 			    ace-window
@@ -46,26 +45,13 @@
 			    hungry-delete
 			    counsel
 			    evil
-			    hydra
 			    general
 			    smartparens
 			    which-key
 			    window-numbering
 			    popwin
-			    monokai-theme
 			    counsel-projectile
-			    ;magit
-			    keychain-environment
-			    quickrun
-			    ;; ========feature========
-			    ;; clojure
-			    ;clojure-mode
-			    ;clj-refactor
-			    ;cider
-			    ;paredit
-			    ;;python
-			    ;company-jedi;;python auto-company https://github.com/syohex/emacs-company-jedi
-
+			    magit
 			    ) "My default packages")
 
 #+END_SRC
@@ -77,8 +63,8 @@
 
   (defun stanhe/packages-install-p ()
     (cl-loop for pkg in stanhe/packages
-	  when (not (package-installed-p pkg)) do (return nil)
-	  finally (return t)))
+	  when (not (package-installed-p pkg)) do (cl-return nil)
+	  finally (cl-return t)))
 
   (unless (stanhe/packages-install-p)
     (message "%s" "Refreshing package database...")
@@ -161,30 +147,6 @@
       "nt" 'neotree-toggle
       )
     )
-
-  (use-package hydra
-    :defer 3
-    :config
-    (defhydra hydra-zoom (global-map "<f2>")
-      "functions"
-      ("q" keyboard-quit "quit" :color blue)
-      ("i" text-scale-increase "text-increase")
-      ("d" text-scale-decrease "text-decrease")
-      ("r" (text-scale-set 0) "reset text" :color blue)
-      ("n" neotree-toggle "neotree" :color blue)
-      ("m" eshell-pop-toggle "eshell bottom" :color blue)
-      ("l" fast-eshell-pop "eshell full window" :color blue)
-      ("p" back-to-previous-buffer "swap-last" :color blue)
-      ("k" kill-buffer "kill-buffer" :color blue)
-      ("b" ivy-switch-buffer "switch-buffer" :color blue)
-
-      ("-" shrink-window-if-larger-than-buffer "shrink-if-larger" :color blue)
-      ("=" balance-windows "balance-window" :color blue)
-      ("<up>" enlarge-window "enlarge-window")
-      ("<down>" shrink-window "balance-window")
-      ("<left>" shrink-window-horizontally "shrink-horizontal")
-      ("<right>" enlarge-window-horizontally "enlarge-horizontal")
-      ))
 
   (use-package neotree
     :defer 3
@@ -338,50 +300,11 @@
     (key-chord-mode 1)
     (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
-  ;; ====================================== feature ====================================
-  (use-package js2-mode
-    :disabled
+  (use-package magit
     :defer 5
     :init
-    (setq auto-mode-alist
-	  (append
-	   '(("\\.js\\'" . js2-mode))
-	   auto-mode-alist)))
-
-  ;; clojure
-  (use-package clojure-mode
-    :disabled
-    :defer 5
-    :init
-    (add-hook 'clojure-mode-hook #'paredit-mode)
-    :config
-    (setq cider-repl-result-prefix ";; => ")
-    (nvmap :states '(insert normal emacs)
-      ;;:keymaps 'cider-mode-map
-      "M-." 'cider-find-var
-      "DEL" 'hungry-delete-backward
-      "M-DEL" 'paredit-backward-delete
-      ))
-
-  (use-package clj-refactor
-    :disabled
-    :defer 5
-    :init
-    (defun my-clojure-mode-hook ()
-      (clj-refactor-mode 1)
-      (yas-minor-mode 1)
-      (cljr-add-keybindings-with-prefix "C-c C-m"))
-    :config
-    (add-hook 'clojure-mode-hook #'my-clojure-mode-hook))
-
-  ;;python
-  (use-package company-jedi
-    :disabled
-    :defer 5
-    :config
-    (add-hook 'python-mode-hook (lambda ()
-				  (interactive)
-				  (add-to-list 'company-backends 'company-jedi))))
+    (keychain-refresh-environment)
+    (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
 ** Custom Functions
 *** adb functions

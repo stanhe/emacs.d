@@ -12,10 +12,6 @@
       (gc-cons-threshold most-positive-fixnum)
       ;; 清空避免加载远程文件的时候分析文件。
       (file-name-handler-alist nil))
-  (require 'benchmark-init-modes)
-  (require 'benchmark-init)
-  (benchmark-init/activate)
-
     ;; ===> 配置 开始
 
   ;;init with org-file.
