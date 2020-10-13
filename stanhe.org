@@ -415,6 +415,11 @@
   (use-package paredit
     :defer 6)
 
+  (use-package key-chord
+    :defer 3
+    :config
+    (key-chord-mode 1)
+    (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 #+END_SRC
 ** Custom Functions
 *** adb functions and menu 
