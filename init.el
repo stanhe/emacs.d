@@ -20,6 +20,7 @@
 (use-package my-test)
 (use-package gradle-mode)
 (use-package pop-eshell-mode
+  :defer 3
   :init
   (setq pop-find-parent-directory '(".git" "gradlew" ".projectile"))
   :commands (fast-eshell-pop eshell-pop-toggle)
@@ -27,4 +28,4 @@
   (add-hook 'eshell-mode-hook (lambda () (local-set-key (kbd "C-l") #'sth-eshell-clear))))
 
 ;;(run-with-idle-timer 1 nil (lambda () (sth-theme-by-time)))
-(run-with-idle-timer 1 nil (lambda () (sth-loading 2 "Loading Emacs plugins..." (sth-theme-by-time))))
+;;(run-with-idle-timer 1 nil (lambda () (sth-loading 2 "Loading Emacs plugins..." (sth-theme-by-time))))
