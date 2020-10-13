@@ -62,10 +62,6 @@
 			    clj-refactor
 			    cider
 			    paredit
-			    ;; markdown 
-			    js2-mode
-			    gh-md
-			    markdown-mode
 			    ;;python
 			    company-jedi;;python auto-company https://github.com/syohex/emacs-company-jedi
 
@@ -97,6 +93,7 @@
   (require 'my-abbrev)
 
   (use-package evil
+    :defer 1
     :init
     (general-evil-setup t)
     :config 
@@ -165,6 +162,7 @@
     )
 
   (use-package hydra
+    :defer 3
     :config
     (defhydra hydra-zoom (global-map "<f2>")
       "functions"
@@ -188,6 +186,7 @@
       ))
 
   (use-package neotree
+    :defer 3
     :config
     (setq neo-smart-open t)
     (nvmap :status '(normal emacs)
@@ -209,6 +208,7 @@
       ))
 
   (use-package image-mode
+    :defer 6
     :config
     (nvmap :status '(normal emacs)
       :keymaps '(image-mode-map)
@@ -221,6 +221,7 @@
       ))
 
   (use-package counsel
+    :defer 3 
     :init
     (setq ivy-use-virtual-buffers t
 	  ivy-count-format "(%d/%d) "
@@ -246,6 +247,7 @@
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
   (use-package company
+    :defer 3
     :init
     (global-company-mode 1)
     (setq company-idle-delay 0.1
@@ -258,10 +260,12 @@
       "C-p" 'company-select-previous))
 
   (use-package hungry-delete
+    :defer 3
     :config
     (global-hungry-delete-mode))
 
   (use-package org
+    :defer 3
     :init
     (setq org-src-fontify-natively t
 	  org-log-done 'time
@@ -269,6 +273,7 @@
 	  org-confirm-babel-evaluate nil))
 
   (use-package smartparens-config
+    :defer 5
     :config
     (show-paren-mode)
     (smartparens-global-mode)
@@ -286,8 +291,10 @@
     :config
     (popwin-mode 1))
 
-  (use-package dired-x)
+  (use-package dired-x
+    :defer 3)
   (use-package dired
+    :defer 3
     :init
     (setq dired-recursive-deletes 'always
 	  dired-recursive-copies 'always
@@ -296,9 +303,11 @@
     (put 'dired-find-alternate-file 'disabled nil)
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
 
-  (use-package ace-window)
+  (use-package ace-window
+    :defer 2)
 
   (use-package projectile
+    :defer 3
     :init
     (setq projectile-completion-system 'ivy)
     :config
@@ -310,6 +319,7 @@
     (setq magit-completing-read-function 'ivy-completing-read))
 
   (use-package quickrun
+    :defer 3
     :config
     (nvmap :status '(normal emacs)
       :keymaps 'quickrun--mode-map
@@ -317,21 +327,14 @@
       "k" 'quickrun--kill-running-process))
 
   (use-package key-chord
+    :defer 3
     :config
     (key-chord-mode 1)
     (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
   ;; ====================================== feature ====================================
-  ;; markdown
-  (use-package markdown-mode
-    :mode (("README\\.md\\'" . gfm-mode)
-	   ("\\.md\\'" . markdown-mode)
-	   ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "multimarkdown"))
-
-  (use-package gh-md)
-
   (use-package js2-mode
+    :defer 5
     :init
     (setq auto-mode-alist
 	  (append
@@ -340,6 +343,7 @@
 
   ;; clojure
   (use-package clojure-mode
+    :defer 5
     :init
     (add-hook 'clojure-mode-hook #'paredit-mode)
     :config
@@ -352,6 +356,7 @@
       ))
 
   (use-package clj-refactor
+    :defer 5
     :init
     (defun my-clojure-mode-hook ()
       (clj-refactor-mode 1)
@@ -362,6 +367,7 @@
 
   ;;python
   (use-package company-jedi
+    :defer 5
     :config
     (add-hook 'python-mode-hook (lambda ()
 				  (interactive)

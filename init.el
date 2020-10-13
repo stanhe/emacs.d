@@ -14,8 +14,10 @@
 ;;add all my custom modes.
 (init-my-load-path)
 (choose-theme-by-time)
-(use-package gradle-mode)
+(use-package gradle-mode
+  :defer 3)
 (use-package pop-eshell-mode
+  :defer 3
   :init
   (setq pop-find-parent-directory '(".git" "gradlew"))
   :config
