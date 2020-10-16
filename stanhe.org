@@ -231,10 +231,16 @@
   (use-package org
     :defer 3
     :init
-    (setq org-src-fontify-natively t
-	  org-log-done 'time
-	  org-agenda-files '("~/org/")
-	  org-confirm-babel-evaluate nil))
+    (setq
+     org-src-fontify-natively t
+     org-log-done 'time
+     org-agenda-files '("~/.org/")
+     org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
+			   (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+			   (sequence "DELAY(l)" "|" "CANCELED(c)")
+			   (sequence "|" "NOTE(n)"))
+     org-confirm-babel-evaluate nil
+     org-agenda-include-diary t))
 
   (use-package smartparens-config
     :defer 5
