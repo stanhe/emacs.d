@@ -86,6 +86,7 @@
     :config 
     (evil-mode 1)
     (nvmap :prefix "SPC"
+      "j" 'json-pretty-print
       "tn" 'fast-eshell-pop
       "tm" 'eshell-pop-toggle
       "q" 'quit-window
