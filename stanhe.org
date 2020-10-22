@@ -40,6 +40,7 @@
 			    ;; ========basic=======
 			    use-package
 			    neotree
+			    avy
 			    ace-window
 			    company
 			    hungry-delete
@@ -302,10 +303,15 @@
       "k" 'quickrun--kill-running-process))
 
   (use-package key-chord
-    :defer 3
+    :defer 2
     :config
     (key-chord-mode 1)
     (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
+
+  (use-package avy
+    :defer 1
+    :config
+    (global-set-key (kbd "C-;") 'avy-goto-word-or-subword-1))
 
   (use-package magit
     :defer 5
