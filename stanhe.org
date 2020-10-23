@@ -440,8 +440,8 @@
     "choose the theme by time now."
     (interactive)
     (let ((now (string-to-number (format-time-string "%H"))))
-      (cond ((< now 12) (load-theme 'sanityinc-tomorrow-blue 1))
-	    ((< now 18) (load-theme 'sanityinc-tomorrow-eighties 1))
+      (cond ((< now 6) (load-theme 'sanityinc-tomorrow-blue 1))
+	    ((< now 22) (load-theme 'sanityinc-tomorrow-day 1))
 	    (t (load-theme 'sanityinc-tomorrow-night 1)))))
 
   (defun eshell/clear ()      
