@@ -43,6 +43,7 @@
 			    avy
 			    ace-window
 			    company
+			    company-tabnine
 			    hungry-delete
 			    counsel
 			    evil
@@ -318,6 +319,9 @@
     :init
     (keychain-refresh-environment)
     (setq magit-completing-read-function 'ivy-completing-read))
+
+  (use-package company-tabnine :ensure t)
+
 #+END_SRC
 ** Custom Functions
 *** adb functions
