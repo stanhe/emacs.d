@@ -323,6 +323,7 @@
   ;;============================= tabnine config start ========================================
 
   (use-package company-tabnine 
+    :defer 3
     :ensure t
     :config
     (add-to-list 'company-backends #'company-tabnine))
