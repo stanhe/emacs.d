@@ -110,9 +110,11 @@
       "x" 'counsel-M-x
       "fm" 'my-config-file)
     (nvmap :prefix ","
+      "c" 'save-buffers-kill-terminal
+      "q" 'delete-window
+      "w" 'save-buffer
       "p" 'projectile-command-map
       "v" 'evil-visual-block
-
       "x1" 'delete-other-windows
       "xo" 'other-window
       "x0" 'delete-window
