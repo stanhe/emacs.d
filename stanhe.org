@@ -101,7 +101,6 @@
       "s" 'show-me-the-colors
       "m" 'counsel-load-theme
       "n" 'display-line-numbers-mode
-      "g" 'sth-open-in-terminal
       "e" 'my-eval-current-end
       "df" 'sth-defun
       "fb" 'open-file-browse
@@ -442,17 +441,6 @@
       (end-of-line)
       (call-interactively 'eval-last-sexp)))
 
-  (defun sth-open-in-terminal()
-    "open current dir in a new terminal window."
-    (interactive)
-    (cond
-     ((string-equal system-type "gnu/linux")
-      (let ((process-connection-type nil))
-	(start-process "" nil "gnome-terminal" (concat "--working-directory=" default-directory))))
-     ((string-equal system-type "windows-nt")
-      (let ((process-connection-type nil))
-	(start-process "" nil "powershell" "start-process" "powershell"  "-workingDirectory" default-directory)))))
-
   (defmacro _loading(seconds msg &optional action)
      "my custom loading."
      `(dotimes-with-progress-reporter
@@ -461,11 +449,10 @@
        (sit-for 0.01)))
 
   (defun open-file-browse()
-    "open file in browse"
-    (interactive)
-    (let ((process-connection-type nil))
-      (start-process "" nil "nautilus" (expand-file-name  default-directory))))
-      
+     "open file in browse"
+     (interactive)
+     (shell-command (concat "open " (expand-file-name default-directory))))
+
   (defun sth-find-file()
     "my find file"
     (interactive)
