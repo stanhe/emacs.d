@@ -345,7 +345,7 @@
 
   (add-to-list 'company-transformers 'company//sort-by-tabnine t)
   ;; `:separate`  使得不同 backend 分开排序
-  (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))
+  (add-to-list 'company-backends '(company-elisp :with company-tabnine :separate))
 
   ;;============================= tabnine config end ========================================
 
