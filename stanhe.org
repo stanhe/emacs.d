@@ -53,6 +53,7 @@
 			    window-numbering
 			    popwin
 			    counsel-projectile
+			    slime
 			    ) "My default packages")
 
 #+END_SRC
@@ -304,6 +305,11 @@
     :defer 1
     :config
     (global-set-key (kbd "C-;") 'avy-goto-word-or-subword-1))
+
+  (use-package slime
+    :defer 3
+    :config
+    (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 
   ;;============================= tabnine config start ========================================
 
