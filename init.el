@@ -29,7 +29,7 @@
     :config
     (pop-eshell-mode))
 
-  ;;(run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (load-theme 'monokai))))
+  ;;(run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (load-theme 'sanityinc-tomorrow-day))))
 
     ;; ===> 配置 结束 
 )
