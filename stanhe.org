@@ -24,7 +24,7 @@
 (add-to-list 'default-frame-alist '(alpha . (91 . 90)))
 ;;(set-frame-parameter (selected-frame) 'alpha '(91 . 80))
 (setq mac-command-modifier 'control)
-
+;;(add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-interaction-mode))
 #+END_SRC
 ** Packages and elpa configurations
 *** elpa
@@ -52,7 +52,7 @@
 			    window-numbering
 			    popwin
 			    counsel-projectile
-			    slime
+			    sly
 			    ) "My default packages")
 
 #+END_SRC
@@ -93,7 +93,7 @@
       "q" 'quit-window
       "c" 'compile
       "SPC" 'random-color-theme
-      "r" 'quickrun
+      "r" 'sth-quickrun
       "a" 'quickrun-with-arg
       "bk" 'kill-buffer
       "bs" 'ivy-switch-buffer
@@ -305,7 +305,7 @@
     :config
     (global-set-key (kbd "C-;") 'avy-goto-word-or-subword-1))
 
-  (use-package slime
+  (use-package sly
     :defer 3
     :config
     (setq inferior-lisp-program "/usr/local/bin/sbcl"))
@@ -418,6 +418,12 @@
     "my find file"
     (interactive)
     (counsel-find-file "~/"))
+
+  (defun sth-quickrun()
+    "my custom quickrun,need define each time!"
+    (interactive)
+    (message "please use your custom sth-quickrun!"))
+
 #+END_SRC
 *** cover with better keybindings
 
