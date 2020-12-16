@@ -24,7 +24,7 @@
 (add-to-list 'default-frame-alist '(alpha . (91 . 90)))
 ;;(set-frame-parameter (selected-frame) 'alpha '(91 . 80))
 (setq mac-command-modifier 'control)
-;;(add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-interaction-mode))
+(add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-interaction-mode))
 #+END_SRC
 ** Packages and elpa configurations
 *** elpa
