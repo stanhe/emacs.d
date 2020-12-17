@@ -447,9 +447,7 @@
 	(if (eq (string-match "#" item) 0)
 	    nil
 	  (progn
-	    ;;(princ (format "%s\n"  item))
-	    (string-match ":" item)
-	    (setq item (substring item (1+ (string-match ":" item)) (length item)))
+	    (setq item (replace-regexp-in-string ".+:" "" item))
 	    (setq paths (cons item paths))))
 	(setq num (1+ num)))
       (ivy-read "open path of ~/.mcd_path in finder: "
@@ -462,7 +460,7 @@
     "open current directory in terminal"
     (interactive)
     (let ((path (expand-file-name default-directory)))
-      (when (eq (string-match "/" path) 0)
+      (when (string-equal "/" path) 
 	  (setq path "~"))
       (shell-command (concat "open " path " -a Terminal.app"))))
 #+END_SRC
