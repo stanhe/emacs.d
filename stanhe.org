@@ -92,6 +92,8 @@
       "tm" 'eshell-pop-toggle
       "q" 'quit-window
       "c" 'compile
+      "o" 'sth-open-mcd
+      "g" 'sth-open-terminal
       "SPC" 'random-color-theme
       "r" 'sth-quickrun
       "a" 'quickrun-with-arg
@@ -196,7 +198,10 @@
     (ivy-mode 1)
     (ivy-set-actions
      'counsel-find-file
-     '(("m" delete-file "delete")))
+     '(("m" delete-file "delete")
+       ("f" (lambda (x) (shell-command (concat "open " x))) "open in finder.")
+       ("t" (lambda (x) (shell-command (concat "open " x " -a Terminal.app"))) "open in terminal.")
+       ))
     (global-set-key "\C-s" 'swiper)
     (global-set-key (kbd "C-c C-r") 'ivy-resume)
     (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -351,15 +356,18 @@
     "my config file"
     (interactive)
     (find-file "~/.emacs.d/stanhe.org"))
+
   (defun back-to-previous-buffer ()
     (interactive)
     (switch-to-buffer nil))
+
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens."
     (cond ((looking-at-p "\\s(") (funcall fn))
 	  (t (save-excursion
 	       (ignore-errors (backward-up-list))
 	       (funcall fn)))))
+
   (defun show-me-the-colors ()
     "random color theme"
     (interactive)
@@ -424,6 +432,36 @@
     (interactive)
     (message "please use your custom sth-quickrun!"))
 
+  (defun sth-open-mcd ()
+    "open my cd ~/.mcd_path"
+    (interactive)
+    (setq my-cd "~/.mcd_path")
+    ;; read file
+    (defun read-lines (file)
+      (with-temp-buffer
+	(insert-file-contents file)
+	(split-string (buffer-string) "\n" t)))
+    (let* ((lines (read-lines my-cd))(num 0) (item nil) (paths (list)))
+      (while (< num (length lines))
+	(setq item (nth num lines))
+	(if (eq (string-match "#" item) 0)
+	    nil
+	  (progn
+	    ;;(princ (format "%s\n"  item))
+	    (string-match ":" item)
+	    (setq item (substring item (1+ (string-match ":" item)) (length item)))
+	    (setq paths (cons item paths))))
+	(setq num (1+ num)))
+      (ivy-read "open path of ~/.mcd_path in finder: "
+		(reverse paths)
+		:action '(1 ("f" (lambda (x) (shell-command (concat "open " x))) "open in finder")
+			    ("t" (lambda (x) (shell-command (concat "open " x " -a Terminal.app"))) "open in terminal"))
+		)))
+
+  (defun sth-open-terminal ()
+    "open current directory in terminal"
+    (interactive)
+    (shell-command (concat "open " (expand-file-name default-directory) " -a Terminal.app")))
 #+END_SRC
 *** cover with better keybindings
 
