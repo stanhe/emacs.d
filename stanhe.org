@@ -461,7 +461,10 @@
   (defun sth-open-terminal ()
     "open current directory in terminal"
     (interactive)
-    (shell-command (concat "open " (expand-file-name default-directory) " -a Terminal.app")))
+    (let ((path (expand-file-name default-directory)))
+      (when (eq (string-match "/" path) 0)
+	  (setq path "~"))
+      (shell-command (concat "open " path " -a Terminal.app"))))
 #+END_SRC
 *** cover with better keybindings
 
