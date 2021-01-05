@@ -245,7 +245,13 @@
 			   (sequence "DELAY(l)" "|" "CANCELED(c)")
 			   (sequence "|" "NOTE(n)"))
      org-confirm-babel-evaluate nil
-     org-agenda-include-diary t))
+     org-agenda-include-diary t)
+    :config
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (python . t)
+       (shell . t))))
 
   (use-package smartparens-config
     :defer 5
@@ -463,6 +469,18 @@
       (when (string-equal "/" path) 
 	  (setq path "~"))
       (shell-command (concat "open " path " -a Terminal.app"))))
+
+  (defun 500w ()
+    "random for 500W"
+    (interactive)
+    (let ((i nil))
+      (while (< (length i) 6)
+	(setq random_i (1+ (random 33)))
+	(unless (member random_i i)
+	  (push random_i i)))
+      (setq blue_ball (1+ (random 16)))
+      (setq result (reverse (append (list blue_ball '|) (sort i '>))))
+      (message "===> 500W: %s" result)))
 #+END_SRC
 *** cover with better keybindings
 
