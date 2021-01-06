@@ -87,6 +87,7 @@
     :config 
     (evil-mode 1)
     (nvmap :prefix "SPC"
+      "a" 'org-agenda
       "j" 'json-pretty-print
       "tn" 'fast-eshell-pop
       "tm" 'eshell-pop-toggle
@@ -96,7 +97,7 @@
       "g" 'sth-open-terminal
       "SPC" 'random-color-theme
       "r" 'sth-quickrun
-      "a" 'quickrun-with-arg
+      ;;"a" 'quickrun-with-arg
       "bk" 'kill-buffer
       "bs" 'ivy-switch-buffer
       "bb" 'back-to-previous-buffer
@@ -479,8 +480,8 @@
 	(unless (member random_i i)
 	  (push random_i i)))
       (setq blue_ball (1+ (random 16)))
-      (setq result (reverse (append (list blue_ball '|) (sort i '>))))
-      (message "===> 500W: %s" result)))
+      (setq result (mapconcat 'number-to-string (reverse (sort i '>)) " "))
+      (message "===> 500W: %s | %d" result blue_ball)))
 #+END_SRC
 *** cover with better keybindings
 
