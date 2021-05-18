@@ -91,6 +91,7 @@
       "j" 'json-pretty-print
       "tn" 'fast-eshell-pop
       "tm" 'eshell-pop-toggle
+      "ts" 'text-scale-adjust
       "q" 'quit-window
       "c" 'compile
       "o" 'sth-open-mcd
