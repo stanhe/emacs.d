@@ -111,6 +111,7 @@
       "ff" 'counsel-find-file
       "fr" 'counsel-recentf
       "x" 'counsel-M-x
+      "<tab>" 'org-show-subtree
       "fm" 'my-config-file)
     (nvmap :prefix ","
       "c" 'save-buffers-kill-terminal
