@@ -23,7 +23,8 @@
 (add-to-list 'load-path my-lisp-path)
 (add-to-list 'default-frame-alist '(alpha . (91 . 90)))
 (add-to-list 'org-file-apps '("\\.xlsx\\'" . "open %s"))
-(add-to-list 'org-file-apps '("\\.docs\\'" . "open %s"))
+(add-to-list 'org-file-apps '("\\.docs\\'" . "open -a 'wpsoffice' %s"))
+
 ;;(set-frame-parameter (selected-frame) 'alpha '(91 . 80))
 (setq mac-command-modifier 'control)
 (add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-interaction-mode))
