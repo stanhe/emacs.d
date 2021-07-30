@@ -30,9 +30,10 @@
   (add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-interaction-mode))
   (defun sth-open (path link)
     (let ((dir-path (file-name-directory path)))
-      (and (string-match-p "2.0" dir-path) (shell-command (concat "open -a 'Android Studio' " dir-path)))
-      (and (string-match-p "WeChatProjects" dir-path) (shell-command (concat "open -a 'wechatwebdevtools' ")))
-    ))
+      (cond
+       ((or (string-match-p "AndroidStudioProjects" dir-path) (string-match-p "2.0" dir-path)) (shell-command (concat "open -a 'Android Studio' " dir-path)))
+       ((string-match-p "WeChatProjects" dir-path) (shell-command (concat "open -a 'wechatwebdevtools' " dir-path)))
+       )))
   (add-to-list 'org-file-apps '("\\.git\\'" . sth-open))
 #+END_SRC
 ** Packages and elpa configurations
