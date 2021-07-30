@@ -39,7 +39,7 @@
 ** Packages and elpa configurations
 *** elpa
 #+BEGIN_SRC emacs-lisp
-					  ;init packages
+  ;init packages
   (when (>= emacs-major-version 24)
     (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
 			     ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
