@@ -256,7 +256,7 @@
      org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
 			   (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
 			   (sequence "DELAY(l)" "|" "CANCELED(c)")
-			   (sequence "|" "NOTE(n)"))
+			   (sequence "|" "NOTE(n)" "NEXT(x)"))
      org-confirm-babel-evaluate nil
      org-agenda-include-diary t)
     :config
