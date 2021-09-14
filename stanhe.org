@@ -380,28 +380,28 @@
   (define-key-after
     global-map
     [menu-bar mymenu]
-    (cons "ADB" (make-sparse-keymap ""))
+    (cons "STH-CMD" (make-sparse-keymap ""))
     'tools)
 
   (define-key
     global-map
     [menu-bar mymenu  input]
-    '("Input" . adb-input))
+    '("adb-input" . adb-input))
 
   (define-key
     global-map
     [menu-bar mymenu back]
-    '("Back" . adb-back))
+    '("adb-back" . adb-back))
 
   (define-key
     global-map
     [menu-bar mymenu  home]
-    '("Home" . adb-home))
+    '("adb-home" . adb-home))
 
   (define-key
     global-map
     [menu-bar mymenu  cmd]
-    '("Cmd" . adb-cmd))
+    '("adb-cmd" . adb-cmd))
 
 #+END_SRC
 *** my functions
