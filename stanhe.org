@@ -344,34 +344,65 @@
 #+BEGIN_SRC emacs-lisp 
   (defun adb-home ()
     (interactive)
-    (w32-shell-execute "open" "adb" " shell input keyevent 3 " 0))
+    (shell-command "adb shell input keyevent 3"))
 
   (defun adb-back ()
     (interactive)
-    (w32-shell-execute "open" "adb" " shell input keyevent 4 " 0))
+    (shell-command "adb shell input keyevent 4"))
+
+  (defun adb-cmd()
+    (interactive)
+    (let ((input (read-string "inupt cmd: ")))
+      (shell-command (concat "adb shell " input ))))
 
   (defun adb-input()
     (interactive)
     (let ((input (read-string "inupt string: ")))
-      (w32-shell-execute "open" "adb" (concat "shell input text " input ) 0)))
+      (shell-command (concat "adb shell input text " input ))))
 
   (defun adb-sigle-del()
     (interactive)
-    (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0))
+    (shell-command "adb shell input keyevent 67"))
 
   (defun adb-mult-del()
     (interactive)
     (dotimes (number 10)
-      (w32-shell-execute "open" "adb" " shell input keyevent 67 " 0)))
+      (shell-command "adb shell input keyevent 67")))
 
   (defun adb-enter()
     (interactive)
-    (w32-shell-execute "open" "adb" " shell input keyevent 66 " 0))
+    (shell-command "adb shell input keyevent 66"))
 
   (defun adb-next()
     (interactive)
-    (w32-shell-execute "open" "adb" " shell input keyevent 61 " 0))
-    
+    (shell-command "adb shell input keyevent 61"))
+
+  (define-key-after
+    global-map
+    [menu-bar mymenu]
+    (cons "ADB" (make-sparse-keymap ""))
+    'tools)
+
+  (define-key
+    global-map
+    [menu-bar mymenu  input]
+    '("Input" . adb-input))
+
+  (define-key
+    global-map
+    [menu-bar mymenu back]
+    '("Back" . adb-back))
+
+  (define-key
+    global-map
+    [menu-bar mymenu  home]
+    '("Home" . adb-home))
+
+  (define-key
+    global-map
+    [menu-bar mymenu  cmd]
+    '("Cmd" . adb-cmd))
+
 #+END_SRC
 *** my functions
 #+BEGIN_SRC emacs-lisp
