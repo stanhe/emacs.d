@@ -125,6 +125,7 @@
       "<tab>" 'org-show-subtree
       "fm" 'my-config-file)
     (nvmap :prefix ","
+      "," 'ace-jump-word-mode'
       "c" 'save-buffers-kill-terminal
       "q" 'delete-window
       "w" 'save-buffer

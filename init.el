@@ -20,6 +20,7 @@
   ;;add all my custom modes.
   (init-my-load-path)
   (choose-theme-by-time)
+  (use-package ace-jump-mode)
   (use-package gradle-mode
     :defer 3)
   (use-package pop-eshell-mode
