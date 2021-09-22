@@ -63,6 +63,7 @@
 			    popwin
 			    counsel-projectile
 			    sly
+			    color-theme-sanityinc-tomorrow
 			    ) "My default packages")
 
 #+END_SRC

@@ -31,7 +31,7 @@
  '(linum-format " %7i ")
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
-   '(jedi color-theme-sanityinc-tomorrow sublime-themes organic-green-theme calmer-forest-theme green-screen-theme use-package neotree ace-window company hungry-delete counsel evil hydra general smartparens which-key window-numbering popwin monokai-theme counsel-projectile magit keychain-environment multi-term clojure-mode clj-refactor cider paredit js2-mode gh-md markdown-mode))
+   '(sly avy dash jedi color-theme-sanityinc-tomorrow sublime-themes organic-green-theme calmer-forest-theme green-screen-theme use-package neotree ace-window company hungry-delete counsel evil hydra general smartparens which-key window-numbering popwin monokai-theme counsel-projectile magit keychain-environment multi-term clojure-mode clj-refactor cider paredit js2-mode gh-md markdown-mode))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
