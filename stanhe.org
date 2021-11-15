@@ -67,7 +67,7 @@
 			    ) "My default packages")
 
 #+END_SRC
-*** check and install 
+*** check and install
 #+BEGIN_SRC emacs-lisp
   (require 'cl-lib)
 
@@ -95,7 +95,7 @@
     :defer 1
     :init
     (general-evil-setup t)
-    :config 
+    :config
     (evil-mode 1)
     (nvmap :prefix "SPC"
       "a" 'org-agenda
@@ -106,7 +106,6 @@
       "q" 'quit-window
       "c" 'compile
       "o" 'sth-open-mcd
-      "g" 'sth-open-terminal
       "SPC" 'random-color-theme
       "r" 'sth-quickrun
       ;;"a" 'quickrun-with-arg
@@ -118,9 +117,11 @@
       "n" 'display-line-numbers-mode
       "e" 'my-eval-current-end
       "df" 'sth-defun
-      "fb" 'open-file-browse
       "ff" 'counsel-find-file
       "fr" 'counsel-recentf
+      "fb" 'open-file-browse
+      "ft" 'sth-open-terminal
+      "fv" 'open-file-vscode
       "x" 'counsel-M-x
       "<tab>" 'org-show-subtree
       "fm" 'my-config-file)
@@ -202,20 +203,21 @@
       ))
 
   (use-package counsel
-    :defer 3 
+    :defer 3
     :init
     (setq ivy-use-virtual-buffers t
 	  ivy-count-format "(%d/%d) "
 	  ivy-height 20
 	  ivy-extra-directories nil
 	  enable-recursive-minibuffers t)
-    :config 
+    :config
     (ivy-mode 1)
     (ivy-set-actions
      'counsel-find-file
      '(("m" delete-file "delete")
        ("f" (lambda (x) (shell-command (concat "open " x))) "open in finder.")
        ("t" (lambda (x) (shell-command (concat "open " x " -a Terminal.app"))) "open in terminal.")
+       ("v" (lambda (x) (shell-command (concat "open " x " -a 'Visual Studio Code'"))) "open in vscode.")
        ))
     (global-set-key "\C-s" 'swiper)
     (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -455,7 +457,7 @@
 	    ((< now 22) (load-theme 'sanityinc-tomorrow-day 1))
 	    (t (load-theme 'sanityinc-tomorrow-night 1)))))
 
-  (defun eshell/clear ()      
+  (defun eshell/clear ()
     "clear buffer of eshell."
     (let ((eshell-buffer-maximum-lines 0)) (eshell-truncate-buffer)))
 
@@ -477,6 +479,11 @@
      "open file in browse"
      (interactive)
      (shell-command (concat "open " (expand-file-name default-directory))))
+
+  (defun open-file-vscode()
+     "open file in vscode"
+     (interactive)
+     (shell-command (concat "open " (buffer-file-name)  " -a 'Visual Studio Code'")))
 
   (defun sth-find-file()
     "my find file"
@@ -516,7 +523,7 @@
     "open current directory in terminal"
     (interactive)
     (let ((path (expand-file-name default-directory)))
-      (when (string-equal "/" path) 
+      (when (string-equal "/" path)
 	  (setq path "~"))
       (shell-command (concat "open " path " -a Terminal.app"))))
 
