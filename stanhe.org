@@ -41,8 +41,8 @@
 #+BEGIN_SRC emacs-lisp
   ;init packages
   (when (>= emacs-major-version 24)
-    (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-			     ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
+    (setq package-archives '(("gnu" . "http://elpa.zilongshanren.com/gnu/")
+			     ("melpa" . "http://elpa.zilongshanren.com/melpa/"))))
 #+END_SRC
 *** custom packages
 #+BEGIN_SRC emacs-lisp
@@ -56,6 +56,7 @@
 			    hungry-delete
 			    counsel
 			    evil
+			    evil-escape
 			    general
 			    smartparens
 			    which-key
@@ -167,6 +168,12 @@
       )
     )
 
+  (use-package evil-escape-mode
+    :defer 2
+    :config
+    (setq-default evil-escape-key-sequence "jj")
+    (setq-default evil-escape-delay 0.2))
+
   (use-package neotree
     :defer 3
     :config
@@ -258,9 +265,9 @@
      org-log-done 'time
      org-agenda-files '("~/.org/")
      org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
-			   (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-			   (sequence "DELAY(l)" "|" "CANCELED(c)")
-			   (sequence "|" "NOTE(n)" "NEXT(x)"))
+			 (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+			 (sequence "DELAY(l)" "|" "CANCELED(c)")
+			 (sequence "|" "NOTE(n)" "NEXT(x)"))
      org-confirm-babel-evaluate nil
      org-agenda-include-diary t)
     :config

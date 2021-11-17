@@ -1,0 +1,39 @@
+;;custom settings, not important settings .such as : installed themes
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(compilation-message-face 'default)
+ '(custom-safe-themes
+   '("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default))
+ '(eww-header-line-format "%u")
+ '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
+ '(highlight-symbol-colors
+   '("#EFFF00" "#73CD4F" "#83DDFF" "MediumPurple1" "#66CDAA" "DarkOrange" "HotPink1" "#809FFF" "#ADFF2F"))
+ '(highlight-tail-colors
+   '(("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100)))
+ '(hl-paren-background-colors
+   '("#00FF99" "#CCFF99" "#FFCC99" "#FF9999" "#FF99CC" "#CC99FF" "#9999FF" "#99CCFF" "#99FFCC" "#7FFF00"))
+ '(hl-paren-colors '("#326B6B"))
+ '(linum-format " %7i ")
+ '(magit-diff-use-overlays nil)
+ '(package-selected-packages
+   '(sublime-themes organic-green-theme calmer-forest-theme green-screen-theme use-package neotree evil hydra general smartparens which-key window-numbering monokai-theme counsel-projectile magit keychain-environment clojure-mode clj-refactor cider js2-mode gh-md markdown-mode))
+ '(pos-tip-background-color "#FFFACE")
+ '(pos-tip-foreground-color "#272822")
+ '(weechat-color-list
+   '(unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
