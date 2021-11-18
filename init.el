@@ -21,6 +21,11 @@
   (init-my-load-path)
   (choose-theme-by-time)
   (use-package ace-jump-mode)
+  (use-package key-chord
+    :defer 3
+    :config
+    (key-chord-mode 1)
+    (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
   (use-package gradle-mode
     :defer 3)
   (use-package pop-eshell-mode

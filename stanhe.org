@@ -56,7 +56,6 @@
 			    hungry-delete
 			    counsel
 			    evil
-			    evil-escape
 			    general
 			    smartparens
 			    which-key
@@ -167,12 +166,6 @@
       "nt" 'neotree-toggle
       )
     )
-
-  (use-package evil-escape-mode
-    :defer 2
-    :config
-    (setq-default evil-escape-key-sequence "jj")
-    (setq-default evil-escape-delay 0.2))
 
   (use-package neotree
     :defer 3
@@ -332,12 +325,6 @@
       :keymaps 'quickrun--mode-map
       "q" 'quit-window
       "k" 'quickrun--kill-running-process))
-
-  (use-package key-chord
-    :defer 2
-    :config
-    (key-chord-mode 1)
-    (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
   (use-package avy
     :defer 1
