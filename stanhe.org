@@ -53,6 +53,7 @@
 			    avy
 			    ace-window
 			    company
+			    company-tabnine
 			    hungry-delete
 			    counsel
 			    evil
@@ -244,6 +245,12 @@
       :states '(insert)
       "C-n" 'company-select-next
       "C-p" 'company-select-previous))
+
+  (use-package company-tabnine
+    :ensure t
+    :defer 3
+    :config
+    (add-to-list 'company-backends #'company-tabnine))
 
   (use-package hungry-delete
     :defer 3
