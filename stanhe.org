@@ -278,7 +278,12 @@
        (shell . t)
        (perl . t)
        (ruby . t)
-       (sqlite . t))))
+       (sqlite . t)))
+    (add-hook 'org-mode-hook
+	      (lambda ()
+		(defun sth-quickrun()
+		  (interactive)
+		  (org-ctrl-c-ctrl-c)))))
 
 
   (use-package smartparens-config
