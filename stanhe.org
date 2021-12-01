@@ -105,6 +105,7 @@
       "tm" 'eshell-pop-toggle
       "ts" 'text-scale-adjust
       "q" 'quit-window
+      "g" 'sth-open-fastgit
       "c" 'compile
       "o" 'sth-open-mcd
       "SPC" 'random-color-theme
@@ -561,6 +562,14 @@
 	    (defun sth-org-babel-highlight-result-maybe ()
 	      (when (eq this-command 'org-ctrl-c-ctrl-c)
 		(sth-org-babel-highlight-result))))
+
+  (defun sth-open-fastgit()
+    (interactive)
+    (when mark-active
+      (let ((region (funcall region-extract-function nil)))
+	(deactivate-mark)
+	(shell-command (concat "open " (replace-regexp-in-string "github.com" "hub.fastgit.org" region)))
+	)))
 #+END_SRC
 *** cover with better keybindings
 
