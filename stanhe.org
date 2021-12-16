@@ -65,6 +65,7 @@
 			    counsel-projectile
 			    sly
 			    color-theme-sanityinc-tomorrow
+			    exec-path-from-shell
 			    ) "My default packages")
 
 #+END_SRC
@@ -88,6 +89,9 @@
 #+END_SRC
 *** packages settings and keybindings
 #+BEGIN_SRC emacs-lisp
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+
   (require 'use-package)
 
   (require 'my-abbrev)
