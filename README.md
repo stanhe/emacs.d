@@ -3,14 +3,13 @@ My config for shell script,clojure,python focused on Evil.
 
 ## Installation
 * emacs version >= 26
-### linux
+
+### macOS  [linux](https://github.com/stanhe/emacs.d/tree/linux)   [win](https://github.com/stanhe/emacs.d/tree/win)
+
 main features support.
 ```
-git clone -b linux https://github.com/stanhe/emacs.d.git ~/.emacs.d
+git clone -b mac https://github.com/stanhe/emacs.d.git ~/.emacs.d
 ```
-### windows
-
-[win branch](https://github.com/stanhe/emacs.d/tree/win).
 
 ## Features
 It's easy to start and use, try this:
