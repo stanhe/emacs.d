@@ -37,6 +37,6 @@
 
   ;;(run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (load-theme 'sanityinc-tomorrow-day))))
 
-  (run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (find-file "~/.org/2021.org"))))
+  (run-with-idle-timer 1 nil (lambda () (_loading 1 "loading...." (find-file "~/.org/2022.org"))))
     ;; ===> 配置 结束 
 )
